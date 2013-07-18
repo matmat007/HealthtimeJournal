@@ -68,6 +68,7 @@ public class HttpClient {
 		params.add(new BasicNameValuePair("last_name", parent.getLastName()));
 		params.add(new BasicNameValuePair("gender", parent.getGender()));
 		params.add(new BasicNameValuePair("email", parent.getEmail()));
+		params.add(new BasicNameValuePair("blood_type",parent.getBloodType()));
 		params.add(new BasicNameValuePair("password", parent.getPassword()));
 		
 		return client.makeHttpRequest(REGISTER_URL, "POST", params);

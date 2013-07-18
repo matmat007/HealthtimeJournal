@@ -1,9 +1,10 @@
 package com.healthtimejournal;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,11 +12,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
+
+import com.healthtimejournal.model.ParentModel;
+import com.healthtimejournal.service.HttpClient;
 
 public class RegisterPageActivity extends Activity{
 	
-	final Context context = this;
+	
+	private RegisterTask mRegTask = null;
 	
 	EditText firstnameText;
 	EditText lastnameText;
@@ -23,8 +29,8 @@ public class RegisterPageActivity extends Activity{
 	EditText passText;
 	EditText retypePassText;
 	
-	CheckBox maleCheckBox;
-	CheckBox femaleCheckBox;
+	RadioButton maleCheckBox;
+	RadioButton femaleCheckBox;
 	
 	Spinner bloodType;
 	
@@ -45,26 +51,8 @@ public class RegisterPageActivity extends Activity{
 		passText = (EditText)findViewById(R.id.regPasswordText);
 		retypePassText = (EditText)findViewById(R.id.regRetypePasswordText);
 		
-		/*maleCheckBox = (CheckBox)findViewById(R.id.regMaleCheck);
-		maleCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			@Override
-		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		        if(buttonView.isChecked()) {
-		        	maleCheckBox.setChecked(true);
-		            femaleCheckBox.setChecked(false);
-		        }
-		    }
-		});
-        femaleCheckBox = (CheckBox)findViewById(R.id.regFemaleCheck);
-        femaleCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			@Override
-		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		        if(buttonView.isChecked()) {
-		        	femaleCheckBox.setChecked(true);
-		        	maleCheckBox.setChecked(false);
-		        }
-		    }
-		});*/
+		maleCheckBox = (RadioButton)findViewById(R.id.radioMale);
+		femaleCheckBox = (RadioButton)findViewById(R.id.radioFemale);
         
         bloodType = (Spinner) findViewById(R.id.regBloodTypeSpinner);
 		String[] bloods = getResources().getStringArray(R.array.bloodtype);
@@ -76,46 +64,12 @@ public class RegisterPageActivity extends Activity{
         nextButton.setOnClickListener(new OnClickListener() { 
 			public void onClick(View arg0) {
 				//to delete
-				Intent a = new Intent(RegisterPageActivity.this, RegisterPage2Activity.class);
-				startActivity(a);
+				/*Intent a = new Intent(RegisterPageActivity.this, RegisterPage2Activity.class);
+				startActivity(a);*/
+				attemptRegister();
 				//to delete ^
-				
-				/*if(!firstnameText.getText().toString().equals("") && !lastnameText.getText().toString().equals("") && !emailText.getText().toString().equals("") && !passText.getText().toString().equals("") && !retypePassText.getText().toString().equals("") && (maleCheckBox.isChecked() || femaleCheckBox.isChecked())){
-					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-					alertDialogBuilder
-							.setMessage("Are you sure you want to go to the next page?")
-							.setCancelable(false)
-							.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-									Intent a = new Intent(RegisterPageActivity.this, RegisterPage2Activity.class);
-									startActivity(a);
-								}
-							  })
-							.setNegativeButton("No", new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-									dialog.cancel();
-								}
-							});
-			 
-					AlertDialog alertDialog = alertDialogBuilder.create();
-					alertDialog.show();
-				}
-				else {
-					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-					alertDialogBuilder
-							.setMessage("You still have missing fields on the register form.")
-							.setCancelable(false)
-							.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-									dialog.cancel();
-								}
-							});
-			 
-					AlertDialog alertDialog = alertDialogBuilder.create();
-					alertDialog.show();
-				}*/
 			}
-	    }); 
+        });
 	}
 	
 	@Override
@@ -123,6 +77,83 @@ public class RegisterPageActivity extends Activity{
 		
 		startActivity(new Intent(RegisterPageActivity.this, MainActivity.class));
 		return true;
+	}
+	
+	private void attemptRegister(){
+		if(mRegTask != null){
+			return;
+		}
+		
+		String mLastName = lastnameText.getText().toString();
+		String mFirstName = firstnameText.getText().toString();
+		String mEmail = emailText.getText().toString();
+		String mPass = passText.getText().toString();
+		String mPassRep = retypePassText.getText().toString();
+		
+		boolean cancel = false;
+		View focusView = null;
+		
+		if(TextUtils.isEmpty(mLastName)){
+			lastnameText.setError(getString(R.string.required_not_met));
+			focusView = lastnameText;
+			cancel = true;
+		}
+		if(TextUtils.isEmpty(mFirstName)){
+			firstnameText.setError(getString(R.string.required_not_met));
+			focusView = firstnameText;
+			cancel = true;
+		}
+		if(TextUtils.isEmpty(mEmail)){
+			emailText.setError(getString(R.string.required_not_met));
+			focusView = emailText;
+			cancel = true;
+		}
+		if(TextUtils.isEmpty(mPass)){
+			passText.setError(getString(R.string.required_not_met));
+			focusView = passText;
+			cancel = true;
+		}
+		if(TextUtils.isEmpty(mPassRep)){
+			retypePassText.setError(getString(R.string.required_not_met));
+			focusView = retypePassText;
+			cancel = true;
+		}
+		
+		if(!mPass.equals(mPassRep)){
+			passText.setError(getString(R.string.not_match));
+			retypePassText.setError(getString(R.string.not_match));
+			focusView = retypePassText;
+			cancel = true;
+		}
+		if(cancel){
+			focusView.requestFocus();
+		}
+		else{
+			mRegTask = new RegisterTask();
+			mRegTask.execute((Void)null);
+		}
+	}
+	
+	private class RegisterTask extends AsyncTask<Void,Void,Boolean>{
+
+		@Override
+		protected Boolean doInBackground(Void... arg0) {
+			// TODO Auto-generated method stub
+			HttpClient a = new HttpClient();
+			ParentModel parent = new ParentModel();
+			parent.setFirstName(firstnameText.getText().toString());
+			parent.setLastName(lastnameText.getText().toString());
+			if(maleCheckBox.isChecked()){
+				parent.setGender("Male");
+			}
+			else
+				parent.setGender("Female");
+			parent.setBloodType(bloodType.getSelectedItem().toString());
+			parent.setPassword(passText.getText().toString());
+			a.registerUser(parent);
+			return null;
+		}
+		
 	}
 		 
 }
