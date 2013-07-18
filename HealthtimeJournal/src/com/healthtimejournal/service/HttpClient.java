@@ -12,7 +12,6 @@ import com.healthtimejournal.model.ParentModel;
 
 public class HttpClient {
 	
-<<<<<<< HEAD
 	private static String REGISTER_URL = "http://192.168.1.4/healthtime/Test/add_parent.php";
 	private static String LOGIN_URL = "http://192.168.1.4/healthtime/Test/login.php";
 	
@@ -46,16 +45,7 @@ public class HttpClient {
 	private static final String RETRIEVE_SHARED_BY_PARENT_ACCOUNTS_URL = "http://192.168.1.4/healthtime/Test/retrieve_shared_by_parent_accounts.php";
 	private static final String RETRIEVE_MEDICAL_HISTORY_URL = "http://192.168.1.4/healthtime/Test/retrieve_parent_medical_history.php";
 	private static final String RETRIEVE_SHARED_TO_DOCTOR_ACCOUNTS_URL = "http://192.168.1.4/healthtime/Test/retrieve_shared_to_doctor_accounts.php";
-=======
-	private static String REGISTER_URL = "http://192.168.1.105/healthtime/Test/add_parent.php";
-	private static String LOGIN_URL = "http://192.168.1.105/healthtime/Test/login.php";
-	private static String RETRIEVE_POST_URL = "http://192.168.1.105/healthtime/Test/retrieve_all_post.php?id=";
-	private static String POST_URL = "http://192.168.1.105/healthtime/Test/add_post.php";
-	private static String HASHTAG_URL = "http://192.168.1.105/healthtime/Test/retrieve_all_tags.php";
-	private static String RETRIEVE_CHILD_URL = "http://192.168.1.105/healthtime/Test/retrieve_child.php";
-	private static String RETRIEVE_POST_BY_CHILD_URL = "http://192.168.1.105/healthtime/Test/retrieve_all_post_by_child.php";
->>>>>>> origin/Choi
-	
+
 	HttpURLConnection conn = null;
 	InputStream is = null;
 	
