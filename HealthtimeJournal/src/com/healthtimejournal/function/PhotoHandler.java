@@ -1,4 +1,4 @@
-package com.healthtimejournal.features;
+package com.healthtimejournal.function;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -57,7 +57,8 @@ public class HttpResponseClient {
                 is = httpEntity.getContent();*/
             	String paramString = URLEncodedUtils.format(params, "utf-8");
             	url += "?" + paramString;
-            	HttpURLConnection conn = (HttpURLConnection)(new URL(url)).openConnection();
+            	
+            	conn = (HttpURLConnection)(new URL(url)).openConnection();
     			conn.setRequestMethod("GET");
     			conn.setDoInput(true);
     			conn.setDoOutput(true);
@@ -82,9 +83,12 @@ public class HttpResponseClient {
                 sb.append(line + "\n");
             }
             is.close();
-            json = sb.toString();*/
-        	StringBuffer buffer = new StringBuffer();
+            //json = sb.toString();*/
+        	
+        	Log.d("URL", conn.getURL().toString());
+            StringBuffer buffer = new StringBuffer();
 			is = conn.getInputStream();
+			
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			String line = null;
 			while (  (line = br.readLine()) != null )
@@ -92,10 +96,14 @@ public class HttpResponseClient {
 			
 			is.close();
 			conn.disconnect();
+			
 			return buffer.toString();
+        	
+        	
         } catch (Exception e) {
             Log.e("Buffer Error", "Error converting result " + e.toString());
         }
+        
         return null;
     }
 }

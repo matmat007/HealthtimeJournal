@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +25,7 @@ import android.widget.Toast;
 
 import com.healthtimejournal.customView.MyCustomHSV;
 import com.healthtimejournal.customadapter.MyCustomExpandableListAdapter;
-import com.healthtimejournal.model.ChildList;
+import com.healthtimejournal.function.MenuInstance;
 import com.healthtimejournal.model.GroupList;
 import com.healthtimejournal.service.HttpClient;
 import com.healthtimejournal.service.JSONParser;
@@ -34,8 +35,16 @@ public class TiledEventsActivity extends FragmentActivity {
 	private LinearLayout SideList;
 	private boolean isExpanded = false;
 	private Context context;
-	private List<String> items;
 	private EventChildNameTask eTask = null;
+	private List<String> items = null;
+	private List<GroupList> list = null;
+	private int width = 0;
+	
+	private MyCustomExpandableListAdapter adapter;
+	private ExpandableListView listview; 
+	private MyCustomHSV hsv;
+	//private List<String> headlist = null; //Arrays.asList("Favorites", "Children", "Option");
+	//private List<List<String>> sublist = null; //Arrays.asList(Arrays.asList("News Feed", "Notification", "Album"), Arrays.asList(""), Arrays.asList("Create Doctor Page", "Log out"));
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,43 +53,18 @@ public class TiledEventsActivity extends FragmentActivity {
 		
 		getActionBar().setHomeButtonEnabled(true);
 		
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tile_event_layout);
 		context = this;
 		
-        String[] values = new String[] {"Favorites", "Children", "Option"};
-        String[][] values1 = new String[][] { {"News Feed", "Notification", "Album"}, {}, {"Create Doctor Page", "Log out"} };
-        
-        retrieve_child(values1);
-        
-        final ExpandableListView listview = (ExpandableListView)findViewById(R.id.listview);
-        final ArrayList<GroupList> list = new ArrayList<GroupList>();
-        
-        Display display = getWindowManager().getDefaultDisplay();
+		Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int width = size.x;
+        width = size.x;
         
-        for (int i = 0; i < values.length; i++) {
-        	GroupList tempList = new GroupList();
-            List<ChildList> tempList1 = new ArrayList<ChildList>();
-            
-        	tempList.setName(values[i]);
-        	for(int j = 0; j < values1[i].length; j++){
-        		ChildList temp = new ChildList();
-        		temp.setName(values1[i][j]);
-        		tempList1.add(temp);
-        	}
-        	tempList.setList(tempList1);
-        	list.add(tempList);
-        }
+        retrieve_child();
         
-        final MyCustomExpandableListAdapter adapter = new MyCustomExpandableListAdapter(this, list);
-        listview.setAdapter(adapter);
-        for(int k = 0; k < listview.getExpandableListAdapter().getGroupCount(); k++){
-        	listview.expandGroup(k);
-        }
+        listview = (ExpandableListView)findViewById(R.id.listview);
         
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         //viewPager.setAdapter(new FragmentPageAdapter(getSupportFragmentManager()));
@@ -88,11 +72,12 @@ public class TiledEventsActivity extends FragmentActivity {
         params.width = width;
         viewPager.setLayoutParams(params);
         
-        
         SideList = (LinearLayout) findViewById(R.id.sidebar_layout);
         params = SideList.getLayoutParams();
         params.width = width/4*3; 
         SideList.setLayoutParams(params);
+        
+        hsv = (MyCustomHSV) findViewById(R.id.timeline_scrollview);
         
         listview.setOnGroupClickListener(new OnGroupClickListener() {
 			
@@ -124,17 +109,14 @@ public class TiledEventsActivity extends FragmentActivity {
         
 	}
 	
-	private void retrieve_child(String[][] values){
+	private void retrieve_child(){
 		if (eTask != null) {
-            return;
-        }
+			return;
+        
+		}
 		
 		eTask = new EventChildNameTask();
 		eTask.execute();
-		
-		for(int i = 0; i < items.size(); i++){
-			values[1][i] = items.get(i);
-		}
 	}
 
 	@Override
@@ -146,12 +128,6 @@ public class TiledEventsActivity extends FragmentActivity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
-		Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x;
-        MyCustomHSV hsv = (MyCustomHSV)findViewById(R.id.timeline_scrollview);
-        
 		switch(item.getItemId()){
 		case android.R.id.home:
 			if (!isExpanded){
@@ -196,12 +172,30 @@ public class TiledEventsActivity extends FragmentActivity {
 		
 		@Override
 		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+	        
+	        pDialog.dismiss();
+			
 			if(result != null){
 				List<String> chldlist = JSONParser.getChildren(result);
 				
 				for(String s : chldlist){
 					items.add(s);
+					Log.d("Child", s);
 				}
+				
+				list = MenuInstance.instatiateGroup(chldlist);
+				adapter = new MyCustomExpandableListAdapter(context, list); 
+				adapter.notifyDataSetChanged();
+				listview.setAdapter(adapter);
+				
+				for(int k = 0; k < listview.getExpandableListAdapter().getGroupCount(); k++){
+		        	listview.expandGroup(k);
+		        }
+				
+				hsv.scrollTo(width/4*3, 0);
+				
+				Log.d("Size", String.valueOf(items.size()));
 			}
 		}
 		
