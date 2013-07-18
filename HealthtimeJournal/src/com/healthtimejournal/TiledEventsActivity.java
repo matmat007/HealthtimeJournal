@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.AsyncTask;
@@ -34,8 +33,8 @@ public class TiledEventsActivity extends FragmentActivity {
 	
 	private LinearLayout SideList;
 	private boolean isExpanded = false;
-	private Context context;
 	private EventChildNameTask eTask = null;
+	private EventTileTask eTileTask = null;
 	private List<String> items = null;
 	private List<GroupList> list = null;
 	private int width = 0;
@@ -43,8 +42,6 @@ public class TiledEventsActivity extends FragmentActivity {
 	private MyCustomExpandableListAdapter adapter;
 	private ExpandableListView listview; 
 	private MyCustomHSV hsv;
-	//private List<String> headlist = null; //Arrays.asList("Favorites", "Children", "Option");
-	//private List<List<String>> sublist = null; //Arrays.asList(Arrays.asList("News Feed", "Notification", "Album"), Arrays.asList(""), Arrays.asList("Create Doctor Page", "Log out"));
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +52,6 @@ public class TiledEventsActivity extends FragmentActivity {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tile_event_layout);
-		context = this;
 		
 		Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -63,6 +59,7 @@ public class TiledEventsActivity extends FragmentActivity {
         width = size.x;
         
         retrieve_child();
+        retrieve_post_by_child();
         
         listview = (ExpandableListView)findViewById(R.id.listview);
         
@@ -112,11 +109,19 @@ public class TiledEventsActivity extends FragmentActivity {
 	private void retrieve_child(){
 		if (eTask != null) {
 			return;
-        
 		}
 		
 		eTask = new EventChildNameTask();
 		eTask.execute();
+	}
+	
+	private void retrieve_post_by_child(){
+		if(eTileTask != null){
+			return;
+		}
+		
+		eTileTask = new EventTileTask();
+		eTileTask.execute();
 	}
 
 	@Override
@@ -149,19 +154,6 @@ public class TiledEventsActivity extends FragmentActivity {
 	}
 	
 	private class EventChildNameTask extends AsyncTask<Void, Void, String>{
-		
-		private ProgressDialog pDialog;
-		
-		@Override
-		protected void onPreExecute() {
-	        super.onPreExecute();
-	        pDialog = new ProgressDialog(context);
-	        pDialog.setMessage("Loading events. Please wait...");
-	        pDialog.setIndeterminate(false);
-	        pDialog.setCancelable(false);
-	        pDialog.show();
-	    }
-		
 		@Override
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
@@ -174,8 +166,6 @@ public class TiledEventsActivity extends FragmentActivity {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 	        
-	        pDialog.dismiss();
-			
 			if(result != null){
 				List<String> chldlist = JSONParser.getChildren(result);
 				
@@ -185,7 +175,7 @@ public class TiledEventsActivity extends FragmentActivity {
 				}
 				
 				list = MenuInstance.instatiateGroup(chldlist);
-				adapter = new MyCustomExpandableListAdapter(context, list); 
+				adapter = new MyCustomExpandableListAdapter(getApplicationContext(), list); 
 				adapter.notifyDataSetChanged();
 				listview.setAdapter(adapter);
 				
@@ -200,5 +190,57 @@ public class TiledEventsActivity extends FragmentActivity {
 		}
 		
 	}
-
+	
+	private class EventTileTask extends AsyncTask<Void, Void, String>{
+		
+		private ProgressDialog pDialog;
+		
+		@Override
+		protected void onPreExecute() {
+	        super.onPreExecute();
+	        pDialog = new ProgressDialog(TiledEventsActivity.this);
+	        pDialog.setMessage("Loading events. Please wait...");
+	        pDialog.setIndeterminate(false);
+	        pDialog.setCancelable(false);
+	        pDialog.show();
+	    }
+		
+		@Override
+		protected String doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			HttpClient a = new HttpClient();
+			String data = a.retrieve_post_by_child(1);
+			Log.d("Data", data);
+			return data;
+		}
+		
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+	        
+	        pDialog.dismiss();
+			
+			/*if(result != null){
+				List<String> chldlist = JSONParser.getChildren(result);
+				
+				for(String s : chldlist){
+					items.add(s);
+				}
+				
+				list = MenuInstance.instatiateGroup(chldlist);
+				adapter = new MyCustomExpandableListAdapter(getApplicationContext(), list); 
+				adapter.notifyDataSetChanged();
+				listview.setAdapter(adapter);
+				
+				for(int k = 0; k < listview.getExpandableListAdapter().getGroupCount(); k++){
+		        	listview.expandGroup(k);
+		        }
+				
+				hsv.scrollTo(width/4*3, 0);
+				
+				Log.d("Size", String.valueOf(items.size()));
+			}*/
+		}
+		
+	}
 }
