@@ -14,53 +14,48 @@ public class HttpClient {
 	
 	private static String REGISTER_URL = "http://192.168.1.4/healthtime/Test/add_parent.php";
 	private static String LOGIN_URL = "http://192.168.1.4/healthtime/Test/login.php";
-	private static String RETRIEVE_POST_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_post.php?id=";
+	
 	private static String POST_URL = "http://192.168.1.4/healthtime/Test/add_post.php";
+	
+	/*Retrieve Php URLs*/
 	private static String HASHTAG_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_tags.php";
+	private static final String RETRIEVE_POST_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_post.php?id=";
 	private static final String RETRIEVE_CHILD_URL = "http://192.168.1.4/healthtime/Test/retrieve_child.php";
 	private static final String RETRIEVE_POST_BY_CHILD_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_post_by_child.php";
+	private static final String RETRIEVE_COMMENT_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_comment.php";
+	private static final String RETRIEVE_ALL_POST_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_post.php";
+	private static final String RETRIEVE_CHILD_BY_SEARCH_URL = "http://192.168.1.4/healthtime/Test/retrieve_child_by_search.php";
+	private static final String RETRIEVE_POST_BY_PARENT_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_post_by_parent.php";
+	private static final String RETRIEVE_CHILD_BY_FAMILY_URL = "http://192.168.1.4/healthtime/Test/retrieve_child_by_family.php";
+	private static final String RETRIEVE_DOCTOR_URL = "http://192.168.1.4/healthtime/Test/retrieve_doctor.php";
+	private static final String RETRIEVE_DOCTOR_BY_SEARCH_URL = "http://192.168.1.4/healthtime/Test/retrieve_doctor_by_search.php";
+	private static final String RETRIEVE_POST_OF_PARENT_BY_CHILD_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_all_post_of_parent_by_child.php";
+	private static final String RETRIEVE_SHARED_TO_PARENT_ACCOUNTS_URL = "http://192.168.1.4/healthtime/Test/retrieve_shared_to_parent_accounts.php";
+	private static final String RETRIEVE_PARENT_URL = "http://192.168.1.4/healthtime/Test/retrieve_parent.php";
+	private static final String RETRIEVE_PARENT_BY_SEARCH_URL = "http://192.168.1.4/healthtime/Test/retrieve_parent_by_search.php";
+	private static final String RETRIEVE_SHARED_BY_PARENT_ACCOUNTS_URL = "http://192.168.1.4/healthtime/Test/retrieve_shared_by_parent_accounts.php";
+	private static final String RETRIEVE_MEDICAL_HISTORY_URL = "http://192.168.1.4/healthtime/Test/retrieve_parent_medical_history.php";
+	private static final String RETRIEVE_SHARED_TO_DOCTOR_ACCOUNTS_URL = "http://192.168.1.4/healthtime/Test/retrieve_shared_to_doctor_accounts.php";
 	
 	HttpURLConnection conn = null;
 	InputStream is = null;
 	
+	public String loginUser(String email, String pass){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("username", email));
+		params.add(new BasicNameValuePair("password", pass));
+		
+		return client.makeHttpRequest(LOGIN_URL, "POST", params);
+		
+	}
+	
+	//Add Methods
+	
 	public String registerUser(ParentModel parent){
 		
-		/*try {
-			String lemessage = "first_name=" + URLEncoder.encode(parent.getFirstName(), "UTF-8")+
-								"&last_name=" + URLEncoder.encode(parent.getLastName(),"UTF-8")+
-								"&gender=" + URLEncoder.encode(parent.getGender(),"UTF-8")+
-								"&email=" + URLEncoder.encode(parent.getEmail(), "UTF-8")+
-								"&password=" + URLEncoder.encode(parent.getPassword(),"UTF-8");
-			conn = (HttpURLConnection)(new URL(REGISTER_URL)).openConnection();
-			Log.d("msg", lemessage);
-			conn.setRequestMethod("POST");
-			conn.setDoInput(true);
-			conn.setDoOutput(true);
-			conn.setFixedLengthStreamingMode(lemessage.getBytes().length);
-			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-			PrintWriter out = new PrintWriter(conn.getOutputStream());
-			out.print(lemessage);
-			out.close();
-			conn.connect();
-		
-		StringBuffer buffer = new StringBuffer();
-		is = conn.getInputStream();
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		String line = null;
-		while (  (line = br.readLine()) != null )
-			buffer.append(line + "\r\n");
-		
-		is.close();
-		conn.disconnect();
-		return buffer.toString();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;*/
 		HttpResponseClient client = new HttpResponseClient();
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -73,127 +68,8 @@ public class HttpClient {
 		return client.makeHttpRequest(REGISTER_URL, "POST", params);
 	}
 	
-	public String loginUser(String email, String pass){
-		
-		/*try {
-			String lemessage = "username=" + URLEncoder.encode(email, "UTF-8")+
-								"&password=" + URLEncoder.encode(pass,"UTF-8");
-			conn = (HttpURLConnection)(new URL(LOGIN_URL)).openConnection();
-			Log.d("msg", lemessage);
-			conn.setRequestMethod("POST");
-			conn.setDoInput(true);
-			conn.setDoOutput(true);
-			conn.setFixedLengthStreamingMode(lemessage.getBytes().length);
-			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-			conn.setRequestProperty("Connection", "close");
-			PrintWriter out = new PrintWriter(conn.getOutputStream());
-			out.print(lemessage);
-			out.close();
-			conn.connect();
-		
-		StringBuffer buffer = new StringBuffer();
-		is = conn.getInputStream();
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		String line = null;
-		while (  (line = br.readLine()) != null )
-			buffer.append(line + "\r\n");
-		
-		is.close();
-		Log.d("response", buffer.toString());
-		conn.disconnect();
-		return buffer.toString();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;*/
-		HttpResponseClient client = new HttpResponseClient();
-		
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("username", email));
-		params.add(new BasicNameValuePair("password", pass));
-		
-		return client.makeHttpRequest(LOGIN_URL, "POST", params);
-		
-	}
-	
-	public String getPost(int id){
-			
-			/*try {
-				conn = (HttpURLConnection)(new URL(RETRIEVE_URL + id)).openConnection();
-				conn.setRequestMethod("GET");
-				conn.setDoInput(true);
-				conn.setDoOutput(true);
-				conn.connect();
-			
-			StringBuffer buffer = new StringBuffer();
-			is = conn.getInputStream();
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-			String line = null;
-			while (  (line = br.readLine()) != null )
-				buffer.append(line + "\r\n");
-			
-			is.close();
-			Log.d("response", buffer.toString());
-			conn.disconnect();
-			return buffer.toString();
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;*/
-		HttpResponseClient client = new HttpResponseClient();
-		
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("to_parent_id", "1"));
-		
-		return client.makeHttpRequest(RETRIEVE_POST_URL, "GET", params);
-	}
-	
 	public String addPost(String post){
-		/*try {
-			String lemessage = "to_parent_id=" + URLEncoder.encode("1", "UTF-8")+
-								"&from_parent_id=" + URLEncoder.encode("1","UTF-8")+
-								"&child_id=" + URLEncoder.encode("1","UTF-8")+
-								"&post_content=" + URLEncoder.encode(post, "UTF-8")+
-								"&file_id=" + URLEncoder.encode("1","UTF-8");
-			conn = (HttpURLConnection)(new URL(POST_URL)).openConnection();
-			Log.d("msg", lemessage);
-			conn.setRequestMethod("POST");
-			conn.setDoInput(true);
-			conn.setDoOutput(true);
-			conn.setFixedLengthStreamingMode(lemessage.getBytes().length);
-			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-			conn.setRequestProperty("Connection", "close");
-			PrintWriter out = new PrintWriter(conn.getOutputStream());
-			out.print(lemessage);
-			out.close();
-			conn.connect();
-		
-		StringBuffer buffer = new StringBuffer();
-		is = conn.getInputStream();
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		String line = null;
-		while (  (line = br.readLine()) != null )
-			buffer.append(line + "\r\n");
-		
-		is.close();
-		conn.disconnect();
-		return buffer.toString();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;*/
+
 		HttpResponseClient client = new HttpResponseClient();
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -205,37 +81,15 @@ public class HttpClient {
 		
 		return client.makeHttpRequest(POST_URL, "POST", params);
 	}
+	
+	//End of Add Methods
+	
+	//--------------------
+	
+	//Retrieve Methods
+	
 	public String retrieve_all_hashtags(){
 		
-		/*try {
-			conn = (HttpURLConnection)(new URL(HASHTAG_URL)).openConnection();
-			conn.setRequestMethod("GET");
-			conn.setDoInput(true);
-			conn.setDoOutput(true);
-			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-			conn.setRequestProperty("Connection", "close");
-		
-			conn.connect();
-		
-		StringBuffer buffer = new StringBuffer();
-		is = conn.getInputStream();
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		String line = null;
-		while (  (line = br.readLine()) != null )
-			buffer.append(line + "\r\n");
-		
-		is.close();
-		Log.d("response", buffer.toString());
-		conn.disconnect();
-		return buffer.toString();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;*/
 		HttpResponseClient client = new HttpResponseClient();
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -243,12 +97,22 @@ public class HttpClient {
 		return client.makeHttpRequest(HASHTAG_URL, "GET", params);
 		
 	}
+	
+	public String getPost(int id){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("to_parent_id", "1"));
+		
+		return client.makeHttpRequest(RETRIEVE_POST_URL, "GET", params);
+	}
 
 	public String retrieve_child(int id){
 		HttpResponseClient client = new HttpResponseClient();
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(id)));
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
 		
 		return client.makeHttpRequest(RETRIEVE_CHILD_URL, "GET", params);
 	}
@@ -257,11 +121,137 @@ public class HttpClient {
 		HttpResponseClient client = new HttpResponseClient();
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("child_id", String.valueOf(id)));
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
 		
 		return client.makeHttpRequest(RETRIEVE_POST_BY_CHILD_URL, "GET", params);
 	}
 
-//hello comment
-
+	public String retrieve_all_comment(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_COMMENT_URL, "GET", params);
+	}
+	
+	public String retrieve_all_post(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_ALL_POST_URL, "GET", params);
+	}
+	
+	public String retrieve_shared_to_doctor_accounts(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_SHARED_TO_DOCTOR_ACCOUNTS_URL, "GET", params);
+	}
+	
+	public String retrieve_medical_history(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_MEDICAL_HISTORY_URL, "GET", params);
+	}
+	
+	public String retrieve_shared_by_parent_accounts(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_SHARED_BY_PARENT_ACCOUNTS_URL, "GET", params);
+	}
+	
+	public String retrieve_post_by_parent(int parent_id, int child_id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("parent_id", String.valueOf(parent_id)));
+		params.add(new BasicNameValuePair("child_id", String.valueOf(child_id)));
+		
+		return client.makeHttpRequest(RETRIEVE_POST_BY_PARENT_URL, "GET", params);
+	}
+	
+	public String retrieve_parent_by_search(String name){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("key", name));
+		
+		return client.makeHttpRequest(RETRIEVE_PARENT_BY_SEARCH_URL, "GET", params);
+	}
+	
+	public String retrieve_shared_to_parent_accounts(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_SHARED_TO_PARENT_ACCOUNTS_URL, "GET", params);
+	}
+	
+	public String retrieve_parent(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_PARENT_URL, "GET", params);
+	}
+	
+	public String retrieve_all_post_of_parent_by_child(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_POST_OF_PARENT_BY_CHILD_URL, "GET", params);
+	}
+	
+	public String retrieve_doctor(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_DOCTOR_URL, "GET", params);
+	}
+	
+	public String retrieve_child_by_search(String name){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("key", name));
+		
+		return client.makeHttpRequest(RETRIEVE_CHILD_BY_SEARCH_URL, "GET", params);
+	}
+	
+	public String retrieve_doctor_by_search(String name){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("key", name));
+		
+		return client.makeHttpRequest(RETRIEVE_DOCTOR_BY_SEARCH_URL, "GET", params);
+	}
+	
+	public String retrieve_child_by_family(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_CHILD_BY_FAMILY_URL, "GET", params);
+	}
+	
+//End of Retrieve Methods
 }
