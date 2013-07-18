@@ -3,15 +3,14 @@ package com.healthtimejournal.function;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.util.Log;
-
 import com.healthtimejournal.model.ChildList;
-import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.GroupList;
+
+import android.util.Log;
 
 public class MenuInstance {
 	
-	public static List<GroupList> instatiateGroup(List<ChildModel> child){
+	public static List<GroupList> instatiateGroup(List<String> child){
 		List<String> headlist = instatiateMenuHeadList();
 		List<List<String>> sublist = instatiateMenuSubList(child);
 		List<GroupList> list = new ArrayList<GroupList>();
@@ -44,7 +43,7 @@ public class MenuInstance {
 		return list;
 	}
 	
-	private static List<List<String>> instatiateMenuSubList(List<ChildModel> child){
+	private static List<List<String>> instatiateMenuSubList(List<String> child){
 		List<List<String>> list = new ArrayList<List<String>>();
 		List<String> temp = new ArrayList<String>();
 		
@@ -56,8 +55,8 @@ public class MenuInstance {
         Log.d("List", list.get(0).get(0));
 		
 		temp = new ArrayList<String>();
-		for(ChildModel s : child){
-			temp.add(s.getFirstName() + " " + s.getLastName());
+		for(String s : child){
+			temp.add(s);
 		}
 		list.add(temp);
 		
