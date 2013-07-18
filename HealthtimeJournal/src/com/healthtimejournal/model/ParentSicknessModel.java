@@ -4,23 +4,23 @@ public class ParentSicknessModel {
 	
 	private int parentSicknessId;
 	private int parentId;
-	private Boolean anemia;
-	private Boolean asthma;
-	private Boolean bleedingDis;
-	private Boolean diabetes;
-	private Boolean epilepsy;
-	private Boolean heartDis;
-	private Boolean highBlood;
-	private Boolean highCho;
-	private Boolean liverDis;
-	private Boolean kidneyDis;
-	private Boolean nasalAll;
-	private Boolean tuberculosis;
+	private int anemia;
+	private int asthma;
+	private int bleedingDis;
+	private int diabetes;
+	private int epilepsy;
+	private int heartDis;
+	private int highBlood;
+	private int highCho;
+	private int liverDis;
+	private int kidneyDis;
+	private int nasalAll;
+	private int tuberculosis;
 	
 	public ParentSicknessModel(){
 		
 	}
-		
+
 	public int getParentSicknessId() {
 		return parentSicknessId;
 	}
@@ -28,7 +28,7 @@ public class ParentSicknessModel {
 	public void setParentSicknessId(int parentSicknessId) {
 		this.parentSicknessId = parentSicknessId;
 	}
-	
+
 	public int getParentId() {
 		return parentId;
 	}
@@ -37,100 +37,99 @@ public class ParentSicknessModel {
 		this.parentId = parentId;
 	}
 
-	public Boolean getAnemia() {
+	public int getAnemia() {
 		return anemia;
 	}
-	
-	public void setAnemia(Boolean anemia) {
+
+	public void setAnemia(int anemia) {
 		this.anemia = anemia;
 	}
-	
-	public Boolean getAsthma() {
+
+	public int getAsthma() {
 		return asthma;
 	}
-	
-	public void setAsthma(Boolean asthma) {
+
+	public void setAsthma(int asthma) {
 		this.asthma = asthma;
 	}
-	
-	public Boolean getBleedingDis() {
+
+	public int getBleedingDis() {
 		return bleedingDis;
 	}
-	
-	public void setBleedingDis(Boolean bleedingDis) {
+
+	public void setBleedingDis(int bleedingDis) {
 		this.bleedingDis = bleedingDis;
 	}
-	
-	public Boolean getDiabetes() {
+
+	public int getDiabetes() {
 		return diabetes;
 	}
-	
-	public void setDiabetes(Boolean diabetes) {
+
+	public void setDiabetes(int diabetes) {
 		this.diabetes = diabetes;
 	}
-	
-	public Boolean getEpilepsy() {
+
+	public int getEpilepsy() {
 		return epilepsy;
 	}
-	
-	public void setEpilepsy(Boolean epilepsy) {
+
+	public void setEpilepsy(int epilepsy) {
 		this.epilepsy = epilepsy;
 	}
-	
-	public Boolean getHeartDis() {
+
+	public int getHeartDis() {
 		return heartDis;
 	}
-	
-	public void setHeartDis(Boolean heartDis) {
+
+	public void setHeartDis(int heartDis) {
 		this.heartDis = heartDis;
 	}
-	
-	public Boolean getHighBlood() {
+
+	public int getHighBlood() {
 		return highBlood;
 	}
-	
-	public void setHighBlood(Boolean highBlood) {
+
+	public void setHighBlood(int highBlood) {
 		this.highBlood = highBlood;
 	}
-	
-	public Boolean getHighCho() {
+
+	public int getHighCho() {
 		return highCho;
 	}
-	
-	public void setHighCho(Boolean highCho) {
+
+	public void setHighCho(int highCho) {
 		this.highCho = highCho;
 	}
-	
-	public Boolean getLiverDis() {
+
+	public int getLiverDis() {
 		return liverDis;
 	}
-	
-	public void setLiverDis(Boolean liverDis) {
+
+	public void setLiverDis(int liverDis) {
 		this.liverDis = liverDis;
 	}
-	
-	public Boolean getKidneyDis() {
+
+	public int getKidneyDis() {
 		return kidneyDis;
 	}
-	
-	public void setKidneyDis(Boolean kidneyDis) {
+
+	public void setKidneyDis(int kidneyDis) {
 		this.kidneyDis = kidneyDis;
 	}
-	
-	public Boolean getNasalAll() {
+
+	public int getNasalAll() {
 		return nasalAll;
 	}
-	
-	public void setNasalAll(Boolean nasalAll) {
+
+	public void setNasalAll(int nasalAll) {
 		this.nasalAll = nasalAll;
 	}
-	
-	public Boolean getTuberculosis() {
+
+	public int getTuberculosis() {
 		return tuberculosis;
 	}
-	
-	public void setTuberculosis(Boolean tuberculosis) {
+
+	public void setTuberculosis(int tuberculosis) {
 		this.tuberculosis = tuberculosis;
 	}
-
 }
