@@ -23,9 +23,12 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.healthtimejournal.customView.MyCustomHSV;
+import com.healthtimejournal.customadapter.FragmentPageAdapter;
 import com.healthtimejournal.customadapter.MyCustomExpandableListAdapter;
 import com.healthtimejournal.function.MenuInstance;
+import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.GroupList;
+import com.healthtimejournal.model.PostModel;
 import com.healthtimejournal.service.HttpClient;
 import com.healthtimejournal.service.JSONParser;
 
@@ -35,18 +38,19 @@ public class TiledEventsActivity extends FragmentActivity {
 	private boolean isExpanded = false;
 	private EventChildNameTask eTask = null;
 	private EventTileTask eTileTask = null;
-	private List<String> items = null;
+	private List<ChildModel> children = null;
 	private List<GroupList> list = null;
 	private int width = 0;
 	
 	private MyCustomExpandableListAdapter adapter;
 	private ExpandableListView listview; 
 	private MyCustomHSV hsv;
+	private ViewPager viewPager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
-		items = new ArrayList<String>();
+		children = new ArrayList<ChildModel>();
 		
 		getActionBar().setHomeButtonEnabled(true);
 		
@@ -63,7 +67,7 @@ public class TiledEventsActivity extends FragmentActivity {
         
         listview = (ExpandableListView)findViewById(R.id.listview);
         
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager = (ViewPager) findViewById(R.id.pager);
         //viewPager.setAdapter(new FragmentPageAdapter(getSupportFragmentManager()));
         LayoutParams params = viewPager.getLayoutParams();
         params.width = width;
@@ -158,7 +162,8 @@ public class TiledEventsActivity extends FragmentActivity {
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
-			String data = a.retrieve_child(1);
+			String data = a.retrieve_child_by_family(1);
+			Log.d("Data", data);
 			return data;
 		}
 		
@@ -167,14 +172,10 @@ public class TiledEventsActivity extends FragmentActivity {
 			super.onPostExecute(result);
 	        
 			if(result != null){
-				List<String> chldlist = JSONParser.getChildren(result);
+				children = JSONParser.getChild(result);
+				Log.d("Size", String.valueOf(children.size()));
 				
-				for(String s : chldlist){
-					items.add(s);
-					Log.d("Child", s);
-				}
-				
-				list = MenuInstance.instatiateGroup(chldlist);
+				list = MenuInstance.instatiateGroup(children);
 				adapter = new MyCustomExpandableListAdapter(getApplicationContext(), list); 
 				adapter.notifyDataSetChanged();
 				listview.setAdapter(adapter);
@@ -184,8 +185,6 @@ public class TiledEventsActivity extends FragmentActivity {
 		        }
 				
 				hsv.scrollTo(width/4*3, 0);
-				
-				Log.d("Size", String.valueOf(items.size()));
 			}
 		}
 		
@@ -209,7 +208,7 @@ public class TiledEventsActivity extends FragmentActivity {
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
-			String data = a.retrieve_post_by_child(1);
+			String data = a.retrieve_all_post(1);
 			Log.d("Data", data);
 			return data;
 		}
@@ -220,26 +219,28 @@ public class TiledEventsActivity extends FragmentActivity {
 	        
 	        pDialog.dismiss();
 			
-			/*if(result != null){
-				List<String> chldlist = JSONParser.getChildren(result);
+			if(result != null){
+				List<PostModel> chldlist = JSONParser.getPost(result);
+				List<List<PostModel>> arrangeEvents = new ArrayList<List<PostModel>>();
 				
-				for(String s : chldlist){
-					items.add(s);
+				int n = chldlist.get(0).getChildId();
+				List<PostModel> model = new ArrayList<PostModel>();
+				
+				for(PostModel p : chldlist){
+					
+					if(n != p.getChildId()){
+						n = p.getChildId();
+						arrangeEvents.add(model);
+						model = new ArrayList<PostModel>();
+					}
+					Log.d(String.valueOf(p.getChildId()), p.getPostContent());
+					model.add(p);
 				}
+				arrangeEvents.add(model);
 				
-				list = MenuInstance.instatiateGroup(chldlist);
-				adapter = new MyCustomExpandableListAdapter(getApplicationContext(), list); 
-				adapter.notifyDataSetChanged();
-				listview.setAdapter(adapter);
+				viewPager.setAdapter(new FragmentPageAdapter(getSupportFragmentManager(), children, arrangeEvents));
 				
-				for(int k = 0; k < listview.getExpandableListAdapter().getGroupCount(); k++){
-		        	listview.expandGroup(k);
-		        }
-				
-				hsv.scrollTo(width/4*3, 0);
-				
-				Log.d("Size", String.valueOf(items.size()));
-			}*/
+			}
 		}
 		
 	}

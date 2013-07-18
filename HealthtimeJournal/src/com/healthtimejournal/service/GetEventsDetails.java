@@ -100,7 +100,7 @@ public class GetEventsDetails extends AsyncTask<String, String, String>{
         super.onPostExecute(result);
         
         pDialog.dismiss();
-        viewPager.setAdapter(new FragmentPageAdapter(mng, childObj, childObj1));
+        //viewPager.setAdapter(new FragmentPageAdapter(mng, childObj, childObj1));
         
         MyCustomExpandableListAdapter adapter = new MyCustomExpandableListAdapter(context, list);
         List<ChildList> chld = new ArrayList<ChildList>();
