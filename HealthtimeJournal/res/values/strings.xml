@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Healthtime Journal</string>
+    <string name="welcome">Welcome to HealthTime Journal!</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- Buttons -->
+    <string name="login">Log In</string>
+    <string name="logout">Log Out</string>
+    <string name="register"><u>Sign Up for Healthtime Journal</u></string>
+    <string name="fb_register"><u>Sign Up using Facebook</u></string>
+    <string name="next">Next</string>
+    <string name="submit">Submit</string>
+    <string name="start">Get Started</string>
+    <string name="previous">Previous</string>
+    <string name="cancel">Cancel</string>
+    <string name="addChild">Add Child</string>
+
+    <!-- Registration -->
+    <string name="email">Username</string>
+    <string name="pass">Password</string>
+    <string name="step1">Step 1 of 2: Account Information</string>
+    <string name="step2">Step 2 of 2: Personal Background</string>
+    <string name="full_name">Full Name</string>
+    <string name="limit_username">\@6&#8211;15 characters</string>
+    <string name="limit_password">at least 6 characters</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="retype_pass">Retype Password</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
+    <!-- Adding a Child -->
+    <string name="bloodType">Blood Type</string>
+    <string name="birthdate">Birthdate</string>
+
+    <!-- Friend List -->
+    <string name="shared_acc">Shared Accounts</string>
+    <string name="set_privilege">Privilege</string>
+
+    <!-- News Feed -->
+    <string name="says">says</string>
+
+    <!-- Child Profile -->
+    <string name="album">Album</string>
+    <string name="information">Information</string>
+    <string name="progress">Progress</string>
+    <string name="life_events">Life Events</string>
+    <string name="health_growth">Health and Growth</string>
+    <string name="timeline">Timeline</string>
+
+    <!-- Parent Profile -->
+    <string name="my_shared">My Shared Accounts</string>
+    <string name="my_children">My Children</string>
+    <string name="my_friend_children">My Friends\' Children</string>
+
+    <!-- Life Events -->
+    <string name="firsts">Firsts</string>
+    <string name="milestones">Milestones</string>
+
+    <!-- Health and Growth -->
+    <string name="weight_graph">Child Weight Progress</string>
+    <string name="height_graph">Child Height Progress</string>
+
+    <!-- Set Privilege Context -->
+    <string name="level_3">Can Edit Profile</string>
+    <string name="level_2">Can Comment</string>
+    <string name="level_1">Can View Profile</string>
+
+    <!-- Post Settings Context -->
+    <string name="facebook">Share to Facebook</string>
+    <string name="delete">Delete Post</string>
+
+    <!-- Edit Information -->
+    <string name="inches">Inches</string>
+    <string name="feet">Feet</string>
+    <string name="pounds">Pounds</string>
+
+    <!-- Timeline -->
+    <string name="search">Search</string>
+    <string name="post">Post</string>
+    <string name="view_comment">Comment</string>
+    <string name="share_post">Share</string>
+    <string name="cross_mark">X</string>
+
+    <!-- Post -->
+    <string name="post_hint">What happened today?</string>
+    <string name="description">Description</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_album">AlbumActivity</string>
+    
+    <!-- Doctor Page -->
+    <string name="create_doctor">Create Doctor</string>
+    <string name="edit_doctor">Edit Doctor</string>
+    <string name="specialty">Specialty</string>
+    <string name="hospital_details">Hospital Details</string>
+    <string name="hospital">Hospital</string>
+    <string name="hospital_address">Hospital Address</string>
+    <string name="consultation">Consultation Schedule</string>
+    <string name="contact_details">Contact Details</string>
+    <string name="contact_num1">Contact Number 1</string>
+    <string name="contact_num2">Contact Number 2</string>
+    <string name="children_under">Children Under</string>
+     <string name="edit_info">Edit Information</string>
+
+</resources>

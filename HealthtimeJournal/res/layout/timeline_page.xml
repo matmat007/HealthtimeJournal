@@ -1,0 +1,56 @@
+<com.healthtimejournal.customView.MyCustomHSV
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:id="@+id/timeline_scrollview">
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="match_parent"
+	    android:baselineAligned="false">
+	    
+	    <LinearLayout
+	        android:id="@+id/sidebar_layout"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:orientation="vertical"
+	        android:background="@color/dark_gray">
+	        <LinearLayout 
+	            android:layout_width="fill_parent"
+	        	android:layout_height="wrap_content"
+	        	android:background="@drawable/sidebar_bevel_effect">
+		        <EditText 
+		            android:id="@+id/searchbar"
+		            android:layout_height="wrap_content"
+		            android:layout_width="fill_parent"
+		            android:hint="@string/search"
+		            android:background="@drawable/searchbar_selector"
+		            android:layout_margin="10dip"
+		            android:padding="7dp"/>
+	        </LinearLayout>
+	        <ExpandableListView
+	    		android:id="@+id/listview"
+	    		android:layout_width="fill_parent"
+	    		android:layout_height="fill_parent"/>
+	         
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	        android:id="@+id/layout_timeline"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:background="@color/maroon"
+	        android:orientation="vertical">
+	        
+	        <ListView 
+	                android:id="@+id/timeline_list"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent"
+	                android:padding="10dp"
+	                android:dividerHeight="5dp"/>
+	        
+	    </LinearLayout>
+	    
+	</LinearLayout>
+
+</com.healthtimejournal.customView.MyCustomHSV>

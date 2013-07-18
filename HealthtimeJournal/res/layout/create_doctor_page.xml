@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:text="@string/create_doctor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_gray"
+        android:textStyle="bold"
+        android:padding="10dp"/>
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout 
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:orientation="vertical">
+        	
+		    <TextView
+		        android:text="@string/specialty"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"
+		        android:textStyle="bold"/>
+		    
+		    <EditText 
+		        android:id="@+id/doctorSpecialtyText"
+		        android:hint="@string/specialty"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"/>
+		    
+		    <TextView
+		        android:text="@string/hospital_details"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"
+		        android:textStyle="bold"/>
+		    
+		    <EditText 
+		        android:id="@+id/doctorHospitalText"
+		        android:hint="@string/hospital"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"/>
+		    
+		    <EditText 
+		        android:id="@+id/doctorHospitalAddressText"
+		        android:hint="@string/hospital_address"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"/>
+		    
+		    <TextView
+		        android:text="@string/consultation"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"
+		        android:textStyle="bold"/>
+		    
+		    <EditText 
+		        android:id="@+id/doctorConsultationText"
+		        android:hint="@string/consultation"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"/>
+		    
+		    <TextView
+		        android:text="@string/contact_details"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"
+		        android:textStyle="bold"/>
+		    
+		    <EditText 
+		        android:id="@+id/doctorContact1Text"
+		        android:hint="@string/contact_num1"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"/>
+		    
+		    <EditText 
+		        android:id="@+id/doctorContact2Text"
+		        android:hint="@string/contact_num2"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"/>
+		    
+		    <Button 
+		        android:id="@+id/createDoctorButton"
+		        android:text="@string/create_doctor"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_horizontal"
+		        android:layout_marginTop="10dp"
+		        android:layout_marginBottom="10dp"/>
+	    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

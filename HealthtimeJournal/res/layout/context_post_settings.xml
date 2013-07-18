@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <Button 
+        android:id="@+id/addFbButton"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:text="@string/facebook" />
+    
+    <Button 
+        android:id="@+id/deletePostButton"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:text="@string/delete" />
+
+</LinearLayout>
