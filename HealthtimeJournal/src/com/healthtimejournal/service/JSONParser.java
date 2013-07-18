@@ -256,7 +256,7 @@ public class JSONParser {
 		
 		try {
 			JSONObject jObj = new JSONObject(data);
-			JSONArray jArray = jObj.getJSONArray("parent");
+			JSONArray jArray = jObj.getJSONArray("parents");
 			
 			JSONObject oneobj = null;
 			for(int i = 0; i < jArray.length(); i++){
@@ -278,6 +278,29 @@ public class JSONParser {
 				
 			}
 			return result;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	public static ParentModel getOneParent(String data){
+		
+		try {
+			JSONObject jObj = new JSONObject(data);
+			JSONArray jArray = jObj.getJSONArray("parents");
+			
+			JSONObject oneobj = null;
+				ParentModel oneparent = new ParentModel();
+				oneobj = jArray.getJSONObject(0);
+				
+				oneparent.setParentId(oneobj.getInt("parent_id"));
+				oneparent.setFirstName(oneobj.getString("first_name"));
+				oneparent.setLastName(oneobj.getString("last_name"));
+				//oneparent.setFamilyId(oneobj.getInt("family_id"));
+			return oneparent;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
