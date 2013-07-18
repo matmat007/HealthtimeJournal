@@ -250,20 +250,22 @@ public final class R {
         public static final int post_page=0x7f03001a;
         public static final int post_page_comment_one=0x7f03001b;
         public static final int register_page=0x7f03001c;
-        public static final int register_page_2=0x7f03001d;
-        public static final int register_sickness_layout=0x7f03001e;
-        public static final int segregate_page=0x7f03001f;
-        public static final int shared_account_page_layout=0x7f030020;
-        public static final int sidebar_list_child=0x7f030021;
-        public static final int sidebar_list_group=0x7f030022;
-        public static final int tile_event_layout=0x7f030023;
-        public static final int timeline_item=0x7f030024;
-        public static final int timeline_page=0x7f030025;
-        public static final int weight_graph_page=0x7f030026;
+        public static final int register_page3=0x7f03001d;
+        public static final int register_page_2=0x7f03001e;
+        public static final int register_sickness_layout=0x7f03001f;
+        public static final int segregate_page=0x7f030020;
+        public static final int shared_account_page_layout=0x7f030021;
+        public static final int sidebar_list_child=0x7f030022;
+        public static final int sidebar_list_group=0x7f030023;
+        public static final int tile_event_layout=0x7f030024;
+        public static final int timeline_item=0x7f030025;
+        public static final int timeline_page=0x7f030026;
+        public static final int weight_graph_page=0x7f030027;
     }
     public static final class menu {
         public static final int activity_album=0x7f0a0000;
         public static final int activity_main=0x7f0a0001;
+        public static final int activity_register_page3=0x7f0a0002;
     }
     public static final class string {
         public static final int addChild=0x7f08000d;
@@ -366,6 +368,7 @@ public final class R {
         public static final int submit=0x7f080009;
         public static final int timeline=0x7f080026;
         public static final int title_activity_album=0x7f08003e;
+        public static final int title_activity_register_page3=0x7f08004b;
         public static final int view_comment=0x7f080038;
         /**  Health and Growth 
          */
