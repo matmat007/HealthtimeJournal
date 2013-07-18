@@ -15,7 +15,16 @@ public class HttpClient {
 	private static String REGISTER_URL = "http://192.168.1.4/healthtime/Test/add_parent.php";
 	private static String LOGIN_URL = "http://192.168.1.4/healthtime/Test/login.php";
 	
+	//Add Php Urls
 	private static String POST_URL = "http://192.168.1.4/healthtime/Test/add_post.php";
+	private static String ADD_SHARING_DOCTOR_URL = "http://192.168.1.4/healthtime/Test/add_sharing_doctor.php";
+	private static String ADD_DOCTOR_URL = "http://192.168.1.4/healthtime/Test/add_doctor.php";
+	private static String ADD_COMMENT_URL = "http://192.168.1.4/healthtime/Test/add_comment.php";
+	private static String ADD_MEDICAL_HISTORY_URL = "http://192.168.1.4/healthtime/Test/add_medical_history.php";
+	private static String ADD_GALLERY_URL = "http://192.168.1.4/healthtime/Test/add_gallery.php";
+	private static String ADD_FAMILY_URL = "http://192.168.1.4/healthtime/Test/add_family.php";
+	private static String ADD_SHARING_URL = "http://192.168.1.4/healthtime/Test/add_sharing.php";
+	private static String ADD_CHILD_URL = "http://192.168.1.4/healthtime/Test/add_child.php";
 	
 	/*Retrieve Php URLs*/
 	private static String HASHTAG_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_tags.php";
