@@ -8,7 +8,15 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.healthtimejournal.model.ChildModel;
+import com.healthtimejournal.model.CommentModel;
+import com.healthtimejournal.model.DoctorModel;
+import com.healthtimejournal.model.FamilyModel;
+import com.healthtimejournal.model.GalleryModel;
 import com.healthtimejournal.model.ParentModel;
+import com.healthtimejournal.model.ParentSicknessModel;
+import com.healthtimejournal.model.SharingDoctorModel;
+import com.healthtimejournal.model.SharingModel;
 
 public class HttpClient {
 	
@@ -28,7 +36,6 @@ public class HttpClient {
 	
 	/*Retrieve Php URLs*/
 	private static String HASHTAG_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_tags.php";
-	private static final String RETRIEVE_POST_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_post.php?id=";
 	private static final String RETRIEVE_CHILD_URL = "http://192.168.1.4/healthtime/Test/retrieve_child.php";
 	private static final String RETRIEVE_POST_BY_CHILD_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_post_by_child.php";
 	private static final String RETRIEVE_COMMENT_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_comment.php";
@@ -87,8 +94,128 @@ public class HttpClient {
 		params.add(new BasicNameValuePair("child_id", "1"));
 		params.add(new BasicNameValuePair("post_content", post));
 		params.add(new BasicNameValuePair("file_id", "1"));
-		
 		return client.makeHttpRequest(POST_URL, "POST", params);
+	}
+	
+	public String addSharingDoctor(SharingDoctorModel doctor){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("doctor_id", String.valueOf(doctor.getDoctorId())));
+		params.add(new BasicNameValuePair("parent_id", String.valueOf(doctor.getParentId())));
+		params.add(new BasicNameValuePair("child_id", String.valueOf(doctor.getChildId())));
+		
+		return client.makeHttpRequest(ADD_SHARING_DOCTOR_URL, "POST", params);
+		
+	}
+	
+	public String addDoctor(DoctorModel doctor){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("parent_id", String.valueOf(doctor.getParentId())));
+		params.add(new BasicNameValuePair("specialty", doctor.getSpecialty()));
+		params.add(new BasicNameValuePair("hospital", doctor.getHospital()));
+		params.add(new BasicNameValuePair("hospital_address", doctor.getHospitalAddress()));
+		params.add(new BasicNameValuePair("consultation", doctor.getConsultation()));
+		params.add(new BasicNameValuePair("contact1", doctor.getContact1()));
+		params.add(new BasicNameValuePair("contact2", doctor.getContact2()));
+		
+		return client.makeHttpRequest(ADD_DOCTOR_URL, "POST", params);
+		
+	}
+	
+	public String addComment(CommentModel comment){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("parent_id", String.valueOf(comment.getParentId())));
+		params.add(new BasicNameValuePair("post_id", String.valueOf(comment.getPostId())));
+		params.add(new BasicNameValuePair("comment_date", comment.getCommentDate()));
+		params.add(new BasicNameValuePair("comment_content", comment.getCommentContent()));
+		
+		return client.makeHttpRequest(ADD_COMMENT_URL, "POST", params);
+		
+	}
+	
+	public String addMedicalHistory(ParentSicknessModel medicalHistory){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("parent_id", String.valueOf(medicalHistory.getParentId())));
+		params.add(new BasicNameValuePair("anemia", String.valueOf(medicalHistory.getAnemia())));
+		params.add(new BasicNameValuePair("asthma", String.valueOf(medicalHistory.getAsthma())));
+		params.add(new BasicNameValuePair("bleeding_disorder", String.valueOf(medicalHistory.getBleedingDis())));
+		params.add(new BasicNameValuePair("diabetes", String.valueOf(medicalHistory.getDiabetes())));
+		params.add(new BasicNameValuePair("epilepsy", String.valueOf(medicalHistory.getEpilepsy())));
+		params.add(new BasicNameValuePair("heart_disorder", String.valueOf(medicalHistory.getHeartDis())));
+		params.add(new BasicNameValuePair("high_blood", String.valueOf(medicalHistory.getHighBlood())));
+		params.add(new BasicNameValuePair("high_cholesterol", String.valueOf(medicalHistory.getHighCho())));
+		params.add(new BasicNameValuePair("liver_disorder", String.valueOf(medicalHistory.getLiverDis())));
+		params.add(new BasicNameValuePair("kidney_disorder", String.valueOf(medicalHistory.getKidneyDis())));
+		params.add(new BasicNameValuePair("nasal_allergy", String.valueOf(medicalHistory.getNasalAll())));
+		params.add(new BasicNameValuePair("tuberculosis", String.valueOf(medicalHistory.getTuberculosis())));
+		
+		return client.makeHttpRequest(ADD_MEDICAL_HISTORY_URL, "POST", params);
+		
+	}
+	
+	public String addGallery(GalleryModel gallery){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("filename", String.valueOf(gallery.getFilename())));
+		
+		return client.makeHttpRequest(ADD_GALLERY_URL, "POST", params);
+		
+	}
+	
+	public String addFamily(FamilyModel family){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("father_id", String.valueOf(family.getFatherId())));
+		params.add(new BasicNameValuePair("mother_id", String.valueOf(family.getMotherId())));
+		
+		return client.makeHttpRequest(ADD_FAMILY_URL, "POST", params);
+		
+	}
+	
+	public String addSharing(SharingModel sharing){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(sharing.getToParentId())));
+		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(sharing.getFromParentId())));
+		params.add(new BasicNameValuePair("to_child_id", String.valueOf(sharing.getToChildId())));
+		params.add(new BasicNameValuePair("privilage", String.valueOf(sharing.getPrivilege())));
+		
+		
+		return client.makeHttpRequest(ADD_SHARING_URL, "POST", params);
+		
+	}
+	
+	public String addChild(ChildModel child){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("first_name", child.getFirstName()));
+		params.add(new BasicNameValuePair("last_name", child.getLastName()));
+		params.add(new BasicNameValuePair("gender", child.getGender()));
+		params.add(new BasicNameValuePair("birthdate", child.getBirthdate()));
+		params.add(new BasicNameValuePair("blood_type", child.getBloodType()));
+		params.add(new BasicNameValuePair("family_id", String.valueOf(child.getFamilyId())));
+		
+		return client.makeHttpRequest(ADD_SHARING_URL, "POST", params);
+		
 	}
 	
 	//End of Add Methods
@@ -105,16 +232,6 @@ public class HttpClient {
 		
 		return client.makeHttpRequest(HASHTAG_URL, "GET", params);
 		
-	}
-	
-	public String getPost(int id){
-		
-		HttpResponseClient client = new HttpResponseClient();
-		
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("to_parent_id", "1"));
-		
-		return client.makeHttpRequest(RETRIEVE_POST_URL, "GET", params);
 	}
 
 	public String retrieve_child(int id){

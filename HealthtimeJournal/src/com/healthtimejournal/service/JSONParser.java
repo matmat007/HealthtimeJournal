@@ -300,18 +300,18 @@ public class JSONParser {
 				
 				oneparentsickness.setParentSicknessId(oneobj.getInt("medical_history_id"));
 				oneparentsickness.setParentId(oneobj.getInt("parent_id"));
-				oneparentsickness.setAnemia(oneobj.getBoolean("anemia"));
-				oneparentsickness.setAsthma(oneobj.getBoolean("asthma"));
-				oneparentsickness.setBleedingDis(oneobj.getBoolean("bleeding_disorder"));
-				oneparentsickness.setDiabetes(oneobj.getBoolean("diabetes"));
-				oneparentsickness.setEpilepsy(oneobj.getBoolean("epilepsy"));
-				oneparentsickness.setHeartDis(oneobj.getBoolean("heart_disorder"));
-				oneparentsickness.setHighBlood(oneobj.getBoolean("high_blood"));
-				oneparentsickness.setHighCho(oneobj.getBoolean("high_cholesterol"));
-				oneparentsickness.setLiverDis(oneobj.getBoolean("liver_disorder"));
-				oneparentsickness.setKidneyDis(oneobj.getBoolean("kidney_disorder"));
-				oneparentsickness.setNasalAll(oneobj.getBoolean("nasal_allergy"));
-				oneparentsickness.setTuberculosis(oneobj.getBoolean("tuberculosis"));
+				oneparentsickness.setAnemia(oneobj.getInt("anemia"));
+				oneparentsickness.setAsthma(oneobj.getInt("asthma"));
+				oneparentsickness.setBleedingDis(oneobj.getInt("bleeding_disorder"));
+				oneparentsickness.setDiabetes(oneobj.getInt("diabetes"));
+				oneparentsickness.setEpilepsy(oneobj.getInt("epilepsy"));
+				oneparentsickness.setHeartDis(oneobj.getInt("heart_disorder"));
+				oneparentsickness.setHighBlood(oneobj.getInt("high_blood"));
+				oneparentsickness.setHighCho(oneobj.getInt("high_cholesterol"));
+				oneparentsickness.setLiverDis(oneobj.getInt("liver_disorder"));
+				oneparentsickness.setKidneyDis(oneobj.getInt("kidney_disorder"));
+				oneparentsickness.setNasalAll(oneobj.getInt("nasal_allergy"));
+				oneparentsickness.setTuberculosis(oneobj.getInt("tuberculosis"));
 				
 				result.add(oneparentsickness);
 				
