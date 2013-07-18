@@ -66,7 +66,11 @@ public class HttpClient {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("first_name", parent.getFirstName()));
 		params.add(new BasicNameValuePair("last_name", parent.getLastName()));
-		params.add(new BasicNameValuePair("gender", parent.getGender()));
+		if(parent.getGender().equals("Male")){
+			params.add(new BasicNameValuePair("gender", "1"));
+		}
+		else
+			params.add(new BasicNameValuePair("gender", "2"));
 		params.add(new BasicNameValuePair("email", parent.getEmail()));
 		params.add(new BasicNameValuePair("blood_type",parent.getBloodType()));
 		params.add(new BasicNameValuePair("password", parent.getPassword()));

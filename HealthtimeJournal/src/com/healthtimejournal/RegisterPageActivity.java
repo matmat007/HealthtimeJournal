@@ -1,21 +1,24 @@
 package com.healthtimejournal;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.healthtimejournal.model.ParentModel;
+import com.healthtimejournal.service.HealthtimeSession;
 import com.healthtimejournal.service.HttpClient;
 
 public class RegisterPageActivity extends Activity{
@@ -129,14 +132,29 @@ public class RegisterPageActivity extends Activity{
 			focusView.requestFocus();
 		}
 		else{
-			mRegTask = new RegisterTask();
+			mRegTask = new RegisterTask(this);
 			mRegTask.execute((Void)null);
 		}
 	}
 	
 	private class RegisterTask extends AsyncTask<Void,Void,Boolean>{
+		
+		public RegisterTask(Activity activity){
+			this.activity = activity;
+		}
 
+		private ProgressDialog pDialog;
+		private Activity activity;
 		@Override
+		protected void onPreExecute() {
+	        super.onPreExecute();
+	        pDialog = new ProgressDialog(activity);
+	        pDialog.setMessage("Loading events. Please wait...");
+	        pDialog.setIndeterminate(false);
+	        pDialog.setCancelable(false);
+	        pDialog.show();
+	    }
+		
 		protected Boolean doInBackground(Void... arg0) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
@@ -149,9 +167,30 @@ public class RegisterPageActivity extends Activity{
 			else
 				parent.setGender("Female");
 			parent.setBloodType(bloodType.getSelectedItem().toString());
+			parent.setEmail(emailText.getText().toString());
 			parent.setPassword(passText.getText().toString());
 			a.registerUser(parent);
-			return null;
+			return true;
+		}
+		
+		protected void onPostExecute(Boolean value){
+			super.onPostExecute(value);
+			mRegTask = null;
+			pDialog.dismiss();
+			if(value){
+				ParentModel parent = new ParentModel();
+				parent.setFirstName(firstnameText.getText().toString());
+				parent.setLastName(lastnameText.getText().toString());
+				parent.setEmail(emailText.getText().toString());
+				parent.setPassword(passText.getText().toString());
+				HealthtimeSession.save(parent, activity);
+				Toast.makeText(activity, "Registration Successful", Toast.LENGTH_SHORT).show();
+				startActivity(new Intent(RegisterPageActivity.this, RegisterPage2Activity.class));
+			}
+			else{
+				Toast.makeText(activity, "Registration Failed", Toast.LENGTH_SHORT).show();
+			}
+			
 		}
 		
 	}
