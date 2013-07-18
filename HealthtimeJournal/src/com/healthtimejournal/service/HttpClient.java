@@ -12,13 +12,13 @@ import com.healthtimejournal.model.ParentModel;
 
 public class HttpClient {
 	
-	private static String REGISTER_URL = "http://192.168.1.4/healthtime/Test/add_parent.php";
-	private static String LOGIN_URL = "http://192.168.1.4/healthtime/Test/login.php";
-	private static String RETRIEVE_POST_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_post.php?id=";
-	private static String POST_URL = "http://192.168.1.4/healthtime/Test/add_post.php";
-	private static String HASHTAG_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_tags.php";
-	private static final String RETRIEVE_CHILD_URL = "http://192.168.1.4/healthtime/Test/retrieve_child.php";
-	private static final String RETRIEVE_POST_BY_CHILD_URL = "http://192.168.1.4/healthtime/Test/retrieve_all_post_by_child.php";
+	private static String REGISTER_URL = "http://192.168.1.105/healthtime/Test/add_parent.php";
+	private static String LOGIN_URL = "http://192.168.1.105/healthtime/Test/login.php";
+	private static String RETRIEVE_POST_URL = "http://192.168.1.105/healthtime/Test/retrieve_all_post.php?id=";
+	private static String POST_URL = "http://192.168.1.105/healthtime/Test/add_post.php";
+	private static String HASHTAG_URL = "http://192.168.1.105/healthtime/Test/retrieve_all_tags.php";
+	private static String RETRIEVE_CHILD_URL = "http://192.168.1.105/healthtime/Test/retrieve_child.php";
+	private static String RETRIEVE_POST_BY_CHILD_URL = "http://192.168.1.105/healthtime/Test/retrieve_all_post_by_child.php";
 	
 	HttpURLConnection conn = null;
 	InputStream is = null;
@@ -248,7 +248,7 @@ public class HttpClient {
 		HttpResponseClient client = new HttpResponseClient();
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(id)));
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
 		
 		return client.makeHttpRequest(RETRIEVE_CHILD_URL, "GET", params);
 	}
