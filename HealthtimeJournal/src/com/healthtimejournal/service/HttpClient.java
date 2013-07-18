@@ -257,7 +257,7 @@ public class HttpClient {
 		HttpResponseClient client = new HttpResponseClient();
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("child_id", String.valueOf(id)));
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
 		
 		return client.makeHttpRequest(RETRIEVE_POST_BY_CHILD_URL, "GET", params);
 	}
