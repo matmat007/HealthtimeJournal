@@ -1,16 +1,15 @@
 package com.healthtimejournal.model;
 
-import java.sql.Date;
-import java.sql.Time;
 
 public class CommentModel {
 	
 	private int commentId;
+	private int parentId;
+	private int postId;
 	private int image;
 	private String name;
+	private String commentDate;
 	private String commentContent;
-	private Date dateOfComment;
-	private Time timeOfComment;
 	
 	public CommentModel(){
 		
@@ -24,6 +23,22 @@ public class CommentModel {
 		this.commentId = commentId;
 	}
 	
+	public int getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
+
+	public int getPostId() {
+		return postId;
+	}
+
+	public void setPostId(int postId) {
+		this.postId = postId;
+	}
+
 	public int getImage() {
 		return image;
 	}
@@ -40,6 +55,14 @@ public class CommentModel {
 		this.name = name;
 	}
 	
+	public String getCommentDate() {
+		return commentDate;
+	}
+
+	public void setCommentDate(String commentDate) {
+		this.commentDate = commentDate;
+	}
+
 	public String getCommentContent() {
 		return commentContent;
 	}
@@ -47,21 +70,4 @@ public class CommentModel {
 	public void setCommentContent(String commentContent) {
 		this.commentContent = commentContent;
 	}
-	
-	public Date getDateOfComment() {
-		return dateOfComment;
-	}
-	
-	public void setDateOfComment(Date dateOfComment) {
-		this.dateOfComment = dateOfComment;
-	}
-	
-	public Time getTimeOfComment() {
-		return timeOfComment;
-	}
-	
-	public void setTimeOfComment(Time timeOfComment) {
-		this.timeOfComment = timeOfComment;
-	}
-
 }
