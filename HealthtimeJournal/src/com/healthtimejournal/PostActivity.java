@@ -144,7 +144,7 @@ public class PostActivity extends Activity {
 
         // Check for a valid password.
         if (TextUtils.isEmpty(mPost)) {
-            post.setError("This field is required");
+            post.setError(getString(R.string.required_not_met));
             focusView = post;
             cancel = true;
         }

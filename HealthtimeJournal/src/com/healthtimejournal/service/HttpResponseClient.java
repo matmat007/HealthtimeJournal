@@ -96,7 +96,7 @@ public class HttpResponseClient {
 			
 			is.close();
 			conn.disconnect();
-			
+			Log.d("respones", buffer.toString());
 			return buffer.toString();
         	
         	

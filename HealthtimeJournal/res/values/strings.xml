@@ -4,6 +4,7 @@
     <string name="app_name">Healthtime Journal</string>
     <string name="welcome">Welcome to HealthTime Journal!</string>
     <string name="menu_settings">Settings</string>
+    <string name="required_not_met">This is a required field!</string>
 
     <!-- Buttons -->
     <string name="login">Log In</string>
@@ -31,6 +32,7 @@
     <string name="gender">Gender</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="not_match">These do not match!</string>
 
     <!-- Adding a Child -->
     <string name="bloodType">Blood Type</string>
