@@ -9,7 +9,9 @@ public class ParentModel {
 	private String password;
 	private String gender;
 	private String bloodType;
-	private ParentSicknessModel oneParentSickness;
+	private int image;
+	private int familyId;
+	private int accountStatus;
 	
 	public ParentModel(){
 		
@@ -71,12 +73,28 @@ public class ParentModel {
 		this.bloodType = bloodType;
 	}
 
-	public ParentSicknessModel getOneParentSickness() {
-		return oneParentSickness;
+	public int getImage() {
+		return image;
 	}
 
-	public void setOneParentSickness(ParentSicknessModel oneParentSickness) {
-		this.oneParentSickness = oneParentSickness;
+	public void setImage(int image) {
+		this.image = image;
+	}
+
+	public int getFamilyId() {
+		return familyId;
+	}
+
+	public void setFamilyId(int familyId) {
+		this.familyId = familyId;
+	}
+
+	public int getAccountStatus() {
+		return accountStatus;
+	}
+
+	public void setAccountStatus(int accountStatus) {
+		this.accountStatus = accountStatus;
 	}
 
 }

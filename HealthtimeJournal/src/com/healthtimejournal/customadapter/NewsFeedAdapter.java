@@ -26,19 +26,19 @@ public class NewsFeedAdapter extends BaseAdapter {
 		
 		ArrayList<PostModel> tempList = new ArrayList<PostModel>();
 		
-		PostModel onePost = new PostModel();
-		onePost.setImage(R.drawable.ic_launcher);
-		onePost.setName("Joey Bing");
-		onePost.setPostContent("Bing Bong");
-		onePost.setDateOfPost(null);
-	   	tempList.add(onePost);
-	   	
-	   	onePost = new PostModel();
-		onePost.setImage(R.drawable.ic_launcher);
-		onePost.setName("Joey Bing");
-		onePost.setPostContent("Bing Bong");
-		onePost.setDateOfPost(null);
-	   	tempList.add(onePost);
+//		PostModel onePost = new PostModel();
+//		onePost.setImage(R.drawable.ic_launcher);
+//		onePost.setName("Joey Bing");
+//		onePost.setPostContent("Bing Bong");
+//		onePost.setDateOfPost(null);
+//	   	tempList.add(onePost);
+//	   	
+//	   	onePost = new PostModel();
+//		onePost.setImage(R.drawable.ic_launcher);
+//		onePost.setName("Joey Bing");
+//		onePost.setPostContent("Bing Bong");
+//		onePost.setDateOfPost(null);
+//	   	tempList.add(onePost);
 	
 	   	return tempList;
 	}
@@ -64,8 +64,8 @@ public class NewsFeedAdapter extends BaseAdapter {
 	        holder.postContent = (TextView)vi.findViewById(R.id.newsFeedPostContent); 
 	        
 	        holder.postStatus.setText("blahblah");
-	        holder.friendImage.setImageResource(setPost.get(position).getImage());
-	        holder.friendName.setText(setPost.get(position).getName().toString());
+//	        holder.friendImage.setImageResource(setPost.get(position).getImage());
+//	        holder.friendName.setText(setPost.get(position).getName().toString());
 	        holder.postContent.setText(setPost.get(position).getPostContent().toString());
 	    }
 	    
