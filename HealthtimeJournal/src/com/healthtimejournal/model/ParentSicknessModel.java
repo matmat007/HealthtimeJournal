@@ -3,6 +3,7 @@ package com.healthtimejournal.model;
 public class ParentSicknessModel {
 	
 	private int parentSicknessId;
+	private int parentId;
 	private Boolean anemia;
 	private Boolean asthma;
 	private Boolean bleedingDis;
@@ -26,6 +27,14 @@ public class ParentSicknessModel {
 
 	public void setParentSicknessId(int parentSicknessId) {
 		this.parentSicknessId = parentSicknessId;
+	}
+	
+	public int getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
 	}
 
 	public Boolean getAnemia() {

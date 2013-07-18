@@ -3,7 +3,6 @@ package com.healthtimejournal.model;
 public class ChildList {
 	private int id;
 	private String name;
-	
 	public int getId() {
 		return id;
 	}
@@ -17,4 +16,5 @@ public class ChildList {
 		this.name = name;
 	}
 	
+
 }

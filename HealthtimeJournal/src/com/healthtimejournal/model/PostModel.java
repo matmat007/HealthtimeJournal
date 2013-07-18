@@ -1,16 +1,18 @@
 package com.healthtimejournal.model;
 
-import java.sql.Time;
-import java.sql.Date;
 
 public class PostModel {
 	
 	private int postId;
-	private int image;
-	private String name;
+	private int toParentId;
+	private int fromParentId;
+	private int fromParentImage;
+	private int childId;
+	private String fromParentName;
 	private String postContent;
-	private Date dateOfPost;
-	private Time timeOfPost;
+	private int postCategory;
+	private String postDate;
+	private int fileId;
 	
 	public PostModel(){
 		
@@ -23,23 +25,63 @@ public class PostModel {
 	public void setPostId(int postId) {
 		this.postId = postId;
 	}
+	
+	public int getToParentId() {
+		return toParentId;
+	}
 
-	public int getImage() {
-		return image;
+	public void setToParentId(int toParentId) {
+		this.toParentId = toParentId;
+	}
+
+	public int getFromParentId() {
+		return fromParentId;
+	}
+
+	public void setFromParentId(int fromParentId) {
+		this.fromParentId = fromParentId;
+	}
+
+	public int getFromParentImage() {
+		return fromParentImage;
+	}
+
+	public void setFromParentImage(int fromParentImage) {
+		this.fromParentImage = fromParentImage;
+	}
+
+	public String getFromParentName() {
+		return fromParentName;
+	}
+
+	public void setFromParentName(String fromParentName) {
+		this.fromParentName = fromParentName;
 	}
 	
-	public void setImage(int image) {
-		this.image = image;
+	public int getChildId() {
+		return childId;
+	}
+
+	public void setChildId(int childId) {
+		this.childId = childId;
+	}
+
+	public String getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(String postDate) {
+		this.postDate = postDate;
 	}
 	
-	public String getName() {
-		return name;
+	public int getPostCategory() {
+		return postCategory;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
+
+	public void setPostCategory(int postCategory) {
+		this.postCategory = postCategory;
 	}
-	
+
 	public String getPostContent() {
 		return postContent;
 	}
@@ -48,20 +90,12 @@ public class PostModel {
 		this.postContent = postContent;
 	}
 	
-	public Date getDateOfPost() {
-		return dateOfPost;
+	public int getFileId() {
+		return fileId;
 	}
 	
-	public void setDateOfPost(Date dateOfPost) {
-		this.dateOfPost = dateOfPost;
-	}
-	
-	public Time getTimeOfPost() {
-		return timeOfPost;
-	}
-	
-	public void setTimeOfPost(Time timeOfPost) {
-		this.timeOfPost = timeOfPost;
+	public void setFileId(int fileId) {
+		this.fileId = fileId;
 	}
 
 }
