@@ -1,16 +1,16 @@
 package com.healthtimejournal.model;
 
-import java.sql.Date;
-
 public class ChildModel {
 	
 	private int childId;
 	private String firstName;
 	private String lastName;
 	private String gender;
-	private Date birthdate;
+	private String birthdate;
 	private String bloodType;
-	
+	private int familyId;
+	private int childImageId;
+
 	public ChildModel(){
 		
 	}
@@ -47,12 +47,12 @@ public class ChildModel {
 		this.gender = gender;
 	}
 	
-	public Date getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
 	
-	public void setBirthdate(Date birthdate) {
-		this.birthdate = birthdate;
+	public void setBirthdate(String string) {
+		this.birthdate = string;
 	}
 	
 	public String getBloodType() {
@@ -61,6 +61,22 @@ public class ChildModel {
 	
 	public void setBloodType(String bloodType) {
 		this.bloodType = bloodType;
+	}
+	
+	public int getFamilyId() {
+		return familyId;
+	}
+
+	public void setFamilyId(int familyId) {
+		this.familyId = familyId;
+	}
+
+	public int getChildImageId() {
+		return childImageId;
+	}
+
+	public void setChildImageId(int childImageId) {
+		this.childImageId = childImageId;
 	}
 	
 }
