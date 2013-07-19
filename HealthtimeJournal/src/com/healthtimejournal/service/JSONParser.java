@@ -256,7 +256,7 @@ public class JSONParser {
 		
 		try {
 			JSONObject jObj = new JSONObject(data);
-			JSONArray jArray = jObj.getJSONArray("parents");
+			JSONArray jArray = jObj.getJSONArray("parent");
 			
 			JSONObject oneobj = null;
 			for(int i = 0; i < jArray.length(); i++){
@@ -270,8 +270,8 @@ public class JSONParser {
 				oneparent.setPassword(oneobj.getString("password"));
 				oneparent.setGender(oneobj.getString("gender"));
 				oneparent.setBloodType(oneobj.getString("blood_type"));
-				oneparent.setImage(oneobj.getInt("parent_image_id"));
-				oneparent.setFamilyId(oneobj.getInt("family_id"));
+				/*oneparent.setImage(oneobj.getInt("parent_image_id"));
+				oneparent.setFamilyId(oneobj.getInt("family_id"));*/
 				oneparent.setAccountStatus(oneobj.getInt("account_status"));
 				
 				result.add(oneparent);
