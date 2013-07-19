@@ -3,21 +3,16 @@ package com.healthtimejournal.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.widget.ExpandableListView;
 
-import com.healthtimejournal.customadapter.FragmentPageAdapter;
 import com.healthtimejournal.customadapter.MyCustomExpandableListAdapter;
 import com.healthtimejournal.model.ChildList;
 import com.healthtimejournal.model.GroupList;
@@ -100,7 +95,7 @@ public class GetEventsDetails extends AsyncTask<String, String, String>{
         super.onPostExecute(result);
         
         pDialog.dismiss();
-        viewPager.setAdapter(new FragmentPageAdapter(mng, childObj, childObj1));
+        //viewPager.setAdapter(new FragmentPageAdapter(mng, childObj, childObj1));
         
         MyCustomExpandableListAdapter adapter = new MyCustomExpandableListAdapter(context, list);
         List<ChildList> chld = new ArrayList<ChildList>();
