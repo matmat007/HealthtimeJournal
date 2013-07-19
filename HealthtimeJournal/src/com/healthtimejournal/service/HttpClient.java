@@ -212,16 +212,9 @@ public class HttpClient {
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(sharing.getToParentId())));
-<<<<<<< HEAD
-		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(sharing.getFromParentId())));
-		params.add(new BasicNameValuePair("to_child_id", String.valueOf(sharing.getToChildId())));
-		params.add(new BasicNameValuePair("privilege", String.valueOf(sharing.getPrivilege())));
-=======
 		params.add(new BasicNameValuePair("from_family_id", String.valueOf(sharing.getFromFamilyId())));
 		params.add(new BasicNameValuePair("child_id", String.valueOf(sharing.getChildId())));
-		params.add(new BasicNameValuePair("privilage", String.valueOf(sharing.getPrivilege())));
-		
->>>>>>> b780737c77986a1027f85133b5d352c4318b4d56
+		params.add(new BasicNameValuePair("privilege", String.valueOf(sharing.getPrivilege())));
 		
 		return client.makeHttpRequest(ADD_SHARING_URL, "POST", params);
 		
@@ -353,15 +346,9 @@ public class HttpClient {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("sharing_id", String.valueOf(sharing.getSharingId())));
 		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(sharing.getToParentId())));
-<<<<<<< HEAD
-		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(sharing.getFromParentId())));
-		params.add(new BasicNameValuePair("to_child_id", String.valueOf(sharing.getToChildId())));
-		params.add(new BasicNameValuePair("privilege", String.valueOf(sharing.getPrivilege())));
-=======
 		params.add(new BasicNameValuePair("from_family_id", String.valueOf(sharing.getFromFamilyId())));
 		params.add(new BasicNameValuePair("child_id", String.valueOf(sharing.getChildId())));
-		params.add(new BasicNameValuePair("privilage", String.valueOf(sharing.getPrivilege())));
->>>>>>> b780737c77986a1027f85133b5d352c4318b4d56
+		params.add(new BasicNameValuePair("privilege", String.valueOf(sharing.getPrivilege())));
 		
 		return client.makeHttpRequest(EDIT_SHARING_URL, "POST", params);
 		

@@ -38,22 +38,15 @@ public class TiledEventsActivity extends FragmentActivity {
 	private boolean isExpanded = false;
 	private EventChildNameTask eTask = null;
 	private EventTileTask eTileTask = null;
-<<<<<<< HEAD
-	private List<String> items = null;
-=======
 	private List<ChildModel> children = null;
->>>>>>> b780737c77986a1027f85133b5d352c4318b4d56
 	private List<GroupList> list = null;
 	private int width = 0;
 	
 	private MyCustomExpandableListAdapter adapter;
 	private ExpandableListView listview; 
 	private MyCustomHSV hsv;
-<<<<<<< HEAD
-=======
 	
 	private ViewPager viewPager;
->>>>>>> b780737c77986a1027f85133b5d352c4318b4d56
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -170,11 +163,7 @@ public class TiledEventsActivity extends FragmentActivity {
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
-<<<<<<< HEAD
-			String data = a.retrieve_child(1);
-=======
 			String data = a.retrieve_child_by_family(1);
->>>>>>> b780737c77986a1027f85133b5d352c4318b4d56
 			return data;
 		}
 		
@@ -183,20 +172,9 @@ public class TiledEventsActivity extends FragmentActivity {
 			super.onPostExecute(result);
 	        
 			if(result != null){
-<<<<<<< HEAD
-				List<String> chldlist = JSONParser.getChildren(result);
-				
-				for(String s : chldlist){
-					items.add(s);
-					Log.d("Child", s);
-				}
-				
-				list = MenuInstance.instatiateGroup(chldlist);
-=======
 				children = JSONParser.getChild(result);
 				
 				list = MenuInstance.instatiateGroup(children);
->>>>>>> b780737c77986a1027f85133b5d352c4318b4d56
 				adapter = new MyCustomExpandableListAdapter(getApplicationContext(), list); 
 				adapter.notifyDataSetChanged();
 				listview.setAdapter(adapter);
@@ -206,16 +184,9 @@ public class TiledEventsActivity extends FragmentActivity {
 		        }
 				
 				hsv.scrollTo(width/4*3, 0);
-<<<<<<< HEAD
-				
-				Log.d("Size", String.valueOf(items.size()));
-=======
-
 			}
 			
 			else{
-
->>>>>>> b780737c77986a1027f85133b5d352c4318b4d56
 			}
 		}
 		
@@ -239,11 +210,7 @@ public class TiledEventsActivity extends FragmentActivity {
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
-<<<<<<< HEAD
-			String data = a.retrieve_post_by_child(1);
-=======
 			String data = a.retrieve_all_post(1);
->>>>>>> b780737c77986a1027f85133b5d352c4318b4d56
 			Log.d("Data", data);
 			return data;
 		}
@@ -254,8 +221,6 @@ public class TiledEventsActivity extends FragmentActivity {
 	        
 	        pDialog.dismiss();
 			
-<<<<<<< HEAD
-=======
 	        if(result != null){
 	        	List<PostModel> chldlist = JSONParser.getPost(result);
 	        	List<List<PostModel>> arrangeEvents = new ArrayList<List<PostModel>>();
@@ -277,8 +242,6 @@ public class TiledEventsActivity extends FragmentActivity {
 	        	viewPager.setAdapter(new FragmentPageAdapter(getSupportFragmentManager(), children, arrangeEvents));
 	        }
 	        
-	        
->>>>>>> b780737c77986a1027f85133b5d352c4318b4d56
 			/*if(result != null){
 				List<String> chldlist = JSONParser.getChildren(result);
 				
