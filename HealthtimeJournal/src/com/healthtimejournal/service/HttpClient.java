@@ -214,8 +214,7 @@ public class HttpClient {
 		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(sharing.getToParentId())));
 		params.add(new BasicNameValuePair("from_family_id", String.valueOf(sharing.getFromFamilyId())));
 		params.add(new BasicNameValuePair("child_id", String.valueOf(sharing.getChildId())));
-		params.add(new BasicNameValuePair("privilage", String.valueOf(sharing.getPrivilege())));
-		
+		params.add(new BasicNameValuePair("privilege", String.valueOf(sharing.getPrivilege())));
 		
 		return client.makeHttpRequest(ADD_SHARING_URL, "POST", params);
 		
@@ -349,7 +348,7 @@ public class HttpClient {
 		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(sharing.getToParentId())));
 		params.add(new BasicNameValuePair("from_family_id", String.valueOf(sharing.getFromFamilyId())));
 		params.add(new BasicNameValuePair("child_id", String.valueOf(sharing.getChildId())));
-		params.add(new BasicNameValuePair("privilage", String.valueOf(sharing.getPrivilege())));
+		params.add(new BasicNameValuePair("privilege", String.valueOf(sharing.getPrivilege())));
 		
 		return client.makeHttpRequest(EDIT_SHARING_URL, "POST", params);
 		
