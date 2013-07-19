@@ -212,8 +212,8 @@ public class HttpClient {
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(sharing.getToParentId())));
-		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(sharing.getFromParentId())));
-		params.add(new BasicNameValuePair("to_child_id", String.valueOf(sharing.getToChildId())));
+		params.add(new BasicNameValuePair("from_family_id", String.valueOf(sharing.getFromFamilyId())));
+		params.add(new BasicNameValuePair("child_id", String.valueOf(sharing.getChildId())));
 		params.add(new BasicNameValuePair("privilage", String.valueOf(sharing.getPrivilege())));
 		
 		
@@ -313,8 +313,8 @@ public class HttpClient {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("sharing_id", String.valueOf(sharing.getSharingId())));
 		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(sharing.getToParentId())));
-		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(sharing.getFromParentId())));
-		params.add(new BasicNameValuePair("to_child_id", String.valueOf(sharing.getToChildId())));
+		params.add(new BasicNameValuePair("from_family_id", String.valueOf(sharing.getFromFamilyId())));
+		params.add(new BasicNameValuePair("child_id", String.valueOf(sharing.getChildId())));
 		params.add(new BasicNameValuePair("privilage", String.valueOf(sharing.getPrivilege())));
 		
 		return client.makeHttpRequest(DELETE_SHARING_URL, "POST", params);
@@ -347,8 +347,8 @@ public class HttpClient {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("sharing_id", String.valueOf(sharing.getSharingId())));
 		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(sharing.getToParentId())));
-		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(sharing.getFromParentId())));
-		params.add(new BasicNameValuePair("to_child_id", String.valueOf(sharing.getToChildId())));
+		params.add(new BasicNameValuePair("from_family_id", String.valueOf(sharing.getFromFamilyId())));
+		params.add(new BasicNameValuePair("child_id", String.valueOf(sharing.getChildId())));
 		params.add(new BasicNameValuePair("privilage", String.valueOf(sharing.getPrivilege())));
 		
 		return client.makeHttpRequest(EDIT_SHARING_URL, "POST", params);

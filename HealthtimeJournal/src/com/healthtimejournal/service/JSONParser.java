@@ -396,8 +396,8 @@ public class JSONParser {
 				
 				onesharing.setSharingId(oneobj.getInt("sharing_id"));
 				onesharing.setToParentId(oneobj.getInt("to_parent_id"));
-				onesharing.setFromParentId(oneobj.getInt("from_parent_id"));
-				onesharing.setToChildId(oneobj.getInt("to_child_id"));
+				onesharing.setFromFamilyId(oneobj.getInt("from_family_id"));
+				onesharing.setChildId(oneobj.getInt("child_id"));
 				onesharing.setPrivilege(oneobj.getInt("privilege"));
 				
 				result.add(onesharing);
