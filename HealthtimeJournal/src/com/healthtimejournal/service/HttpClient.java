@@ -331,7 +331,7 @@ public class HttpClient {
 		params.add(new BasicNameValuePair("parent_id", String.valueOf(doctor.getParentId())));
 		params.add(new BasicNameValuePair("child_id", String.valueOf(doctor.getChildId())));
 		
-		return client.makeHttpRequest(ADD_SHARING_DOCTOR_URL, "POST", params);
+		return client.makeHttpRequest(DELETE_SHARING_DOCTOR_URL, "POST", params);
 	}
 	
 	//End of Delete Methods
