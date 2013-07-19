@@ -184,11 +184,9 @@ public class TiledEventsActivity extends FragmentActivity {
 		        }
 				
 				hsv.scrollTo(width/4*3, 0);
-
 			}
 			
 			else{
-
 			}
 		}
 		
@@ -243,7 +241,6 @@ public class TiledEventsActivity extends FragmentActivity {
 	        	
 	        	viewPager.setAdapter(new FragmentPageAdapter(getSupportFragmentManager(), children, arrangeEvents));
 	        }
-	        
 	        
 			/*if(result != null){
 				List<String> chldlist = JSONParser.getChildren(result);
