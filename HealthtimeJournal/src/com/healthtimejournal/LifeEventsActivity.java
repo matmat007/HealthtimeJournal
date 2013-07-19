@@ -18,17 +18,17 @@ public class LifeEventsActivity extends TabActivity {
 	    TabHost.TabSpec spec;
 	    Intent intent;
 	    
-	    intent = new Intent().setClass(this, FirstsActivity.class);
-	    spec = tabHost.newTabSpec("Firsts").setIndicator("Firsts").setContent(intent);
-	    tabHost.addTab(spec);
-
-	    intent = new Intent().setClass(this, MilestonesActivity.class);
-	    spec = tabHost.newTabSpec("Milestones").setIndicator("Milestones").setContent(intent);
-	    tabHost.addTab(spec);
-
-	    intent = new Intent().setClass(this, FoodActivity.class);
-	    spec = tabHost.newTabSpec("Food").setIndicator("Food").setContent(intent);
-	    tabHost.addTab(spec);
+//	    intent = new Intent().setClass(this, FirstsActivity.class);
+//	    spec = tabHost.newTabSpec("Firsts").setIndicator("Firsts").setContent(intent);
+//	    tabHost.addTab(spec);
+//
+//	    intent = new Intent().setClass(this, MilestonesActivity.class);
+//	    spec = tabHost.newTabSpec("Milestones").setIndicator("Milestones").setContent(intent);
+//	    tabHost.addTab(spec);
+//
+//	    intent = new Intent().setClass(this, FoodActivity.class);
+//	    spec = tabHost.newTabSpec("Food").setIndicator("Food").setContent(intent);
+//	    tabHost.addTab(spec);
 	    
     }
     

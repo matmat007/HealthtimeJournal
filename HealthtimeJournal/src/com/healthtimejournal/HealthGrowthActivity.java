@@ -26,13 +26,13 @@ public class HealthGrowthActivity extends TabActivity {
 	    spec = tabHost.newTabSpec("Height").setIndicator("Height").setContent(intent);
 	    tabHost.addTab(spec);
 
-	    intent = new Intent().setClass(this, MedicineActivity.class);
-	    spec = tabHost.newTabSpec("Medicine").setIndicator("Medicine").setContent(intent);
-	    tabHost.addTab(spec);
-	    
-	    intent = new Intent().setClass(this, VaccinationActivity.class);
-	    spec = tabHost.newTabSpec("Vaccine").setIndicator("Vaccine").setContent(intent);
-	    tabHost.addTab(spec);
+//	    intent = new Intent().setClass(this, MedicineActivity.class);
+//	    spec = tabHost.newTabSpec("Medicine").setIndicator("Medicine").setContent(intent);
+//	    tabHost.addTab(spec);
+//	    
+//	    intent = new Intent().setClass(this, VaccinationActivity.class);
+//	    spec = tabHost.newTabSpec("Vaccine").setIndicator("Vaccine").setContent(intent);
+//	    tabHost.addTab(spec);
 	    
     }
     

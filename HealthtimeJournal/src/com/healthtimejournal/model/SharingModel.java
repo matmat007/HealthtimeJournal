@@ -4,8 +4,8 @@ public class SharingModel {
 	
 	private int sharingId;
 	private int toParentId;
-	private int fromParentId;
-	private int toChildId;
+	private int fromFamilyId;
+	private int ChildId;
 	private int privilege;
 	
 	public SharingModel(){
@@ -20,36 +20,36 @@ public class SharingModel {
 		this.sharingId = sharingId;
 	}
 
-	public int getToParentId() {
-		return toParentId;
-	}
-
-	public void setToParentId(int toParentId) {
-		this.toParentId = toParentId;
-	}
-
-	public int getFromParentId() {
-		return fromParentId;
-	}
-	
-	public void setFromParentId(int fromParentId) {
-		this.fromParentId = fromParentId;
-	}
-
-	public int getToChildId() {
-		return toChildId;
-	}
-
-	public void setToChildId(int toChildId) {
-		this.toChildId = toChildId;
-	}
-
 	public int getPrivilege() {
 		return privilege;
 	}
 	
 	public void setPrivilege(int privilege) {
 		this.privilege = privilege;
+	}
+
+	public int getChildId() {
+		return ChildId;
+	}
+
+	public void setChildId(int childId) {
+		ChildId = childId;
+	}
+
+	public int getFromFamilyId() {
+		return fromFamilyId;
+	}
+
+	public void setFromFamilyId(int fromFamilyId) {
+		this.fromFamilyId = fromFamilyId;
+	}
+
+	public int getToParentId() {
+		return toParentId;
+	}
+
+	public void setToParentId(int toParentId) {
+		this.toParentId = toParentId;
 	}
 
 }

@@ -89,7 +89,7 @@ public class JSONParser {
 				onechild.setBirthdate(oneobj.getString("birthdate"));
 				onechild.setBloodType(oneobj.getString("blood_type"));
 				onechild.setFamilyId(oneobj.getInt("family_id"));
-				onechild.setChildImageId(oneobj.getInt("child_image_id"));
+//				onechild.setChildImageId(oneobj.getInt("child_image_id"));
 				
 				result.add(onechild);
 				
@@ -353,7 +353,7 @@ public class JSONParser {
 		
 		try {
 			JSONObject jObj = new JSONObject(data);
-			JSONArray jArray = jObj.getJSONArray("post");
+			JSONArray jArray = jObj.getJSONArray("posts");
 			
 			JSONObject oneobj = null;
 			for(int i = 0; i < jArray.length(); i++){
@@ -362,11 +362,11 @@ public class JSONParser {
 				
 				onepost.setPostId(oneobj.getInt("post_id"));
 				onepost.setToParentId(oneobj.getInt("to_parent_id"));
-				onepost.setFromParentId(oneobj.getInt("from_parent_id"));
+//				onepost.setFromParentId(oneobj.getInt("from_parent_id"));
 //				onepost.setFromParentName(oneobj.getString(""));
 //				onepost.setFromParentImage(oneobj.getString(""));
 				onepost.setChildId(oneobj.getInt("child_id"));
-				onepost.setPostCategory(oneobj.getInt("post_category"));
+				onepost.setPostCategory(oneobj.getInt("post_category_id"));
 				onepost.setPostContent(oneobj.getString("post_content"));
 				onepost.setPostDate(oneobj.getString("post_date"));
 				
@@ -396,8 +396,8 @@ public class JSONParser {
 				
 				onesharing.setSharingId(oneobj.getInt("sharing_id"));
 				onesharing.setToParentId(oneobj.getInt("to_parent_id"));
-				onesharing.setFromParentId(oneobj.getInt("from_parent_id"));
-				onesharing.setToChildId(oneobj.getInt("to_child_id"));
+				onesharing.setFromFamilyId(oneobj.getInt("from_family_id"));
+				onesharing.setChildId(oneobj.getInt("child_id"));
 				onesharing.setPrivilege(oneobj.getInt("privilege"));
 				
 				result.add(onesharing);
