@@ -145,6 +145,7 @@ public class RegisterPageActivity extends Activity{
 
 		private ProgressDialog pDialog;
 		private Activity activity;
+		private String parentid;
 		@Override
 		protected void onPreExecute() {
 	        super.onPreExecute();
@@ -169,7 +170,7 @@ public class RegisterPageActivity extends Activity{
 			parent.setBloodType(bloodType.getSelectedItem().toString());
 			parent.setEmail(emailText.getText().toString());
 			parent.setPassword(passText.getText().toString());
-			a.registerUser(parent);
+			parentid = a.registerUser(parent);
 			return true;
 		}
 		
@@ -179,12 +180,12 @@ public class RegisterPageActivity extends Activity{
 			pDialog.dismiss();
 			if(value){
 				ParentModel parent = new ParentModel();
+				parent.setParentId((Integer.parseInt(parentid.trim())));
 				parent.setFirstName(firstnameText.getText().toString());
 				parent.setLastName(lastnameText.getText().toString());
 				parent.setEmail(emailText.getText().toString());
 				parent.setPassword(passText.getText().toString());
 				HealthtimeSession.save(parent, activity);
-				Toast.makeText(activity, "Registration Successful", Toast.LENGTH_SHORT).show();
 				startActivity(new Intent(RegisterPageActivity.this, RegisterPage2Activity.class));
 			}
 			else{

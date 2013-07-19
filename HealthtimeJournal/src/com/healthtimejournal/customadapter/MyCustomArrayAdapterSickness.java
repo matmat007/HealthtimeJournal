@@ -49,6 +49,10 @@ public class MyCustomArrayAdapterSickness extends BaseAdapter{
 		// TODO Auto-generated method stub
 		return arg0;
 	}
+	
+	public ArrayList<Boolean> getResult(){
+		return positionArray;
+	}
 
 	@Override
 	public View getView(final int arg0, final View arg1, ViewGroup arg2) {
@@ -72,12 +76,12 @@ public class MyCustomArrayAdapterSickness extends BaseAdapter{
                 if(isChecked)
                 {
                     //rowLayout.setBackgroundColor(Color.GRAY);                       
-                    positionArray.set(arg0, false);                     
+                    positionArray.set(arg0, true);                     
                 }
                 else
                 {   
                     //rowLayout.setBackgroundColor(Color.DKGRAY);
-                	positionArray.set(arg0, true);
+                	positionArray.set(arg0, false);
                 }
             }               
         });
