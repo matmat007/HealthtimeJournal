@@ -5,6 +5,8 @@
     <string name="welcome">Welcome to HealthTime Journal!</string>
     <string name="menu_settings">Settings</string>
     <string name="required_not_met">This is a required field!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <!-- Buttons -->
     <string name="login">Log In</string>
@@ -33,6 +35,8 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="not_match">These do not match!</string>
+    <string name="reg_3">Is your husband/wife using HealthTime Journal?</string>
+    <string name="reg_part">Do you want to register your husband/wife in HealthTime Journal?</string>
 
     <!-- Adding a Child -->
     <string name="bloodType">Blood Type</string>
@@ -107,5 +111,6 @@
     <string name="children_under">Children Under</string>
     <string name="edit_info">Edit Information</string>
     <string name="title_activity_register_page3">RegisterPage3Activity</string>
+    <string name="title_activity_register_partner">RegisterPartnerActivity</string>
 
 </resources>
