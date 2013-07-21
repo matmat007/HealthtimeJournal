@@ -1,7 +1,7 @@
 package com.healthtimejournal.fragments;
 
-import org.json.JSONArray;
-import org.json.JSONException;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.graphics.Point;
 import android.os.Bundle;
@@ -20,22 +20,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.healthtimejournal.R;
+import com.healthtimejournal.model.PostModel;
 
 
 public class TiledEventPageFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
-    public static final String JSON_STRING = "JSON_DATA";
+    public static final String ARG_CONTENT = "ARG_CONTENT";
 
     private int mPage;
-    private JSONArray json;
     
     private int src[] = {R.drawable.img1, R.drawable.img2, R.drawable.img3, R.drawable.img4, R.drawable.img5};//for debug purpose only
     private int n = 0;//for debug purpose only
 
-    public static TiledEventPageFragment create(int page, JSONArray json) {
+    public static TiledEventPageFragment create(int page, List<PostModel> posts, ArrayList<String> contents) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
-        args.putString(JSON_STRING, json.toString());
+        args.putStringArrayList(ARG_CONTENT, contents);
         TiledEventPageFragment fragment = new TiledEventPageFragment();
         fragment.setArguments(args);
         return fragment;
@@ -46,104 +46,97 @@ public class TiledEventPageFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Log.d("Page", String.valueOf(mPage));
         mPage = getArguments().getInt(ARG_PAGE);
-        try {
-			json = new JSONArray(getArguments().getString(JSON_STRING));
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        Log.d("Length", String.valueOf(json.length()));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-    	Point size = new Point();
-    	getActivity().getWindowManager().getDefaultDisplay().getSize(size);
-    	int screenWidth = size.x;
-    	int halfScreenWidth = (int)(screenWidth *0.5);
-    	int quarterScreenWidth = (int)(halfScreenWidth * 0.5);
-    	
     	View view = inflater.inflate(R.layout.event_grid, container, false);
-        ScrollView scroll = (ScrollView) view;
     	
-    	GridLayout grid = (GridLayout)scroll.findViewById(R.id.timeline_gridlayout);
-        grid.setColumnCount(2);
-        grid.setRowCount(100);//for debug purpose only (should be dynamic)
-        
-        n = 0;//for debug purpose only
-        int spec_col = 0, spec_row = 0;
-        for(int i = 0; i < json.length(); i++){
-        	Spec row = null, col = null;
-        	int width = 0, height = 0;
-        	final FrameLayout layout = (FrameLayout) inflater.inflate(R.layout.event_item, container, false);
+    	if(getArguments().getStringArrayList(ARG_CONTENT) != null){
+    		Point size = new Point();
+        	getActivity().getWindowManager().getDefaultDisplay().getSize(size);
+        	int screenWidth = size.x;
+        	int halfScreenWidth = (int)(screenWidth *0.5);
+        	int quarterScreenWidth = (int)(halfScreenWidth * 0.5);
         	
-        	row = GridLayout.spec(spec_row);
-			col = GridLayout.spec(spec_col, 1);
-			width = quarterScreenWidth * 2;
-			height = quarterScreenWidth;
-			spec_col++;
-			
-			if(spec_col == 2){
-				spec_col = 0;
-				spec_row ++;
-			}
-        	//for debug purpose only
-        	/*switch(i){
-        		case 0:
-        			row = GridLayout.spec(0, 2);
-        			col = GridLayout.spec(0, 2);
-        			width = screenWidth;
-        			height = quarterScreenWidth * 2;
-        			break;
-        		case 1:
-        			row = GridLayout.spec(2);
-        			col = GridLayout.spec(0, 1);
-        			width = quarterScreenWidth * 2;
-        			height = quarterScreenWidth;
-        			break;
-        		case 2:
-        			row = GridLayout.spec(2);
-        			col = GridLayout.spec(1, 1);
-        			width = quarterScreenWidth * 2;
-        			height = quarterScreenWidth;
-        			break;
-        		case 3:
-        			row = GridLayout.spec(3, 2);
-        			col = GridLayout.spec(0, 1);
-        			width = quarterScreenWidth * 2;
-        			height = quarterScreenWidth * 2;
-        			break;
-        		case 4:
-        			row = GridLayout.spec(3);
-        			col = GridLayout.spec(1, 1);
-        			width = quarterScreenWidth * 2;
-        			height = quarterScreenWidth;
-        			break;
-        		case 5:
-        			row = GridLayout.spec(4);
-        			col = GridLayout.spec(1, 1);
-        			width = quarterScreenWidth * 2;
-        			height = quarterScreenWidth;
-        			break;
-        	}//for debug purpose only*/
-        	try {
-				layout.setTag(json.getJSONObject(i).getString("post_content"));
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	layout.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					Toast.makeText(getActivity(), (CharSequence) layout.getTag(), Toast.LENGTH_SHORT).show();
-				}
-			});
         	
-            grid.addView(layout, populateGrid(layout, width, height, row, col, i));
-            n++;//for debug purpose only
-        }
+            ScrollView scroll = (ScrollView) view;
+        	
+        	GridLayout grid = (GridLayout)scroll.findViewById(R.id.timeline_gridlayout);
+            grid.setColumnCount(2);
+            grid.setRowCount(100);//for debug purpose only (should be dynamic)
+            
+            n = 0;//for debug purpose only
+            int spec_col = 0, spec_row = 0;
+            for(int i = 0; i < getArguments().getStringArrayList(ARG_CONTENT).size(); i++){
+            	Spec row = null, col = null;
+            	int width = 0, height = 0;
+            	final FrameLayout layout = (FrameLayout) inflater.inflate(R.layout.event_item, container, false);
+            	
+            	row = GridLayout.spec(spec_row);
+    			col = GridLayout.spec(spec_col, 1);
+    			width = quarterScreenWidth * 2;
+    			height = quarterScreenWidth;
+    			spec_col++;
+    			
+    			if(spec_col == 2){
+    				spec_col = 0;
+    				spec_row ++;
+    			}
+            	//for debug purpose only
+            	/*switch(i){
+            		case 0:
+            			row = GridLayout.spec(0, 2);
+            			col = GridLayout.spec(0, 2);
+            			width = screenWidth;
+            			height = quarterScreenWidth * 2;
+            			break;
+            		case 1:
+            			row = GridLayout.spec(2);
+            			col = GridLayout.spec(0, 1);
+            			width = quarterScreenWidth * 2;
+            			height = quarterScreenWidth;
+            			break;
+            		case 2:
+            			row = GridLayout.spec(2);
+            			col = GridLayout.spec(1, 1);
+            			width = quarterScreenWidth * 2;
+            			height = quarterScreenWidth;
+            			break;
+            		case 3:
+            			row = GridLayout.spec(3, 2);
+            			col = GridLayout.spec(0, 1);
+            			width = quarterScreenWidth * 2;
+            			height = quarterScreenWidth * 2;
+            			break;
+            		case 4:
+            			row = GridLayout.spec(3);
+            			col = GridLayout.spec(1, 1);
+            			width = quarterScreenWidth * 2;
+            			height = quarterScreenWidth;
+            			break;
+            		case 5:
+            			row = GridLayout.spec(4);
+            			col = GridLayout.spec(1, 1);
+            			width = quarterScreenWidth * 2;
+            			height = quarterScreenWidth;
+            			break;
+            	}//for debug purpose only*/
+            	
+    			layout.setTag(getArguments().getStringArrayList(ARG_CONTENT).get(i));
+            	layout.setOnClickListener(new OnClickListener() {
+    				
+    				@Override
+    				public void onClick(View v) {
+    					// TODO Auto-generated method stub
+    					Toast.makeText(getActivity(), (CharSequence) layout.getTag(), Toast.LENGTH_SHORT).show();
+    				}
+    			});
+            	
+                grid.addView(layout, populateGrid(layout, width, height, row, col, i));
+                n++;//for debug purpose only
+            }
+    	}
         
         return view;
     }
@@ -155,12 +148,8 @@ public class TiledEventPageFragment extends Fragment {
         params.height = height;
         
         TextView text = (TextView) layout.findViewById(R.id.timeline_item_title);
-    	try {
-			text.setText(json.getJSONObject(count).getString("post_content"));
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        if(getArguments().getStringArrayList(ARG_CONTENT) != null)
+        	text.setText(getArguments().getStringArrayList(ARG_CONTENT).get(count));
         
         img.setImageResource(src[n%5]);//for debug purpose only
         

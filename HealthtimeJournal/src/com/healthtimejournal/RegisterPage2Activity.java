@@ -170,7 +170,7 @@ public class RegisterPage2Activity extends Activity{
 			pDialog.dismiss();
 			if(value){
 				Toast.makeText(activity, "Registration Successful", Toast.LENGTH_SHORT).show();
-				startActivity(new Intent(RegisterPage2Activity.this, TiledEventsActivity.class));
+				startActivity(new Intent(RegisterPage2Activity.this, RegisterPage3Activity.class));
 			}
 			else{
 				Toast.makeText(activity, "Registration Failed", Toast.LENGTH_SHORT).show();

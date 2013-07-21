@@ -1,6 +1,6 @@
 package com.healthtimejournal.customadapter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,50 +11,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.healthtimejournal.R;
-import com.healthtimejournal.R.drawable;
-import com.healthtimejournal.R.id;
-import com.healthtimejournal.R.layout;
-import com.healthtimejournal.model.FriendModel;
+import com.healthtimejournal.model.ChildModel;
+import com.healthtimejournal.service.HttpClient;
+import com.healthtimejournal.service.JSONParser;
 
 public class MyChildrenAdapter extends BaseAdapter {
 
 	private static LayoutInflater inflater = null;
 
-	private ArrayList<FriendModel> setFriend = init();
-
-	public ArrayList<FriendModel> init() {
-
-		ArrayList<FriendModel> tempList = new ArrayList<FriendModel>();
-
-		FriendModel oneFriend = new FriendModel();
-		oneFriend.setFriendImage(R.drawable.ic_launcher);
-		oneFriend.setName("Joey Bing");
-		oneFriend.setDesc("Bing Bong");
-		oneFriend.setPrivilege(1);
-		tempList.add(oneFriend);
-
-		oneFriend = new FriendModel();
-		oneFriend.setFriendImage(R.drawable.ic_launcher);
-		oneFriend.setName("Joey Bing");
-		oneFriend.setDesc("Bing Bong");
-		oneFriend.setPrivilege(2);
-		tempList.add(oneFriend);
-
-		oneFriend = new FriendModel();
-		oneFriend.setFriendImage(R.drawable.ic_launcher);
-		oneFriend.setName("Joey Bing");
-		oneFriend.setDesc("Bing Bong");
-		oneFriend.setPrivilege(3);
-		tempList.add(oneFriend);
-
-		oneFriend = new FriendModel();
-		oneFriend.setFriendImage(R.drawable.ic_launcher);
-		oneFriend.setName("Joey Bing");
-		oneFriend.setDesc("Bing Bong");
-		oneFriend.setPrivilege(3);
-		tempList.add(oneFriend);
-
-		return tempList;
+	HttpClient client = new HttpClient();
+	JSONParser parse = new JSONParser();
+	
+	private List<ChildModel> setFriend = init();
+	
+	public List<ChildModel> init() {
+		List<ChildModel> temp = parse.getChild(client.retrieve_child_by_family(1));
+		return temp; 
 	}
 
 	public MyChildrenAdapter(Context context) {
@@ -77,12 +49,12 @@ public class MyChildrenAdapter extends BaseAdapter {
 			holder.friendName = (TextView) vi.findViewById(R.id.friendName);
 			holder.friendDesc = (TextView) vi.findViewById(R.id.friendDesc);
 
-			holder.friendImage.setImageResource(setFriend.get(position)
-					.getFriendImage());
-			holder.friendName.setText(setFriend.get(position).getName()
-					.toString());
-			holder.friendDesc.setText(setFriend.get(position).getDesc()
-					.toString());
+//			holder.friendImage.setImageResource(setFriend.get(position)
+//					.getFriendImage());
+//			holder.friendName.setText(setFriend.get(position).getName()
+//					.toString());
+//			holder.friendDesc.setText(setFriend.get(position).getDesc()
+//					.toString());
 		}
 
 		return vi;

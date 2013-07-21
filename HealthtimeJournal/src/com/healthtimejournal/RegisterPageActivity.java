@@ -150,7 +150,7 @@ public class RegisterPageActivity extends Activity{
 		protected void onPreExecute() {
 	        super.onPreExecute();
 	        pDialog = new ProgressDialog(activity);
-	        pDialog.setMessage("Loading events. Please wait...");
+	        pDialog.setMessage("Please wait...");
 	        pDialog.setIndeterminate(false);
 	        pDialog.setCancelable(false);
 	        pDialog.show();
