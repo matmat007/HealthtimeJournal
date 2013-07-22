@@ -67,7 +67,9 @@ public class HttpClient {
 	private static final String RETRIEVE_MEDICAL_HISTORY_URL = "http://192.168.1.4/healthtime/Test/retrieve_parent_medical_history.php";
 	private static final String RETRIEVE_SHARED_TO_DOCTOR_ACCOUNTS_URL = "http://192.168.1.4/healthtime/Test/retrieve_shared_to_doctor_accounts.php";
 	private static final String RETRIEVE_FAMILY_URL = "http://192.168.1.4/healthtime/Test/retrieve_family.php";
-
+	private static final String RETRIEVE_SHARED_FROM_FAMILY_CHILD_URL = "http://192.168.1.4/healthtime/Test/retrieve_shared_from_family_child.php";
+	private static final String RETRIEVE_SHARED_TO_PARENT_CHILD_URL = "http://192.168.1.4/healthtime/Test/retrieve_shared_to_parent_child.php";
+	
 	HttpURLConnection conn = null;
 	InputStream is = null;
 	
@@ -564,6 +566,25 @@ public class HttpClient {
 		params.add(new BasicNameValuePair("id", String.valueOf(id)));
 		
 		return client.makeHttpRequest(RETRIEVE_FAMILY_URL, "GET", params);
+	}
+	
+	public String retrieve_shared_from_family_child(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_SHARED_FROM_FAMILY_CHILD_URL, "GET", params);
+	}
+	
+	public String retrieve_shared_to_parent_child(int family_id, int shared_parent_id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("family_id", String.valueOf(family_id)));
+		params.add(new BasicNameValuePair("shared_parent_id", String.valueOf(shared_parent_id)));
+		
+		return client.makeHttpRequest(RETRIEVE_SHARED_TO_PARENT_CHILD_URL, "GET", params);
 	}
 	
 	
