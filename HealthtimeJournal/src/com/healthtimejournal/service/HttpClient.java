@@ -66,6 +66,7 @@ public class HttpClient {
 	private static final String RETRIEVE_SHARED_BY_PARENT_ACCOUNTS_URL = "http://192.168.1.4/healthtime/Test/retrieve_shared_by_parent_accounts.php";
 	private static final String RETRIEVE_MEDICAL_HISTORY_URL = "http://192.168.1.4/healthtime/Test/retrieve_parent_medical_history.php";
 	private static final String RETRIEVE_SHARED_TO_DOCTOR_ACCOUNTS_URL = "http://192.168.1.4/healthtime/Test/retrieve_shared_to_doctor_accounts.php";
+	private static final String RETRIEVE_FAMILY_URL = "http://192.168.1.4/healthtime/Test/retrieve_family.php";
 
 	HttpURLConnection conn = null;
 	InputStream is = null;
@@ -555,6 +556,16 @@ public class HttpClient {
 		
 		return client.makeHttpRequest(RETRIEVE_CHILD_BY_FAMILY_URL, "GET", params);
 	}
+	
+	public String retrieve_family(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_FAMILY_URL, "GET", params);
+	}
+	
 	
 //End of Retrieve Methods
 }
