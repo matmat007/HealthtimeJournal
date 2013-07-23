@@ -112,5 +112,6 @@
     <string name="edit_info">Edit Information</string>
     <string name="title_activity_register_page3">RegisterPage3Activity</string>
     <string name="title_activity_register_partner">RegisterPartnerActivity</string>
+    <string name="title_activity_register_partner2">RegisterPartner2Activity</string>
 
 </resources>

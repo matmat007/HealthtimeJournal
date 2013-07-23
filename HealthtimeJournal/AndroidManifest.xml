@@ -154,6 +154,10 @@
             android:name="com.healthtimejournal.RegisterPartnerActivity"
             android:label="@string/title_activity_register_partner" >
         </activity>
+        <activity
+            android:name="com.healthtimejournal.RegisterPartner2Activity"
+            android:label="@string/title_activity_register_partner2" >
+        </activity>
     </application>
 
 </manifest>
