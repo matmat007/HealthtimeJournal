@@ -7,6 +7,8 @@
     <string name="required_not_met">This is a required field!</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="name_search">Name here</string>
+    <string name="register_fam">Register</string>
 
     <!-- Buttons -->
     <string name="login">Log In</string>
@@ -113,5 +115,6 @@
     <string name="title_activity_register_page3">RegisterPage3Activity</string>
     <string name="title_activity_register_partner">RegisterPartnerActivity</string>
     <string name="title_activity_register_partner2">RegisterPartner2Activity</string>
+    <string name="title_activity_register_family">RegisterFamilyActivity</string>
 
 </resources>
