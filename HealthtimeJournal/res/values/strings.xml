@@ -116,5 +116,6 @@
     <string name="title_activity_register_partner">RegisterPartnerActivity</string>
     <string name="title_activity_register_partner2">RegisterPartner2Activity</string>
     <string name="title_activity_register_family">RegisterFamilyActivity</string>
+    <string name="title_activity_task_without_ui">TaskWithoutUIActivity</string>
 
 </resources>
