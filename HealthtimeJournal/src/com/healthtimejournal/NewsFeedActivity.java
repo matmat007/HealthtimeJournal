@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.healthtimejournal.customadapter.NewsFeedAdapter;
-import com.healthtimejournal.customcontextmenu.PostSettingsContext;
 
 public class NewsFeedActivity extends Activity {
 	
@@ -48,8 +47,8 @@ public class NewsFeedActivity extends Activity {
 		
 		newsFeedList.setOnItemLongClickListener(new OnItemLongClickListener() {
 		    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-		    	PostSettingsContext dialog = new PostSettingsContext();
-		    	dialog.openDialog(context);
+//		    	PostSettingsContext dialog = new PostSettingsContext();
+//		    	dialog.openDialog(context, position);
 		    	return true;
 		    }
 		});

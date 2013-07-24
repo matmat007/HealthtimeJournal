@@ -2,27 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/login_background"
-    tools:context=".RegisterPage3Activity" >
+    tools:context=".TaskWithoutUIActivity"
+    android:orientation="vertical" >
 
-    <TextView 
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:gravity="center_horizontal"
-		        android:layout_marginTop="50dip"
-		        android:layout_marginBottom="50dip"
-		        android:text="@string/reg_3"
-		        android:textSize="28sp"
-		        android:textColor="@color/white"
-		        android:textStyle="bold"
-		        android:fontFamily="sans-serif-light"/>
-    
     <Button 
-		        android:id="@+id/yesButton"
+		        android:id="@+id/childButton"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/yes"
+		        android:text="Add Child"
 		        android:layout_margin="10dp"
 		        android:background="@color/maroon"
 		        android:textColor="@color/white"
@@ -30,10 +17,21 @@
 		        android:fontFamily="sans-serif-light"/>
     
     <Button 
-		        android:id="@+id/noButton"
+		        android:id="@+id/doctorButton"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/no"
+		        android:text="Add Doctor"
+		        android:layout_margin="10dp"
+		        android:background="@color/maroon"
+		        android:textColor="@color/white"
+		        android:textStyle="bold"
+		        android:fontFamily="sans-serif-light"/>
+    
+    <Button 
+		        android:id="@+id/commentButton"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="Add Comment"
 		        android:layout_margin="10dp"
 		        android:background="@color/maroon"
 		        android:textColor="@color/white"
