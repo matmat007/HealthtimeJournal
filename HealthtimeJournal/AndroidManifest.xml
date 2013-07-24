@@ -155,13 +155,10 @@
             android:label="@string/title_activity_register_partner" >
         </activity>
         <activity
-<<<<<<< HEAD
-=======
             android:name="com.healthtimejournal.SharedAccountActivity"
             android:label="@string/app_name" >
 		</activity>
 		<activity
->>>>>>> origin/Matthew
             android:name="com.healthtimejournal.RegisterPartner2Activity"
             android:label="@string/title_activity_register_partner2" >
         </activity>
