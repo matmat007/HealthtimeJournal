@@ -90,9 +90,15 @@ public final class R {
         public static final int album_img=0x7f0b000c;
         public static final int album_name=0x7f0b000d;
         public static final int buttons=0x7f0b003b;
+<<<<<<< HEAD
         public static final int childButton=0x7f0b0082;
         public static final int commentBox=0x7f0b0066;
         public static final int commentButton=0x7f0b0084;
+=======
+        public static final int childButton=0x7f0b0086;
+        public static final int commentBox=0x7f0b0066;
+        public static final int commentButton=0x7f0b0088;
+>>>>>>> origin/Matthew
         public static final int commentContent=0x7f0b006b;
         public static final int commentDate=0x7f0b006a;
         public static final int commentFriendImage=0x7f0b0068;
@@ -100,7 +106,11 @@ public final class R {
         public static final int commentList=0x7f0b0067;
         public static final int createDoctorButton=0x7f0b0025;
         public static final int deletePostButton=0x7f0b001b;
+<<<<<<< HEAD
         public static final int doctorButton=0x7f0b0083;
+=======
+        public static final int doctorButton=0x7f0b0087;
+>>>>>>> origin/Matthew
         public static final int doctorConsultationText=0x7f0b0022;
         public static final int doctorContact1Text=0x7f0b0023;
         public static final int doctorContact2Text=0x7f0b0024;
@@ -138,17 +148,30 @@ public final class R {
         public static final int heightXyPlot=0x7f0b0049;
         public static final int inchesEditText=0x7f0b0031;
         public static final int informationButton=0x7f0b0015;
+<<<<<<< HEAD
         public static final int layout_timeline=0x7f0b0091;
+=======
+        public static final int layout_timeline=0x7f0b0095;
+>>>>>>> origin/Matthew
         public static final int level1Check=0x7f0b001c;
         public static final int level2Check=0x7f0b001d;
         public static final int level3Check=0x7f0b001e;
         public static final int lifeEventsButton=0x7f0b0017;
+<<<<<<< HEAD
         public static final int listview=0x7f0b0088;
         public static final int loginEmailText=0x7f0b0000;
         public static final int loginPasswordText=0x7f0b0001;
         public static final int logoutAction=0x7f0b0096;
         public static final int mainLoginButton=0x7f0b0002;
         public static final int menu_settings=0x7f0b0094;
+=======
+        public static final int listview=0x7f0b008c;
+        public static final int loginEmailText=0x7f0b0000;
+        public static final int loginPasswordText=0x7f0b0001;
+        public static final int logoutAction=0x7f0b009a;
+        public static final int mainLoginButton=0x7f0b0002;
+        public static final int menu_settings=0x7f0b0098;
+>>>>>>> origin/Matthew
         public static final int nameEditText=0x7f0b006c;
         public static final int newsFeedEditText=0x7f0b004a;
         public static final int newsFeedFriendImage=0x7f0b004d;
@@ -157,8 +180,13 @@ public final class R {
         public static final int newsFeedPostContent=0x7f0b004f;
         public static final int newsFeedPostStatus=0x7f0b004c;
         public static final int noButton=0x7f0b0079;
+<<<<<<< HEAD
         public static final int pager=0x7f0b0089;
         public static final int pager_header=0x7f0b008a;
+=======
+        public static final int pager=0x7f0b008d;
+        public static final int pager_header=0x7f0b008e;
+>>>>>>> origin/Matthew
         public static final int parentAge=0x7f0b0053;
         public static final int parentAlbumButton=0x7f0b0057;
         public static final int parentBirthdate=0x7f0b0052;
@@ -170,7 +198,11 @@ public final class R {
         public static final int parentInformationButton=0x7f0b0056;
         public static final int parentName=0x7f0b0051;
         public static final int parentSharedAccountsButton=0x7f0b005a;
+<<<<<<< HEAD
         public static final int postAction=0x7f0b0095;
+=======
+        public static final int postAction=0x7f0b0099;
+>>>>>>> origin/Matthew
         public static final int postAttachFileButton=0x7f0b005e;
         public static final int postCameraButton=0x7f0b005d;
         public static final int postContent=0x7f0b0063;
@@ -198,6 +230,7 @@ public final class R {
         public static final int regRetypePasswordText=0x7f0b0076;
         public static final int regSubmitButton=0x7f0b007c;
         public static final int register_link=0x7f0b0003;
+<<<<<<< HEAD
         public static final int searchbar=0x7f0b0087;
         public static final int segregatePageList=0x7f0b007e;
         public static final int shared_account_list=0x7f0b007f;
@@ -206,12 +239,27 @@ public final class R {
         public static final int sidebar_group_text=0x7f0b0081;
         public static final int sidebar_layout=0x7f0b0086;
         public static final int sidebar_list_text=0x7f0b0080;
+=======
+        public static final int searchbar=0x7f0b008b;
+        public static final int segregatePageList=0x7f0b007e;
+        public static final int shared_account_item_label=0x7f0b007f;
+        public static final int shared_account_list=0x7f0b0083;
+        public static final int shared_account_pager=0x7f0b0080;
+        public static final int shared_account_pager_header=0x7f0b0081;
+        public static final int shared_account_search_bar=0x7f0b0082;
+        public static final int sick_list=0x7f0b007b;
+        public static final int sickness_checkbox=0x7f0b007d;
+        public static final int sidebar_group_text=0x7f0b0085;
+        public static final int sidebar_layout=0x7f0b008a;
+        public static final int sidebar_list_text=0x7f0b0084;
+>>>>>>> origin/Matthew
         public static final int step2_label=0x7f0b007a;
         public static final int thumbnail=0x7f0b0045;
         public static final int thumbnail2=0x7f0b0060;
         public static final int thumbnail3=0x7f0b0064;
         public static final int timelineButton=0x7f0b0019;
         public static final int timeline_gridlayout=0x7f0b0040;
+<<<<<<< HEAD
         public static final int timeline_item_button=0x7f0b008f;
         public static final int timeline_item_button1=0x7f0b0090;
         public static final int timeline_item_date=0x7f0b0043;
@@ -225,6 +273,21 @@ public final class R {
         public static final int timeline_tile_img=0x7f0b0041;
         public static final int view_pager=0x7f0b005b;
         public static final int weightXyPlot=0x7f0b0093;
+=======
+        public static final int timeline_item_button=0x7f0b0093;
+        public static final int timeline_item_button1=0x7f0b0094;
+        public static final int timeline_item_date=0x7f0b0043;
+        public static final int timeline_item_post=0x7f0b0092;
+        public static final int timeline_item_time=0x7f0b0091;
+        public static final int timeline_item_title=0x7f0b0042;
+        public static final int timeline_item_username=0x7f0b008f;
+        public static final int timeline_item_x=0x7f0b0090;
+        public static final int timeline_list=0x7f0b0096;
+        public static final int timeline_scrollview=0x7f0b0089;
+        public static final int timeline_tile_img=0x7f0b0041;
+        public static final int view_pager=0x7f0b005b;
+        public static final int weightXyPlot=0x7f0b0097;
+>>>>>>> origin/Matthew
         public static final int yesButton=0x7f0b0078;
     }
     public static final class layout {
@@ -264,6 +327,7 @@ public final class R {
         public static final int register_partner_activity=0x7f030021;
         public static final int register_sickness_layout=0x7f030022;
         public static final int segregate_page=0x7f030023;
+<<<<<<< HEAD
         public static final int shared_account_page_layout=0x7f030024;
         public static final int sidebar_list_child=0x7f030025;
         public static final int sidebar_list_group=0x7f030026;
@@ -272,6 +336,18 @@ public final class R {
         public static final int timeline_item=0x7f030029;
         public static final int timeline_page=0x7f03002a;
         public static final int weight_graph_page=0x7f03002b;
+=======
+        public static final int shared_account_item_layout=0x7f030024;
+        public static final int shared_account_main_layout=0x7f030025;
+        public static final int shared_account_page_layout=0x7f030026;
+        public static final int sidebar_list_child=0x7f030027;
+        public static final int sidebar_list_group=0x7f030028;
+        public static final int task_without_ui_activity=0x7f030029;
+        public static final int tile_event_layout=0x7f03002a;
+        public static final int timeline_item=0x7f03002b;
+        public static final int timeline_page=0x7f03002c;
+        public static final int weight_graph_page=0x7f03002d;
+>>>>>>> origin/Matthew
     }
     public static final class menu {
         public static final int activity_album=0x7f0a0000;

@@ -48,7 +48,7 @@ public class MenuInstance {
 		List<List<String>> list = new ArrayList<List<String>>();
 		List<String> temp = new ArrayList<String>();
 		
-		temp.add("News Feed");
+		temp.add("Social");
 		temp.add("Notification");
 		temp.add("Album");
 		list.add(temp);

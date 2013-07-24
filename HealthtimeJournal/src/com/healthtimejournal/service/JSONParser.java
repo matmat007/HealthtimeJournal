@@ -22,27 +22,6 @@ import com.healthtimejournal.model.SharingModel;
 
 public class JSONParser {
 	
-	public static List<String> getChildren(String data){
-		List<String> list = new ArrayList<String>();
-		
-		try{
-			JSONObject jobj = new JSONObject(data);
-			JSONArray jarr = jobj.getJSONArray("child");
-			
-			JSONObject oneObj = null;
-			
-			for(int i = 0; i < jarr.length(); i++){
-				oneObj = jarr.getJSONObject(i);
-				list.add(oneObj.getString("first_name") + " " + oneObj.getString("last_name"));
-			}
-			return list;
-		} catch(JSONException e){
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-	
 	public static List<CategoryReferenceModel> getCategoryReference(String data){
 		List<CategoryReferenceModel> result = new ArrayList<CategoryReferenceModel>();
 		
@@ -299,7 +278,7 @@ public class JSONParser {
 				oneparent.setParentId(oneobj.getInt("parent_id"));
 				oneparent.setFirstName(oneobj.getString("first_name"));
 				oneparent.setLastName(oneobj.getString("last_name"));
-				//oneparent.setFamilyId(oneobj.getInt("family_id"));
+				oneparent.setFamilyId(oneobj.getInt("family_id"));
 			return oneparent;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
