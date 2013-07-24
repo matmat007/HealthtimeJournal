@@ -10,6 +10,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.CommentModel;
+import com.healthtimejournal.model.DiseaseDictionaryModel;
 import com.healthtimejournal.model.DoctorModel;
 import com.healthtimejournal.model.FamilyModel;
 import com.healthtimejournal.model.GalleryModel;
@@ -34,6 +35,7 @@ public class HttpClient {
 	private static final String ADD_FAMILY_URL = "http://192.168.43.185/healthtime/Test/add_family.php";
 	private static final String ADD_SHARING_URL = "http://192.168.43.185/healthtime/Test/add_sharing.php";
 	private static final String ADD_CHILD_URL = "http://192.168.43.185/healthtime/Test/add_child.php";
+	private static final String ADD_DISEASE_URL = "http://192.168.43.185/healthtime/Test/add_disease_dictionary.php";
 	
 	//Delete Php Urls
 	private static final String DELETE_CHILD_URL = "http://192.168.43.185/healthtime/Test/delete_child.php";
@@ -42,11 +44,14 @@ public class HttpClient {
 	private static final String DELETE_POST_URL = "http://192.168.43.185/healthtime/Test/delete_post.php";
 	private static final String DELETE_SHARING_URL = "http://192.168.43.185/healthtime/Test/delete_sharing.php";
 	private static final String DELETE_SHARING_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/delete_sharing_doctor.php";
+	private static final String DELETE_DISEASE_URL = "http://192.168.43.185/healthtime/Test/delete_disease_dictionary.php";
+
 	
 	//Edit Php Urls
 	private static final String EDIT_SHARING_URL = "http://192.168.43.185/healthtime/Test/edit_sharing.php";
 	private static final String EDIT_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/edit_doctor.php";
 	private static final String EDIT_MEDICAL_HISTORY_URL = "http://192.168.43.185/healthtime/Test/edit_medical_history.php";
+	private static final String EDIT_DISEASE_URL = "http://192.168.43.185/healthtime/Test/edit_disease_dictionary.php";
 	
 	//Retrieve Php URLs
 	private static final String HASHTAG_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_tags.php";
@@ -70,7 +75,9 @@ public class HttpClient {
 	private static final String RETRIEVE_FAMILY_URL = "http://192.168.43.185/healthtime/Test/retrieve_family.php";
 	private static final String RETRIEVE_SHARED_FROM_FAMILY_CHILD_URL = "http://192.168.43.185/healthtime/Test/retrieve_shared_from_family_child.php";
 	private static final String RETRIEVE_SHARED_TO_PARENT_CHILD_URL = "http://192.168.43.185/healthtime/Test/retrieve_shared_to_parent_child.php";
+	private static final String RETRIEVE_DISEASE_URL = "http://192.168.43.185/healthtime/Test/retrieve_disease_dictionary.php";
 
+	
 	HttpURLConnection conn = null;
 	InputStream is = null;
 	
@@ -244,6 +251,21 @@ public class HttpClient {
 		
 	}
 	
+	public String addDisease(DiseaseDictionaryModel disease){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("disease_dictionary_id", String.valueOf(disease.getDiseaseDictionaryId())));
+		params.add(new BasicNameValuePair("name", disease.getName()));
+		params.add(new BasicNameValuePair("description", disease.getDescription()));
+		params.add(new BasicNameValuePair("symptom", disease.getSymptom()));
+		params.add(new BasicNameValuePair("treatment", disease.getTreatment()));
+		
+		return client.makeHttpRequest(ADD_DISEASE_URL, "POST", params);
+		
+	}
+	
 	//End of Add Methods
 	
 	//--------------------
@@ -341,6 +363,21 @@ public class HttpClient {
 		return client.makeHttpRequest(DELETE_SHARING_DOCTOR_URL, "POST", params);
 	}
 	
+	public String deleteDisease(DiseaseDictionaryModel disease){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("disease_dictionary_id", String.valueOf(disease.getDiseaseDictionaryId())));
+		params.add(new BasicNameValuePair("name", disease.getName()));
+		params.add(new BasicNameValuePair("description", disease.getDescription()));
+		params.add(new BasicNameValuePair("symptom", disease.getSymptom()));
+		params.add(new BasicNameValuePair("treatment", disease.getTreatment()));
+		
+		return client.makeHttpRequest(DELETE_DISEASE_URL, "POST", params);
+		
+	}
+	
 	//End of Delete Methods
 	
 	//----------------------
@@ -402,6 +439,21 @@ public class HttpClient {
 		return client.makeHttpRequest(EDIT_MEDICAL_HISTORY_URL, "POST", params);
 	}
 	
+	public String editDisease(DiseaseDictionaryModel disease){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("disease_dictionary_id", String.valueOf(disease.getDiseaseDictionaryId())));
+		params.add(new BasicNameValuePair("name", disease.getName()));
+		params.add(new BasicNameValuePair("description", disease.getDescription()));
+		params.add(new BasicNameValuePair("symptom", disease.getSymptom()));
+		params.add(new BasicNameValuePair("treatment", disease.getTreatment()));
+		
+		return client.makeHttpRequest(EDIT_DISEASE_URL, "POST", params);
+		
+	}
+	
 	//End of Edit Methods
 	
 	//----------------------
@@ -415,6 +467,16 @@ public class HttpClient {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		
 		return client.makeHttpRequest(HASHTAG_URL, "GET", params);
+		
+	}
+	
+	public String retrieve_disease_dictionary(){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		
+		return client.makeHttpRequest(RETRIEVE_DISEASE_URL, "GET", params);
 		
 	}
 
