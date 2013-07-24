@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.healthtimejournal.model.ChildModel;
+import com.healthtimejournal.service.HealthtimeSession;
 import com.healthtimejournal.service.HttpClient;
 
 @SuppressLint({ "NewApi", "SimpleDateFormat" })
@@ -164,7 +166,7 @@ public class AddChildActivity extends Activity{
 				child.setGender("Female");
 			child.setBloodType(bloodType.getSelectedItem().toString());
 			child.setBirthdate(formatedDate);
-			child.setFamilyId(1);
+			child.setFamilyId(HealthtimeSession.getFamilyId(getBaseContext()));
 			a.addChild(child);
 			
 			return true;
@@ -176,7 +178,7 @@ public class AddChildActivity extends Activity{
 			pDialog.dismiss();
 			if(value){
 				Toast.makeText(activity, "Registration Successful", Toast.LENGTH_SHORT).show();
-				activity.finish();
+				startActivity(new Intent(AddChildActivity.this,TiledEventsActivity.class));
 			}
 			else{
 				Toast.makeText(activity, "Registration Failed", Toast.LENGTH_SHORT).show();
