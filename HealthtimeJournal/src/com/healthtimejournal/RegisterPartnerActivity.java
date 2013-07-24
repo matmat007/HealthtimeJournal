@@ -37,6 +37,8 @@ public class RegisterPartnerActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				Intent a = new Intent(RegisterPartnerActivity.this,RegisterPartner2Activity.class);
+				startActivity(a);
 				
 				
 			}
@@ -80,7 +82,7 @@ public class RegisterPartnerActivity extends Activity {
 		protected void onPreExecute() {
 	        super.onPreExecute();
 	        pDialog = new ProgressDialog(activity);
-	        pDialog.setMessage("Please wait...");
+	        pDialog.setMessage("Finalizing..Please wait...");
 	        pDialog.setIndeterminate(false);
 	        pDialog.setCancelable(false);
 	        pDialog.show();
