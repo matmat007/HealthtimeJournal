@@ -56,10 +56,11 @@ public class MenuInstance {
         Log.d("List", list.get(0).get(0));
 		
 		temp = new ArrayList<String>();
+		temp.add("Add Child");
+		list.add(temp);
 		for(ChildModel s : child){
 			temp.add(s.getFirstName() + " " + s.getLastName());
 		}
-		list.add(temp);
 		
 		
 		temp = new ArrayList<String>();

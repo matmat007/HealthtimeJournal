@@ -22,7 +22,6 @@ import com.healthtimejournal.service.HttpClient;
 
 public class RegisterPageActivity extends Activity{
 	
-	
 	private RegisterTask mRegTask = null;
 	
 	EditText firstnameText;

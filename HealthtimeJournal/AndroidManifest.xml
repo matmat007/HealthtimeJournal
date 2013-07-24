@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +21,8 @@
         android:theme="@style/AppBaseTheme" >
         <activity
             android:name="com.healthtimejournal.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,131 +31,138 @@
         </activity>
         <activity
             android:name="com.healthtimejournal.RegisterPageActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.RegisterPage2Activity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.AddChildActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.MySharedAccountsActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.NewsFeedActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.PostActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.PostPageActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.ChildProfileActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.ParentProfileActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.PhotoViewerActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.WeightGraphActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.HeightGraphActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.HealthGrowthActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.LifeEventsActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="com.healthtimejournal.FirstsActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="com.healthtimejournal.MilestonesActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.TimelineActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="com.healthtimejournal.FoodActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="com.healthtimejournal.MedicineActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="com.healthtimejournal.VaccinationActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.MyChildrenActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.MySharedAccountActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.MyFriendChildrenActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.EditChildInfoActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.EditParentInfoActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.AlbumActivity"
-            android:label="@string/title_activity_album" >
+            android:label="@string/title_activity_album"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.CreateDoctorActivity"
-            android:label="@string/title_activity_album" >
+            android:label="@string/title_activity_album"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.EditDoctorActivity"
-            android:label="@string/title_activity_album" >
+            android:label="@string/title_activity_album"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.DoctorPageActivity"
-            android:label="@string/title_activity_album" >
+            android:label="@string/title_activity_album"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.TiledEventsActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.RegisterPage3Activity"
-            android:label="@string/title_activity_register_page3" >
+            android:label="@string/title_activity_register_page3"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.RegisterPartnerActivity"
-            android:label="@string/title_activity_register_partner" >
+            android:label="@string/title_activity_register_partner"
+        	android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.healthtimejournal.SharedAccountActivity"

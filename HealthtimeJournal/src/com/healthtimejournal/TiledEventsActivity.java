@@ -3,11 +3,15 @@ package com.healthtimejournal;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Display;
@@ -21,6 +25,8 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.facebook.Facebook;
+import com.facebook.SessionStore;
 import com.healthtimejournal.customView.MyCustomHSV;
 import com.healthtimejournal.customadapter.MyCustomExpandableListAdapter;
 import com.healthtimejournal.customadapter.TiledEventFragmentPageAdapter;
@@ -32,7 +38,10 @@ import com.healthtimejournal.service.HealthtimeSession;
 import com.healthtimejournal.service.HttpClient;
 import com.healthtimejournal.service.JSONParser;
 
+@SuppressLint("HandlerLeak")
 public class TiledEventsActivity extends FragmentActivity {
+	
+	final Context context = this;
 	
 	private LinearLayout SideList;
 	private boolean isExpanded = false;
@@ -47,9 +56,19 @@ public class TiledEventsActivity extends FragmentActivity {
 	private MyCustomHSV hsv;
 	
 	private ViewPager viewPager;
+
+	private Facebook mFacebook;
+    private ProgressDialog mProgress;
+
+    private static final String APP_ID = "460537864017391";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		mProgress = new ProgressDialog(context);
+        mFacebook = new Facebook(APP_ID);
+ 
+        SessionStore.restore(mFacebook, context);
 		
 		children = new ArrayList<ChildModel>();
 		
@@ -106,6 +125,20 @@ public class TiledEventsActivity extends FragmentActivity {
 							startActivity(new Intent(TiledEventsActivity.this, AlbumActivity.class));
 						}
 						break;
+					case 1:
+						if(childPosition == 0){
+							startActivity(new Intent(TiledEventsActivity.this, AddChildActivity.class));
+						}
+						break;
+					case 2:
+						if(childPosition == 0){
+							startActivity(new Intent(TiledEventsActivity.this, EditDoctorActivity.class));
+						}
+						else if(childPosition == 1){
+							fbLogout();
+						}
+						break;
+
 				}
 				return false;
 			}
@@ -244,4 +277,42 @@ public class TiledEventsActivity extends FragmentActivity {
 		}
 		
 	}
+	
+	private void fbLogout() {
+        mProgress.setMessage("Disconnecting from Facebook");
+        mProgress.show();
+ 
+        new Thread() {
+            @Override
+            public void run() {
+                SessionStore.clear(context);
+ 
+                int what = 1;
+ 
+                try {
+                    mFacebook.logout(context);
+ 
+                    what = 0;
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+ 
+                mHandler.sendMessage(mHandler.obtainMessage(what));
+            }
+        }.start();
+    }
+ 
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            mProgress.dismiss();
+ 
+            if (msg.what == 1) {
+                Toast.makeText(context, "Facebook logout failed", Toast.LENGTH_SHORT).show();
+            } else {
+ 
+                Toast.makeText(context, "Disconnected from Facebook", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 }
