@@ -90,7 +90,9 @@ public final class R {
         public static final int album_img=0x7f0b000c;
         public static final int album_name=0x7f0b000d;
         public static final int buttons=0x7f0b003b;
+        public static final int childButton=0x7f0b0082;
         public static final int commentBox=0x7f0b0066;
+        public static final int commentButton=0x7f0b0084;
         public static final int commentContent=0x7f0b006b;
         public static final int commentDate=0x7f0b006a;
         public static final int commentFriendImage=0x7f0b0068;
@@ -98,6 +100,7 @@ public final class R {
         public static final int commentList=0x7f0b0067;
         public static final int createDoctorButton=0x7f0b0025;
         public static final int deletePostButton=0x7f0b001b;
+        public static final int doctorButton=0x7f0b0083;
         public static final int doctorConsultationText=0x7f0b0022;
         public static final int doctorContact1Text=0x7f0b0023;
         public static final int doctorContact2Text=0x7f0b0024;
@@ -135,25 +138,27 @@ public final class R {
         public static final int heightXyPlot=0x7f0b0049;
         public static final int inchesEditText=0x7f0b0031;
         public static final int informationButton=0x7f0b0015;
-        public static final int layout_timeline=0x7f0b008a;
+        public static final int layout_timeline=0x7f0b0091;
         public static final int level1Check=0x7f0b001c;
         public static final int level2Check=0x7f0b001d;
         public static final int level3Check=0x7f0b001e;
         public static final int lifeEventsButton=0x7f0b0017;
-        public static final int listview=0x7f0b0081;
+        public static final int listview=0x7f0b0088;
         public static final int loginEmailText=0x7f0b0000;
         public static final int loginPasswordText=0x7f0b0001;
-        public static final int logoutAction=0x7f0b008f;
+        public static final int logoutAction=0x7f0b0096;
         public static final int mainLoginButton=0x7f0b0002;
-        public static final int menu_settings=0x7f0b008d;
+        public static final int menu_settings=0x7f0b0094;
+        public static final int nameEditText=0x7f0b006c;
         public static final int newsFeedEditText=0x7f0b004a;
         public static final int newsFeedFriendImage=0x7f0b004d;
         public static final int newsFeedFriendName=0x7f0b004e;
         public static final int newsFeedList=0x7f0b004b;
         public static final int newsFeedPostContent=0x7f0b004f;
         public static final int newsFeedPostStatus=0x7f0b004c;
-        public static final int pager=0x7f0b0082;
-        public static final int pager_header=0x7f0b0083;
+        public static final int noButton=0x7f0b0079;
+        public static final int pager=0x7f0b0089;
+        public static final int pager_header=0x7f0b008a;
         public static final int parentAge=0x7f0b0053;
         public static final int parentAlbumButton=0x7f0b0057;
         public static final int parentBirthdate=0x7f0b0052;
@@ -165,7 +170,7 @@ public final class R {
         public static final int parentInformationButton=0x7f0b0056;
         public static final int parentName=0x7f0b0051;
         public static final int parentSharedAccountsButton=0x7f0b005a;
-        public static final int postAction=0x7f0b008e;
+        public static final int postAction=0x7f0b0095;
         public static final int postAttachFileButton=0x7f0b005e;
         public static final int postCameraButton=0x7f0b005d;
         public static final int postContent=0x7f0b0063;
@@ -180,45 +185,47 @@ public final class R {
         public static final int profileGender=0x7f0b0014;
         public static final int profileImage=0x7f0b000f;
         public static final int profileName=0x7f0b0010;
-        public static final int radioFemale=0x7f0b0070;
-        public static final int radioMale=0x7f0b006f;
-        public static final int radioSex=0x7f0b006e;
-        public static final int regBloodTypeSpinner=0x7f0b0071;
-        public static final int regEmailText=0x7f0b0072;
-        public static final int regFirstNameText=0x7f0b006d;
-        public static final int regLastNameText=0x7f0b006c;
-        public static final int regNextButton=0x7f0b0075;
-        public static final int regPasswordText=0x7f0b0073;
-        public static final int regRetypePasswordText=0x7f0b0074;
-        public static final int regSubmitButton=0x7f0b0078;
+        public static final int radioFemale=0x7f0b0072;
+        public static final int radioMale=0x7f0b0071;
+        public static final int radioSex=0x7f0b0070;
+        public static final int regBloodTypeSpinner=0x7f0b0073;
+        public static final int regButton=0x7f0b006d;
+        public static final int regEmailText=0x7f0b0074;
+        public static final int regFirstNameText=0x7f0b006f;
+        public static final int regLastNameText=0x7f0b006e;
+        public static final int regNextButton=0x7f0b0077;
+        public static final int regPasswordText=0x7f0b0075;
+        public static final int regRetypePasswordText=0x7f0b0076;
+        public static final int regSubmitButton=0x7f0b007c;
         public static final int register_link=0x7f0b0003;
-        public static final int searchbar=0x7f0b0080;
-        public static final int segregatePageList=0x7f0b007a;
-        public static final int shared_account_list=0x7f0b007b;
-        public static final int sick_list=0x7f0b0077;
-        public static final int sickness_checkbox=0x7f0b0079;
-        public static final int sidebar_group_text=0x7f0b007d;
-        public static final int sidebar_layout=0x7f0b007f;
-        public static final int sidebar_list_text=0x7f0b007c;
-        public static final int step2_label=0x7f0b0076;
+        public static final int searchbar=0x7f0b0087;
+        public static final int segregatePageList=0x7f0b007e;
+        public static final int shared_account_list=0x7f0b007f;
+        public static final int sick_list=0x7f0b007b;
+        public static final int sickness_checkbox=0x7f0b007d;
+        public static final int sidebar_group_text=0x7f0b0081;
+        public static final int sidebar_layout=0x7f0b0086;
+        public static final int sidebar_list_text=0x7f0b0080;
+        public static final int step2_label=0x7f0b007a;
         public static final int thumbnail=0x7f0b0045;
         public static final int thumbnail2=0x7f0b0060;
         public static final int thumbnail3=0x7f0b0064;
         public static final int timelineButton=0x7f0b0019;
         public static final int timeline_gridlayout=0x7f0b0040;
-        public static final int timeline_item_button=0x7f0b0088;
-        public static final int timeline_item_button1=0x7f0b0089;
+        public static final int timeline_item_button=0x7f0b008f;
+        public static final int timeline_item_button1=0x7f0b0090;
         public static final int timeline_item_date=0x7f0b0043;
-        public static final int timeline_item_post=0x7f0b0087;
-        public static final int timeline_item_time=0x7f0b0086;
+        public static final int timeline_item_post=0x7f0b008e;
+        public static final int timeline_item_time=0x7f0b008d;
         public static final int timeline_item_title=0x7f0b0042;
-        public static final int timeline_item_username=0x7f0b0084;
-        public static final int timeline_item_x=0x7f0b0085;
-        public static final int timeline_list=0x7f0b008b;
-        public static final int timeline_scrollview=0x7f0b007e;
+        public static final int timeline_item_username=0x7f0b008b;
+        public static final int timeline_item_x=0x7f0b008c;
+        public static final int timeline_list=0x7f0b0092;
+        public static final int timeline_scrollview=0x7f0b0085;
         public static final int timeline_tile_img=0x7f0b0041;
         public static final int view_pager=0x7f0b005b;
-        public static final int weightXyPlot=0x7f0b008c;
+        public static final int weightXyPlot=0x7f0b0093;
+        public static final int yesButton=0x7f0b0078;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -249,131 +256,149 @@ public final class R {
         public static final int post=0x7f030019;
         public static final int post_page=0x7f03001a;
         public static final int post_page_comment_one=0x7f03001b;
-        public static final int register_page=0x7f03001c;
-        public static final int register_page3=0x7f03001d;
-        public static final int register_page_2=0x7f03001e;
-        public static final int register_sickness_layout=0x7f03001f;
-        public static final int segregate_page=0x7f030020;
-        public static final int shared_account_page_layout=0x7f030021;
-        public static final int sidebar_list_child=0x7f030022;
-        public static final int sidebar_list_group=0x7f030023;
-        public static final int tile_event_layout=0x7f030024;
-        public static final int timeline_item=0x7f030025;
-        public static final int timeline_page=0x7f030026;
-        public static final int weight_graph_page=0x7f030027;
+        public static final int register_family_activity=0x7f03001c;
+        public static final int register_page=0x7f03001d;
+        public static final int register_page3=0x7f03001e;
+        public static final int register_page_2=0x7f03001f;
+        public static final int register_partner2_activity=0x7f030020;
+        public static final int register_partner_activity=0x7f030021;
+        public static final int register_sickness_layout=0x7f030022;
+        public static final int segregate_page=0x7f030023;
+        public static final int shared_account_page_layout=0x7f030024;
+        public static final int sidebar_list_child=0x7f030025;
+        public static final int sidebar_list_group=0x7f030026;
+        public static final int task_without_ui_activity=0x7f030027;
+        public static final int tile_event_layout=0x7f030028;
+        public static final int timeline_item=0x7f030029;
+        public static final int timeline_page=0x7f03002a;
+        public static final int weight_graph_page=0x7f03002b;
     }
     public static final class menu {
         public static final int activity_album=0x7f0a0000;
         public static final int activity_main=0x7f0a0001;
         public static final int activity_register_page3=0x7f0a0002;
+        public static final int register_family_activity=0x7f0a0003;
+        public static final int register_partner2_activity=0x7f0a0004;
+        public static final int register_partner_activity=0x7f0a0005;
+        public static final int task_without_ui_activity=0x7f0a0006;
     }
     public static final class string {
-        public static final int addChild=0x7f08000d;
+        public static final int addChild=0x7f080011;
         /**  Child Profile 
          */
-        public static final int album=0x7f080021;
+        public static final int album=0x7f080027;
         public static final int app_name=0x7f080000;
-        public static final int birthdate=0x7f08001d;
+        public static final int birthdate=0x7f080023;
         /**  Adding a Child 
          */
-        public static final int bloodType=0x7f08001c;
-        public static final int cancel=0x7f08000c;
-        public static final int children_under=0x7f080049;
-        public static final int consultation=0x7f080045;
-        public static final int contact_details=0x7f080046;
-        public static final int contact_num1=0x7f080047;
-        public static final int contact_num2=0x7f080048;
+        public static final int bloodType=0x7f080022;
+        public static final int cancel=0x7f080010;
+        public static final int children_under=0x7f08004f;
+        public static final int consultation=0x7f08004b;
+        public static final int contact_details=0x7f08004c;
+        public static final int contact_num1=0x7f08004d;
+        public static final int contact_num2=0x7f08004e;
         /**  Doctor Page 
          */
-        public static final int create_doctor=0x7f08003f;
-        public static final int cross_mark=0x7f08003a;
-        public static final int delete=0x7f080032;
-        public static final int description=0x7f08003c;
-        public static final int edit_doctor=0x7f080040;
-        public static final int edit_info=0x7f08004a;
+        public static final int create_doctor=0x7f080045;
+        public static final int cross_mark=0x7f080040;
+        public static final int delete=0x7f080038;
+        public static final int description=0x7f080042;
+        public static final int edit_doctor=0x7f080046;
+        public static final int edit_info=0x7f080050;
         /**  Registration 
          */
-        public static final int email=0x7f08000e;
+        public static final int email=0x7f080012;
         /**  Post Settings Context 
          */
-        public static final int facebook=0x7f080031;
-        public static final int fb_register=0x7f080007;
-        public static final int feet=0x7f080034;
-        public static final int female=0x7f08001a;
-        public static final int firstname=0x7f080015;
+        public static final int facebook=0x7f080037;
+        public static final int fb_register=0x7f08000b;
+        public static final int feet=0x7f08003a;
+        public static final int female=0x7f08001e;
+        public static final int firstname=0x7f080019;
         /**  Life Events 
          */
-        public static final int firsts=0x7f08002a;
-        public static final int full_name=0x7f080012;
-        public static final int gender=0x7f080018;
-        public static final int health_growth=0x7f080025;
-        public static final int height_graph=0x7f08002d;
-        public static final int hello_world=0x7f08003d;
-        public static final int hospital=0x7f080043;
-        public static final int hospital_address=0x7f080044;
-        public static final int hospital_details=0x7f080042;
+        public static final int firsts=0x7f080030;
+        public static final int full_name=0x7f080016;
+        public static final int gender=0x7f08001c;
+        public static final int health_growth=0x7f08002b;
+        public static final int height_graph=0x7f080033;
+        public static final int hello_world=0x7f080043;
+        public static final int hospital=0x7f080049;
+        public static final int hospital_address=0x7f08004a;
+        public static final int hospital_details=0x7f080048;
         /**  Edit Information 
          */
-        public static final int inches=0x7f080033;
-        public static final int information=0x7f080022;
-        public static final int lastname=0x7f080016;
-        public static final int level_1=0x7f080030;
-        public static final int level_2=0x7f08002f;
+        public static final int inches=0x7f080039;
+        public static final int information=0x7f080028;
+        public static final int lastname=0x7f08001a;
+        public static final int level_1=0x7f080036;
+        public static final int level_2=0x7f080035;
         /**  Set Privilege Context 
          */
-        public static final int level_3=0x7f08002e;
-        public static final int life_events=0x7f080024;
-        public static final int limit_password=0x7f080014;
-        public static final int limit_username=0x7f080013;
+        public static final int level_3=0x7f080034;
+        public static final int life_events=0x7f08002a;
+        public static final int limit_password=0x7f080018;
+        public static final int limit_username=0x7f080017;
         /**  Buttons 
          */
-        public static final int login=0x7f080004;
-        public static final int logout=0x7f080005;
-        public static final int male=0x7f080019;
+        public static final int login=0x7f080008;
+        public static final int logout=0x7f080009;
+        public static final int male=0x7f08001d;
         public static final int menu_settings=0x7f080002;
-        public static final int milestones=0x7f08002b;
-        public static final int my_children=0x7f080028;
-        public static final int my_friend_children=0x7f080029;
+        public static final int milestones=0x7f080031;
+        public static final int my_children=0x7f08002e;
+        public static final int my_friend_children=0x7f08002f;
         /**  Parent Profile 
          */
-        public static final int my_shared=0x7f080027;
-        public static final int next=0x7f080008;
-        public static final int not_match=0x7f08001b;
-        public static final int pass=0x7f08000f;
-        public static final int post=0x7f080037;
+        public static final int my_shared=0x7f08002d;
+        public static final int name_search=0x7f080006;
+        public static final int next=0x7f08000c;
+        public static final int no=0x7f080005;
+        public static final int not_match=0x7f08001f;
+        public static final int pass=0x7f080013;
+        public static final int post=0x7f08003d;
         /**  Post 
          */
-        public static final int post_hint=0x7f08003b;
-        public static final int pounds=0x7f080035;
-        public static final int previous=0x7f08000b;
-        public static final int progress=0x7f080023;
-        public static final int register=0x7f080006;
+        public static final int post_hint=0x7f080041;
+        public static final int pounds=0x7f08003b;
+        public static final int previous=0x7f08000f;
+        public static final int progress=0x7f080029;
+        public static final int reg_3=0x7f080020;
+        public static final int reg_part=0x7f080021;
+        public static final int register=0x7f08000a;
+        public static final int register_fam=0x7f080007;
         public static final int required_not_met=0x7f080003;
-        public static final int retype_pass=0x7f080017;
+        public static final int retype_pass=0x7f08001b;
         /**  News Feed 
          */
-        public static final int says=0x7f080020;
+        public static final int says=0x7f080026;
         /**  Timeline 
          */
-        public static final int search=0x7f080036;
-        public static final int set_privilege=0x7f08001f;
-        public static final int share_post=0x7f080039;
+        public static final int search=0x7f08003c;
+        public static final int set_privilege=0x7f080025;
+        public static final int share_post=0x7f08003f;
         /**  Friend List 
          */
-        public static final int shared_acc=0x7f08001e;
-        public static final int specialty=0x7f080041;
-        public static final int start=0x7f08000a;
-        public static final int step1=0x7f080010;
-        public static final int step2=0x7f080011;
-        public static final int submit=0x7f080009;
-        public static final int timeline=0x7f080026;
-        public static final int title_activity_album=0x7f08003e;
-        public static final int title_activity_register_page3=0x7f08004b;
-        public static final int view_comment=0x7f080038;
+        public static final int shared_acc=0x7f080024;
+        public static final int specialty=0x7f080047;
+        public static final int start=0x7f08000e;
+        public static final int step1=0x7f080014;
+        public static final int step2=0x7f080015;
+        public static final int submit=0x7f08000d;
+        public static final int timeline=0x7f08002c;
+        public static final int title_activity_album=0x7f080044;
+        public static final int title_activity_register_family=0x7f080054;
+        public static final int title_activity_register_page3=0x7f080051;
+        public static final int title_activity_register_partner=0x7f080052;
+        public static final int title_activity_register_partner2=0x7f080053;
+        public static final int title_activity_task_without_ui=0x7f080055;
+        public static final int view_comment=0x7f08003e;
         /**  Health and Growth 
          */
-        public static final int weight_graph=0x7f08002c;
+        public static final int weight_graph=0x7f080032;
         public static final int welcome=0x7f080001;
+        public static final int yes=0x7f080004;
     }
     public static final class style {
         /** 
