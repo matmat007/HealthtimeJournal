@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -184,6 +185,8 @@ public class RegisterPageActivity extends Activity{
 				parent.setEmail(emailText.getText().toString());
 				parent.setPassword(passText.getText().toString());
 				HealthtimeSession.save(parent, activity);
+				Log.d("email",HealthtimeSession.getEmail(activity));
+				Log.d("password",HealthtimeSession.getPassword(activity));
 				startActivity(new Intent(RegisterPageActivity.this, RegisterPage2Activity.class));
 			}
 			else{

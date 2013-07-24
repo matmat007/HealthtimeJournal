@@ -23,7 +23,6 @@ import com.healthtimejournal.service.JSONParser;
 public class RegisterPartnerActivity extends Activity {
 	
 	private AddFamily mAddTask = null;
-	private int parentid = HealthtimeSession.getParentId(this);
 	
 	private Button yesButton;
 	private Button noButton;
@@ -94,7 +93,7 @@ public class RegisterPartnerActivity extends Activity {
 		protected Boolean doInBackground(Void... params) {
 			HttpClient a = new HttpClient();
 			FamilyModel family = new FamilyModel();
-			String data = a.retrieve_parent(parentid);
+			String data = a.retrieve_parent(HealthtimeSession.getParentId(getBaseContext()));
 			List<ParentModel> result = JSONParser.getParent(data);
 			int gender = Integer.parseInt(result.get(0).getGender());
 			if(gender == 1){
