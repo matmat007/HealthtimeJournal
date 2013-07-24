@@ -58,11 +58,12 @@ public class MenuInstance {
 		temp = new ArrayList<String>();
 		temp.add("Add Child");
 		list.add(temp);
-		for(ChildModel s : child){
-			temp.add(s.getFirstName() + " " + s.getLastName());
+		
+		if(child != null){
+			for(ChildModel s : child){
+				temp.add(s.getFirstName() + " " + s.getLastName());
+			}
 		}
-		
-		
 		temp = new ArrayList<String>();
 		temp.add("Create Doctor Page");
 		temp.add("Log out");

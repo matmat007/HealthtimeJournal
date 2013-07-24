@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -206,19 +207,25 @@ public class TiledEventsActivity extends FragmentActivity {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 	        
+			hsv.scrollTo(width/4*3, 0);
+			
 			if(result != null){
 				children = JSONParser.getChild(result);
+				if(children != null){
+					list = MenuInstance.instatiateGroup(children);
+				}
+				else{
+					list = MenuInstance.instatiateGroup(null);
+					children = new ArrayList<ChildModel>();
+				}
+					adapter = new MyCustomExpandableListAdapter(getApplicationContext(), list); 
+					adapter.notifyDataSetChanged();
+					listview.setAdapter(adapter);
+					
+					for(int k = 0; k < listview.getExpandableListAdapter().getGroupCount(); k++){
+			        	listview.expandGroup(k);
+			        }
 				
-				list = MenuInstance.instatiateGroup(children);
-				adapter = new MyCustomExpandableListAdapter(getApplicationContext(), list); 
-				adapter.notifyDataSetChanged();
-				listview.setAdapter(adapter);
-				
-				for(int k = 0; k < listview.getExpandableListAdapter().getGroupCount(); k++){
-		        	listview.expandGroup(k);
-		        }
-				
-				hsv.scrollTo(width/4*3, 0);
 			}
 			
 			else{
@@ -245,6 +252,7 @@ public class TiledEventsActivity extends FragmentActivity {
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
+			Log.d("parent_id",String.valueOf(HealthtimeSession.getParentId(getBaseContext())));
 			String data = a.retrieve_all_post(HealthtimeSession.getParentId(getBaseContext()));
 			return data;
 		}
@@ -256,20 +264,21 @@ public class TiledEventsActivity extends FragmentActivity {
 	        if(result != null){
 	        	List<PostModel> chldlist = JSONParser.getPost(result);
 	        	List<List<PostModel>> arrangeEvents = new ArrayList<List<PostModel>>();
-	        	
-	        	int n = chldlist.get(0).getChildId();
-	        	List<PostModel> model = new ArrayList<PostModel>();
-	        	
-	        	for(PostModel p : chldlist){
-	        		if(n != p.getChildId()){
-	        			n = p.getChildId();
-	        			arrangeEvents.add(model);
-	        			model = new ArrayList<PostModel>();
-	        		}
-	        		model.add(p);
+	        	if(chldlist != null){
+		        	int n = chldlist.get(0).getChildId();
+		        	List<PostModel> model = new ArrayList<PostModel>();
+		        	
+		        	for(PostModel p : chldlist){
+		        		if(n != p.getChildId()){
+		        			n = p.getChildId();
+		        			arrangeEvents.add(model);
+		        			model = new ArrayList<PostModel>();
+		        		}
+		        		model.add(p);
 	        	}
 	        	arrangeEvents.add(model);
-	        	
+	        	}
+	        	Log.d("logggg", ""+arrangeEvents.size());
 	        	viewPager.setAdapter(new TiledEventFragmentPageAdapter(getSupportFragmentManager(), children, arrangeEvents));
 	        }
 	        

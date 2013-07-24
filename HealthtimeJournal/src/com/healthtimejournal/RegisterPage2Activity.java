@@ -25,7 +25,6 @@ import com.healthtimejournal.service.HttpClient;
 public class RegisterPage2Activity extends Activity{
 	
 	private HistoryTask mHistTask = null;
-	private int parentid = HealthtimeSession.getParentId(this);
 	
 	CheckBox anemiaCheckBox;
 	CheckBox asthmaCheckBox;
@@ -107,7 +106,7 @@ public class RegisterPage2Activity extends Activity{
 			HttpClient a = new HttpClient();
 			List<Boolean> result = adapter.getResult();
 			ParentSicknessModel model = new ParentSicknessModel();
-			model.setParentId(parentid);
+			model.setParentId(HealthtimeSession.getParentId(RegisterPage2Activity.this));
 			for(int i = 0; i<result.size(); i++)
 				Log.d(String.valueOf(i), String.valueOf(result.get(i)));
 			

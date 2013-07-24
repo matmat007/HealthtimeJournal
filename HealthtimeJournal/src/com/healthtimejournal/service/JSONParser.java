@@ -327,7 +327,7 @@ public class JSONParser {
 			oneparent.setParentId(oneobj.getInt("parent_id"));
 			oneparent.setFirstName(oneobj.getString("first_name"));
 			oneparent.setLastName(oneobj.getString("last_name"));
-			//oneparent.setFamilyId(oneobj.getInt("family_id"));
+			oneparent.setFamilyId(oneobj.getInt("family_id"));
 
 			return oneparent;
 		} catch (JSONException e) {

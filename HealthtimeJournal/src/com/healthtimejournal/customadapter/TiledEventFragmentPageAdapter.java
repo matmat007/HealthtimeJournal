@@ -23,6 +23,7 @@ public class TiledEventFragmentPageAdapter extends FragmentPagerAdapter{
 		this.children = children;
 		this.posts = posts;
 		fragments = new ArrayList<Fragment>();
+		
 		findId();
     }
 
