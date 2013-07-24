@@ -21,9 +21,6 @@ import com.healthtimejournal.model.SharingDoctorModel;
 import com.healthtimejournal.model.SharingModel;
 
 public class JSONParser {
-<<<<<<< HEAD
-	
-=======
 
 	public static List<String> getChildren(String data){
 		List<String> list = new ArrayList<String>();
@@ -46,7 +43,6 @@ public class JSONParser {
 		return null;
 	}
 
->>>>>>> origin/Juliard
 	public static List<CategoryReferenceModel> getCategoryReference(String data){
 		List<CategoryReferenceModel> result = new ArrayList<CategoryReferenceModel>();
 
@@ -325,15 +321,6 @@ public class JSONParser {
 			JSONArray jArray = jObj.getJSONArray("parents");
 
 			JSONObject oneobj = null;
-<<<<<<< HEAD
-				ParentModel oneparent = new ParentModel();
-				oneobj = jArray.getJSONObject(0);
-				
-				oneparent.setParentId(oneobj.getInt("parent_id"));
-				oneparent.setFirstName(oneobj.getString("first_name"));
-				oneparent.setLastName(oneobj.getString("last_name"));
-				oneparent.setFamilyId(oneobj.getInt("family_id"));
-=======
 			ParentModel oneparent = new ParentModel();
 			oneobj = jArray.getJSONObject(0);
 
@@ -341,7 +328,7 @@ public class JSONParser {
 			oneparent.setFirstName(oneobj.getString("first_name"));
 			oneparent.setLastName(oneobj.getString("last_name"));
 			//oneparent.setFamilyId(oneobj.getInt("family_id"));
->>>>>>> origin/Juliard
+
 			return oneparent;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
