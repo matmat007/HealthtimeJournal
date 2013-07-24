@@ -17,7 +17,7 @@ public class HealthtimeSession {
 		editor.putString("last_name", parent.getLastName());
 		editor.putString("email", parent.getEmail());
 		editor.putString("password", parent.getPassword());
-		//editor.putInt("family_id", parent.getFamilyId());
+		editor.putInt("family_id", parent.getFamilyId());
 		return editor.commit();
 	}
 	

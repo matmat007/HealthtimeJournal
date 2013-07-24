@@ -31,14 +31,14 @@
 
             <EditText
                 android:id="@+id/addChildFirstNameText"
-                android:hint="@string/lastname"
+                android:hint="@string/firstname"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:padding="10dp"/>
 
             <EditText
                 android:id="@+id/addChildLastNameText"
-                android:hint="@string/firstname"
+                android:hint="@string/lastname"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:padding="10dp"/>

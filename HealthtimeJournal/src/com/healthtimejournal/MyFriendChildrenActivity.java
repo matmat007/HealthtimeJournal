@@ -41,7 +41,7 @@ public class MyFriendChildrenActivity extends Activity {
 		friendList.setOnItemLongClickListener(new OnItemLongClickListener() {
 		    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 		    	SetPrivilegeContext dialog = new SetPrivilegeContext();
-		    	dialog.openDialog(context);
+		    	dialog.openDialog(context, position);
 		    	return true;
 		    }
 		});

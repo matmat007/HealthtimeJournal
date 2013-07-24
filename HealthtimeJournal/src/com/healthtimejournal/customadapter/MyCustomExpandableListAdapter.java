@@ -2,22 +2,13 @@ package com.healthtimejournal.customadapter;
 
 import java.util.List;
 
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.facebook.Facebook;
-import com.facebook.SessionStore;
 import com.healthtimejournal.R;
 import com.healthtimejournal.model.ChildList;
 import com.healthtimejournal.model.GroupList;
@@ -26,11 +17,6 @@ public class MyCustomExpandableListAdapter extends BaseExpandableListAdapter{
 	
 	private Context context;
 	private List<GroupList> list;
-	
-	private Facebook mFacebook;
-    private ProgressDialog mProgress;
-
-    private static final String APP_ID = "460537864017391";
 	
 	public MyCustomExpandableListAdapter(Context context, List<GroupList> list){
 		this.context = context;
@@ -54,11 +40,6 @@ public class MyCustomExpandableListAdapter extends BaseExpandableListAdapter{
 			boolean isLastChild, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		
-		mProgress = new ProgressDialog(context);
-        mFacebook = new Facebook(APP_ID);
- 
-        SessionStore.restore(mFacebook, context);
-		
 		ChildList chld = (ChildList) getChild(groupPosition, childPosition);
 		
 		if(convertView == null){
@@ -68,6 +49,10 @@ public class MyCustomExpandableListAdapter extends BaseExpandableListAdapter{
 		
 		TextView tv = (TextView) convertView.findViewById(R.id.sidebar_list_text);
 		tv.setText(chld.getName().toString());
+		
+		if(tv.getText().toString().equals("Create Doctor Page")){
+			//context.startActivity(new Intent(context, CreateDoctorActivity.class));
+		}
 		
 		/*if(tv.getText().toString().equals("Log out")) {
 			tv.setOnClickListener(new OnClickListener() { 
@@ -151,61 +136,5 @@ public class MyCustomExpandableListAdapter extends BaseExpandableListAdapter{
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
-	private void fbLogout() {
-        mProgress.setMessage("Disconnecting from Facebook");
-        mProgress.show();
- 
-        new Thread() {
-            @Override
-            public void run() {
-                SessionStore.clear(context);
- 
-                int what = 1;
- 
-                try {
-                    mFacebook.logout(context);
- 
-                    what = 0;
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
- 
-                mHandler.sendMessage(mHandler.obtainMessage(what));
-            }
-        }.start();
-    }
- 
-    private Handler mFbHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            mProgress.dismiss();
- 
-            if (msg.what == 0) {
-                String username = (String) msg.obj;
-                username = (username.equals("")) ? "No Name" : username;
- 
-                SessionStore.saveName(username, context);
- 
-                Toast.makeText(context, "Connected to Facebook as " + username, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(context, "Connected to Facebook", Toast.LENGTH_SHORT).show();
-            }
-        }
-    };
- 
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            mProgress.dismiss();
- 
-            if (msg.what == 1) {
-                Toast.makeText(context, "Facebook logout failed", Toast.LENGTH_SHORT).show();
-            } else {
- 
-                Toast.makeText(context, "Disconnected from Facebook", Toast.LENGTH_SHORT).show();
-            }
-        }
-    };
 
 }
