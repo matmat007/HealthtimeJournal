@@ -19,6 +19,12 @@
     	android:maxLines="5"
     	android:lines="5"/>
     
+    <ImageView
+        android:id="@+id/postPageImage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp" />
+    
     <LinearLayout
         android:layout_width="fill_parent"
     	android:layout_height="fill_parent"
@@ -49,7 +55,5 @@
             android:layout_weight="5"/>
     
     </LinearLayout>
-    
-    
 
 </LinearLayout>

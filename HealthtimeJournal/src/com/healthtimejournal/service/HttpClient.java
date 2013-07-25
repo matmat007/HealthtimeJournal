@@ -1,18 +1,26 @@
 package com.healthtimejournal.service;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.util.Log;
+
 import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.CommentModel;
 import com.healthtimejournal.model.DoctorModel;
 import com.healthtimejournal.model.FamilyModel;
-import com.healthtimejournal.model.GalleryModel;
 import com.healthtimejournal.model.ParentModel;
 import com.healthtimejournal.model.ParentSicknessModel;
 import com.healthtimejournal.model.PostModel;
@@ -21,56 +29,58 @@ import com.healthtimejournal.model.SharingModel;
 
 public class HttpClient {
 	
-	private static String REGISTER_URL = "http://192.168.43.185/healthtime/Test/add_parent.php";
-	private static String LOGIN_URL = "http://192.168.43.185/healthtime/Test/login.php";
+	private static String REGISTER_URL = "http://192.168.2.2/healthtime/Test/add_parent.php";
+	private static String LOGIN_URL = "http://192.168.2.2/healthtime/Test/login.php";
 	
 	//Add Php Urls
-	private static final String POST_URL = "http://192.168.43.185/healthtime/Test/add_post.php";
-	private static final String ADD_SHARING_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/add_sharing_doctor.php";
-	private static final String ADD_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/add_doctor.php";
-	private static final String ADD_COMMENT_URL = "http://192.168.43.185/healthtime/Test/add_comment.php";
-	private static final String ADD_MEDICAL_HISTORY_URL = "http://192.168.43.185/healthtime/Test/add_medical_history.php";
-	private static final String ADD_GALLERY_URL = "http://192.168.43.185/healthtime/Test/add_gallery.php";
-	private static final String ADD_FAMILY_URL = "http://192.168.43.185/healthtime/Test/add_family.php";
-	private static final String ADD_SHARING_URL = "http://192.168.43.185/healthtime/Test/add_sharing.php";
-	private static final String ADD_CHILD_URL = "http://192.168.43.185/healthtime/Test/add_child.php";
+	private static final String POST_URL = "http://192.168.2.2/healthtime/Test/add_post.php";
+	private static final String ADD_SHARING_DOCTOR_URL = "http://192.168.2.2/healthtime/Test/add_sharing_doctor.php";
+	private static final String ADD_DOCTOR_URL = "http://192.168.2.2/healthtime/Test/add_doctor.php";
+	private static final String ADD_COMMENT_URL = "http://192.168.2.2/healthtime/Test/add_comment.php";
+	private static final String ADD_MEDICAL_HISTORY_URL = "http://192.168.2.2/healthtime/Test/add_medical_history.php";
+	private static final String ADD_FAMILY_URL = "http://192.168.2.2/healthtime/Test/add_family.php";
+	private static final String ADD_SHARING_URL = "http://192.168.2.2/healthtime/Test/add_sharing.php";
+	private static final String ADD_CHILD_URL = "http://192.168.2.2/healthtime/Test/add_child.php";
 	
 	//Delete Php Urls
-	private static final String DELETE_CHILD_URL = "http://192.168.43.185/healthtime/Test/delete_child.php";
-	private static final String DELETE_COMMENT_URL = "http://192.168.43.185/healthtime/Test/delete_comment.php";
-	private static final String DELETE_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/delete_doctor.php";
-	private static final String DELETE_POST_URL = "http://192.168.43.185/healthtime/Test/delete_post.php";
-	private static final String DELETE_SHARING_URL = "http://192.168.43.185/healthtime/Test/delete_sharing.php";
-	private static final String DELETE_SHARING_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/delete_sharing_doctor.php";
+	private static final String DELETE_CHILD_URL = "http://192.168.2.2/healthtime/Test/delete_child.php";
+	private static final String DELETE_COMMENT_URL = "http://192.168.2.2/healthtime/Test/delete_comment.php";
+	private static final String DELETE_DOCTOR_URL = "http://192.168.2.2/healthtime/Test/delete_doctor.php";
+	private static final String DELETE_POST_URL = "http://192.168.2.2/healthtime/Test/delete_post.php";
+	private static final String DELETE_SHARING_URL = "http://192.168.2.2/healthtime/Test/delete_sharing.php";
+	private static final String DELETE_SHARING_DOCTOR_URL = "http://192.168.2.2/healthtime/Test/delete_sharing_doctor.php";
 	
 	//Edit Php Urls
-	private static final String EDIT_SHARING_URL = "http://192.168.43.185/healthtime/Test/edit_sharing.php";
-	private static final String EDIT_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/edit_doctor.php";
-	private static final String EDIT_MEDICAL_HISTORY_URL = "http://192.168.43.185/healthtime/Test/edit_medical_history.php";
+	private static final String EDIT_SHARING_URL = "http://192.168.2.2/healthtime/Test/edit_sharing.php";
+	private static final String EDIT_DOCTOR_URL = "http://192.168.2.2/healthtime/Test/edit_doctor.php";
+	private static final String EDIT_MEDICAL_HISTORY_URL = "http://192.168.2.2/healthtime/Test/edit_medical_history.php";
 	
 	//Retrieve Php URLs
-	private static final String HASHTAG_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_tags.php";
-	private static final String RETRIEVE_CHILD_URL = "http://192.168.43.185/healthtime/Test/retrieve_child.php";
-	private static final String RETRIEVE_POST_BY_CHILD_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_post_by_child.php";
-	private static final String RETRIEVE_COMMENT_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_comment.php";
-	private static final String RETRIEVE_ALL_POST_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_post.php";
-	private static final String RETRIEVE_CHILD_BY_SEARCH_URL = "http://192.168.43.185/healthtime/Test/retrieve_child_by_search.php";
-	private static final String RETRIEVE_POST_BY_PARENT_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_post_by_parent.php";
-	private static final String RETRIEVE_CHILD_BY_FAMILY_URL = "http://192.168.43.185/healthtime/Test/retrieve_child_by_family.php";
-	private static final String RETRIEVE_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/retrieve_doctor.php";
-	private static final String RETRIEVE_DOCTOR_BY_PARENT_URL = "http://192.168.43.185/healthtime/Test/retrieve_doctor_by_parent.php";
-	private static final String RETRIEVE_DOCTOR_BY_SEARCH_URL = "http://192.168.43.185/healthtime/Test/retrieve_doctor_by_search.php";
-	private static final String RETRIEVE_POST_OF_PARENT_BY_CHILD_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_all_post_of_parent_by_child.php";
-	private static final String RETRIEVE_SHARED_TO_PARENT_ACCOUNTS_URL = "http://192.168.43.185/healthtime/Test/retrieve_shared_to_parent_accounts.php";
-	private static final String RETRIEVE_PARENT_URL = "http://192.168.43.185/healthtime/Test/retrieve_parent.php";
-	private static final String RETRIEVE_PARENT_BY_SEARCH_URL = "http://192.168.43.185/healthtime/Test/retrieve_parent_by_search.php";
-	private static final String RETRIEVE_SHARED_BY_PARENT_ACCOUNTS_URL = "http://192.168.43.185/healthtime/Test/retrieve_shared_by_parent_accounts.php";
-	private static final String RETRIEVE_MEDICAL_HISTORY_URL = "http://192.168.43.185/healthtime/Test/retrieve_parent_medical_history.php";
-	private static final String RETRIEVE_SHARED_TO_DOCTOR_ACCOUNTS_URL = "http://192.168.43.185/healthtime/Test/retrieve_shared_to_doctor_accounts.php";
-	private static final String RETRIEVE_FAMILY_URL = "http://192.168.43.185/healthtime/Test/retrieve_family.php";
-	private static final String RETRIEVE_SHARED_FROM_FAMILY_CHILD_URL = "http://192.168.43.185/healthtime/Test/retrieve_shared_from_family_child.php";
-	private static final String RETRIEVE_SHARED_TO_PARENT_CHILD_URL = "http://192.168.43.185/healthtime/Test/retrieve_shared_to_parent_child.php";
+	private static final String HASHTAG_URL = "http://192.168.2.2/healthtime/Test/retrieve_all_tags.php";
+	private static final String RETRIEVE_CHILD_URL = "http://192.168.2.2/healthtime/Test/retrieve_child.php";
+	private static final String RETRIEVE_POST_BY_CHILD_URL = "http://192.168.2.2/healthtime/Test/retrieve_all_post_by_child.php";
+	private static final String RETRIEVE_COMMENT_URL = "http://192.168.2.2/healthtime/Test/retrieve_all_comment.php";
+	private static final String RETRIEVE_ALL_POST_URL = "http://192.168.2.2/healthtime/Test/retrieve_all_post.php";
+	private static final String RETRIEVE_CHILD_BY_SEARCH_URL = "http://192.168.2.2/healthtime/Test/retrieve_child_by_search.php";
+	private static final String RETRIEVE_POST_BY_PARENT_URL = "http://192.168.2.2/healthtime/Test/retrieve_all_post_by_parent.php";
+	private static final String RETRIEVE_CHILD_BY_FAMILY_URL = "http://192.168.2.2/healthtime/Test/retrieve_child_by_family.php";
+	private static final String RETRIEVE_DOCTOR_URL = "http://192.168.2.2/healthtime/Test/retrieve_doctor.php";
+	private static final String RETRIEVE_DOCTOR_BY_PARENT_URL = "http://192.168.2.2/healthtime/Test/retrieve_doctor_by_parent.php";
+	private static final String RETRIEVE_DOCTOR_BY_SEARCH_URL = "http://192.168.2.2/healthtime/Test/retrieve_doctor_by_search.php";
+	private static final String RETRIEVE_POST_OF_PARENT_BY_CHILD_URL = "http://192.168.2.2/healthtime/Test/retrieve_all_all_post_of_parent_by_child.php";
+	private static final String RETRIEVE_SHARED_TO_PARENT_ACCOUNTS_URL = "http://192.168.2.2/healthtime/Test/retrieve_shared_to_parent_accounts.php";
+	private static final String RETRIEVE_PARENT_URL = "http://192.168.2.2/healthtime/Test/retrieve_parent.php";
+	private static final String RETRIEVE_PARENT_BY_SEARCH_URL = "http://192.168.2.2/healthtime/Test/retrieve_parent_by_search.php";
+	private static final String RETRIEVE_SHARED_BY_PARENT_ACCOUNTS_URL = "http://192.168.2.2/healthtime/Test/retrieve_shared_by_parent_accounts.php";
+	private static final String RETRIEVE_MEDICAL_HISTORY_URL = "http://192.168.2.2/healthtime/Test/retrieve_parent_medical_history.php";
+	private static final String RETRIEVE_SHARED_TO_DOCTOR_ACCOUNTS_URL = "http://192.168.2.2/healthtime/Test/retrieve_shared_to_doctor_accounts.php";
+	private static final String RETRIEVE_FAMILY_URL = "http://192.168.2.2/healthtime/Test/retrieve_family.php";
+	private static final String RETRIEVE_SHARED_FROM_FAMILY_CHILD_URL = "http://192.168.2.2/healthtime/Test/retrieve_shared_from_family_child.php";
+	private static final String RETRIEVE_SHARED_TO_PARENT_CHILD_URL = "http://192.168.2.2/healthtime/Test/retrieve_shared_to_parent_child.php";
 
+	//Upload URL
+	private static final String UPLOAD_IMAGE = "http://192.168.2.2/healthtime/Test/upload.php";
+	
 	HttpURLConnection conn = null;
 	InputStream is = null;
 	
@@ -187,14 +197,83 @@ public class HttpClient {
 		
 	}
 	
-	public String addGallery(GalleryModel gallery){
+	@SuppressWarnings("deprecation")
+	public void addGallery(String selectedImagePath){
 		
-		HttpResponseClient client = new HttpResponseClient();
-		
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("filename", String.valueOf(gallery.getFilename())));
-		
-		return client.makeHttpRequest(ADD_GALLERY_URL, "POST", params);
+		HttpURLConnection conn = null;
+		DataOutputStream dos = null;
+		DataInputStream inStream = null; 
+
+		String exsistingFileName = selectedImagePath;
+
+		String lineEnd = "\r\n";
+		String twoHyphens = "--";
+		String boundary =  "*****";
+
+		int bytesRead, bytesAvailable, bufferSize;
+
+		byte[] buffer;
+
+		int maxBufferSize = 1*1024*1024;
+
+		try {
+
+			FileInputStream fileInputStream = new FileInputStream(new File(exsistingFileName) );
+
+			URL url = new URL(UPLOAD_IMAGE);
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setDoInput(true);
+			conn.setDoOutput(true);
+			conn.setUseCaches(false);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Connection", "Keep-Alive");
+			conn.setRequestProperty("Content-Type", "multipart/form-data;boundary="+boundary);
+
+			dos = new DataOutputStream( conn.getOutputStream() );
+
+			dos.writeBytes(twoHyphens + boundary + lineEnd);
+			dos.writeBytes("Content-Disposition: form-data; name=\"uploadfile\";filename=\"" + exsistingFileName +"\"" + lineEnd);
+			dos.writeBytes(lineEnd);
+
+			Log.e("MediaPlayer","Headers are written");
+
+			bytesAvailable = fileInputStream.available();
+			bufferSize = Math.min(bytesAvailable, maxBufferSize);
+			buffer = new byte[bufferSize];
+
+			bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+
+			while (bytesRead > 0) {
+				dos.write(buffer, 0, bufferSize);
+				bytesAvailable = fileInputStream.available();
+				bufferSize = Math.min(bytesAvailable, maxBufferSize);
+				bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+			}
+
+			dos.writeBytes(lineEnd);
+
+			dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+
+			fileInputStream.close();
+			dos.flush();
+			dos.close();
+		}
+		catch (MalformedURLException ex) {
+		}
+		catch (IOException ioe) {
+		}
+
+		try {
+			inStream = new DataInputStream ( conn.getInputStream() );
+			String str;
+
+			while (( str = inStream.readLine()) != null) {
+				Log.e("MediaPlayer","Server Response: "+str);
+			}
+			inStream.close();
+		}
+		catch (IOException ioex){
+		}
 		
 	}
 	
@@ -322,7 +401,7 @@ public class HttpClient {
 		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(sharing.getToParentId())));
 		params.add(new BasicNameValuePair("from_family_id", String.valueOf(sharing.getFromFamilyId())));
 		params.add(new BasicNameValuePair("child_id", String.valueOf(sharing.getChildId())));
-		params.add(new BasicNameValuePair("privilage", String.valueOf(sharing.getPrivilege())));
+		params.add(new BasicNameValuePair("privilege", String.valueOf(sharing.getPrivilege())));
 		
 		return client.makeHttpRequest(DELETE_SHARING_URL, "POST", params);
 		

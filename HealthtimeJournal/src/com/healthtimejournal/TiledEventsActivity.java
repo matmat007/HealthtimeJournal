@@ -127,7 +127,7 @@ public class TiledEventsActivity extends FragmentActivity {
 						}
 						break;
 					case 1:
-						if(childPosition == 0){
+						if(childPosition == children.size()){
 							startActivity(new Intent(TiledEventsActivity.this, AddChildActivity.class));
 						}
 						break;
