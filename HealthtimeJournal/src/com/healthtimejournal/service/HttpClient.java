@@ -19,6 +19,7 @@ import android.util.Log;
 
 import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.CommentModel;
+import com.healthtimejournal.model.DiseaseDictionaryModel;
 import com.healthtimejournal.model.DoctorModel;
 import com.healthtimejournal.model.FamilyModel;
 import com.healthtimejournal.model.ParentModel;
@@ -33,6 +34,7 @@ public class HttpClient {
 	private static String LOGIN_URL = "http://192.168.2.2/healthtime/Test/login.php";
 	
 	//Add Php Urls
+<<<<<<< HEAD
 	private static final String POST_URL = "http://192.168.2.2/healthtime/Test/add_post.php";
 	private static final String ADD_SHARING_DOCTOR_URL = "http://192.168.2.2/healthtime/Test/add_sharing_doctor.php";
 	private static final String ADD_DOCTOR_URL = "http://192.168.2.2/healthtime/Test/add_doctor.php";
@@ -80,6 +82,59 @@ public class HttpClient {
 
 	//Upload URL
 	private static final String UPLOAD_IMAGE = "http://192.168.2.2/healthtime/Test/upload.php";
+=======
+	private static final String POST_URL = "http://192.168.43.185/healthtime/Test/add_post.php";
+	private static final String ADD_SHARING_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/add_sharing_doctor.php";
+	private static final String ADD_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/add_doctor.php";
+	private static final String ADD_COMMENT_URL = "http://192.168.43.185/healthtime/Test/add_comment.php";
+	private static final String ADD_MEDICAL_HISTORY_URL = "http://192.168.43.185/healthtime/Test/add_medical_history.php";
+	private static final String ADD_GALLERY_URL = "http://192.168.43.185/healthtime/Test/add_gallery.php";
+	private static final String ADD_FAMILY_URL = "http://192.168.43.185/healthtime/Test/add_family.php";
+	private static final String ADD_SHARING_URL = "http://192.168.43.185/healthtime/Test/add_sharing.php";
+	private static final String ADD_CHILD_URL = "http://192.168.43.185/healthtime/Test/add_child.php";
+	private static final String ADD_DISEASE_URL = "http://192.168.43.185/healthtime/Test/add_disease_dictionary.php";
+	
+	//Delete Php Urls
+	private static final String DELETE_CHILD_URL = "http://192.168.43.185/healthtime/Test/delete_child.php";
+	private static final String DELETE_COMMENT_URL = "http://192.168.43.185/healthtime/Test/delete_comment.php";
+	private static final String DELETE_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/delete_doctor.php";
+	private static final String DELETE_POST_URL = "http://192.168.43.185/healthtime/Test/delete_post.php";
+	private static final String DELETE_SHARING_URL = "http://192.168.43.185/healthtime/Test/delete_sharing.php";
+	private static final String DELETE_SHARING_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/delete_sharing_doctor.php";
+	private static final String DELETE_DISEASE_URL = "http://192.168.43.185/healthtime/Test/delete_disease_dictionary.php";
+
+	
+	//Edit Php Urls
+	private static final String EDIT_SHARING_URL = "http://192.168.43.185/healthtime/Test/edit_sharing.php";
+	private static final String EDIT_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/edit_doctor.php";
+	private static final String EDIT_MEDICAL_HISTORY_URL = "http://192.168.43.185/healthtime/Test/edit_medical_history.php";
+	private static final String EDIT_DISEASE_URL = "http://192.168.43.185/healthtime/Test/edit_disease_dictionary.php";
+	
+	//Retrieve Php URLs
+	private static final String HASHTAG_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_tags.php";
+	private static final String RETRIEVE_CHILD_URL = "http://192.168.43.185/healthtime/Test/retrieve_child.php";
+	private static final String RETRIEVE_POST_BY_CHILD_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_post_by_child.php";
+	private static final String RETRIEVE_COMMENT_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_comment.php";
+	private static final String RETRIEVE_ALL_POST_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_post.php";
+	private static final String RETRIEVE_CHILD_BY_SEARCH_URL = "http://192.168.43.185/healthtime/Test/retrieve_child_by_search.php";
+	private static final String RETRIEVE_POST_BY_PARENT_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_post_by_parent.php";
+	private static final String RETRIEVE_CHILD_BY_FAMILY_URL = "http://192.168.43.185/healthtime/Test/retrieve_child_by_family.php";
+	private static final String RETRIEVE_DOCTOR_URL = "http://192.168.43.185/healthtime/Test/retrieve_doctor.php";
+	private static final String RETRIEVE_DOCTOR_BY_PARENT_URL = "http://192.168.43.185/healthtime/Test/retrieve_doctor_by_parent.php";
+	private static final String RETRIEVE_DOCTOR_BY_SEARCH_URL = "http://192.168.43.185/healthtime/Test/retrieve_doctor_by_search.php";
+	private static final String RETRIEVE_POST_OF_PARENT_BY_CHILD_URL = "http://192.168.43.185/healthtime/Test/retrieve_all_all_post_of_parent_by_child.php";
+	private static final String RETRIEVE_SHARED_TO_PARENT_ACCOUNTS_URL = "http://192.168.43.185/healthtime/Test/retrieve_shared_to_parent_accounts.php";
+	private static final String RETRIEVE_PARENT_URL = "http://192.168.43.185/healthtime/Test/retrieve_parent.php";
+	private static final String RETRIEVE_PARENT_BY_SEARCH_URL = "http://192.168.43.185/healthtime/Test/retrieve_parent_by_search.php";
+	private static final String RETRIEVE_SHARED_BY_PARENT_ACCOUNTS_URL = "http://192.168.43.185/healthtime/Test/retrieve_shared_by_parent_accounts.php";
+	private static final String RETRIEVE_MEDICAL_HISTORY_URL = "http://192.168.43.185/healthtime/Test/retrieve_parent_medical_history.php";
+	private static final String RETRIEVE_SHARED_TO_DOCTOR_ACCOUNTS_URL = "http://192.168.43.185/healthtime/Test/retrieve_shared_to_doctor_accounts.php";
+	private static final String RETRIEVE_FAMILY_URL = "http://192.168.43.185/healthtime/Test/retrieve_family.php";
+	private static final String RETRIEVE_SHARED_FROM_FAMILY_CHILD_URL = "http://192.168.43.185/healthtime/Test/retrieve_shared_from_family_child.php";
+	private static final String RETRIEVE_SHARED_TO_PARENT_CHILD_URL = "http://192.168.43.185/healthtime/Test/retrieve_shared_to_parent_child.php";
+	private static final String RETRIEVE_DISEASE_URL = "http://192.168.43.185/healthtime/Test/retrieve_disease_dictionary.php";
+
+>>>>>>> 6947fa0155a2371008d7ff162069613b94d05702
 	
 	HttpURLConnection conn = null;
 	InputStream is = null;
@@ -323,6 +378,21 @@ public class HttpClient {
 		
 	}
 	
+	public String addDisease(DiseaseDictionaryModel disease){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("disease_dictionary_id", String.valueOf(disease.getDiseaseDictionaryId())));
+		params.add(new BasicNameValuePair("name", disease.getName()));
+		params.add(new BasicNameValuePair("description", disease.getDescription()));
+		params.add(new BasicNameValuePair("symptom", disease.getSymptom()));
+		params.add(new BasicNameValuePair("treatment", disease.getTreatment()));
+		
+		return client.makeHttpRequest(ADD_DISEASE_URL, "POST", params);
+		
+	}
+	
 	//End of Add Methods
 	
 	//--------------------
@@ -420,6 +490,21 @@ public class HttpClient {
 		return client.makeHttpRequest(DELETE_SHARING_DOCTOR_URL, "POST", params);
 	}
 	
+	public String deleteDisease(DiseaseDictionaryModel disease){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("disease_dictionary_id", String.valueOf(disease.getDiseaseDictionaryId())));
+		params.add(new BasicNameValuePair("name", disease.getName()));
+		params.add(new BasicNameValuePair("description", disease.getDescription()));
+		params.add(new BasicNameValuePair("symptom", disease.getSymptom()));
+		params.add(new BasicNameValuePair("treatment", disease.getTreatment()));
+		
+		return client.makeHttpRequest(DELETE_DISEASE_URL, "POST", params);
+		
+	}
+	
 	//End of Delete Methods
 	
 	//----------------------
@@ -481,6 +566,21 @@ public class HttpClient {
 		return client.makeHttpRequest(EDIT_MEDICAL_HISTORY_URL, "POST", params);
 	}
 	
+	public String editDisease(DiseaseDictionaryModel disease){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("disease_dictionary_id", String.valueOf(disease.getDiseaseDictionaryId())));
+		params.add(new BasicNameValuePair("name", disease.getName()));
+		params.add(new BasicNameValuePair("description", disease.getDescription()));
+		params.add(new BasicNameValuePair("symptom", disease.getSymptom()));
+		params.add(new BasicNameValuePair("treatment", disease.getTreatment()));
+		
+		return client.makeHttpRequest(EDIT_DISEASE_URL, "POST", params);
+		
+	}
+	
 	//End of Edit Methods
 	
 	//----------------------
@@ -494,6 +594,16 @@ public class HttpClient {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		
 		return client.makeHttpRequest(HASHTAG_URL, "GET", params);
+		
+	}
+	
+	public String retrieve_disease_dictionary(){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		
+		return client.makeHttpRequest(RETRIEVE_DISEASE_URL, "GET", params);
 		
 	}
 

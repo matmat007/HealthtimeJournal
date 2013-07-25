@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import com.healthtimejournal.model.CategoryReferenceModel;
 import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.CommentModel;
+import com.healthtimejournal.model.DiseaseDictionaryModel;
 import com.healthtimejournal.model.DoctorModel;
 import com.healthtimejournal.model.FamilyModel;
 import com.healthtimejournal.model.GalleryModel;
@@ -470,4 +471,34 @@ public class JSONParser {
 
 	}
 
+	public static List<DiseaseDictionaryModel> getDiseaseDictionary(String data){
+		List<DiseaseDictionaryModel> result = new ArrayList<DiseaseDictionaryModel>();
+
+		try {
+			JSONObject jObj = new JSONObject(data);
+			JSONArray jArray = jObj.getJSONArray("disease");
+
+			JSONObject oneobj = null;
+			for(int i = 0; i < jArray.length(); i++){
+				DiseaseDictionaryModel onediseasedictionary = new DiseaseDictionaryModel();
+				oneobj = jArray.getJSONObject(i);
+
+				onediseasedictionary.setDiseaseDictionaryId(oneobj.getInt("disease_dictionary_id"));
+				onediseasedictionary.setName(oneobj.getString("name"));
+				onediseasedictionary.setDescription(oneobj.getString("description"));
+				onediseasedictionary.setSymptom(oneobj.getString("symptom"));
+				onediseasedictionary.setTreatment(oneobj.getString("treatment"));
+				
+				result.add(onediseasedictionary);
+
+			}
+			return result;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+	
 }
