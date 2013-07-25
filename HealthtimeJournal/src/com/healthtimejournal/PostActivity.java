@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -29,7 +30,10 @@ import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
 
+import com.healthtimejournal.model.GalleryModel;
 import com.healthtimejournal.model.Hashtag;
+import com.healthtimejournal.model.PostModel;
+import com.healthtimejournal.service.HealthtimeSession;
 import com.healthtimejournal.service.HttpClient;
 import com.healthtimejournal.service.JSONParser;
 import com.healthtimejournal.service.TagTokenizer;
@@ -261,16 +265,44 @@ public class PostActivity extends Activity {
 
 	private class PostTask extends AsyncTask<Void, Void, Boolean>{
 
+		private ProgressDialog pDialog;
+
+		@Override
+		protected void onPreExecute() {
+	        super.onPreExecute();
+	        pDialog = new ProgressDialog(PostActivity.this);
+	        pDialog.setMessage("Please wait...");
+	        pDialog.setIndeterminate(false);
+	        pDialog.setCancelable(false);
+	        pDialog.show();
+	    }
+		
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
-			a.addPost(post.getText().toString());
-			a.addGallery(selectedImagePath);
+			
+			GalleryModel onegallery = new GalleryModel();
+			onegallery.setParentId(HealthtimeSession.getParentId(getBaseContext()));
+			onegallery.setFilename(selectedImagePath);
+			a.addGallery(onegallery);
+			onegallery = null;
+			onegallery = JSONParser.getLastGallery(a.retrieve_gallery_last_upload(HealthtimeSession.getParentId(getBaseContext())));
+			
+			PostModel onepost = new PostModel();
+			onepost.setFromParentId(HealthtimeSession.getParentId(getBaseContext()));
+			onepost.setToParentId(1);
+			onepost.setChildId(2);
+			onepost.setPostCategory(1);
+			onepost.setPostContent(post.getText().toString());
+			onepost.setFileId(onegallery.getGalleryId());
+			a.addPost(onepost);
+			
 			return true;
 		}
 
 		protected void onPostExecute(Boolean value){
+			pDialog.dismiss();
 			startActivity(new Intent(PostActivity.this, TiledEventsActivity.class));
 		}
 

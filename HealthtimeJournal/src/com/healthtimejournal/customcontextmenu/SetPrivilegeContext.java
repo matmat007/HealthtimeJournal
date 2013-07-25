@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.healthtimejournal.R;
 import com.healthtimejournal.model.SharingModel;
-import com.healthtimejournal.service.HealthtimeSession;
 import com.healthtimejournal.service.HttpClient;
 
 public class SetPrivilegeContext extends BaseDialogPrivilege {
@@ -23,8 +22,6 @@ public class SetPrivilegeContext extends BaseDialogPrivilege {
 	
 	private SharingTask mSharingTask = null;
 
-	private int parentid = HealthtimeSession.getParentId(context);
-	
 	private int sharingId;
 	private int privilege;
 	

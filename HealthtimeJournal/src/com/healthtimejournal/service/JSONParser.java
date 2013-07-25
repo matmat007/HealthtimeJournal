@@ -163,24 +163,51 @@ public class JSONParser {
 		return null;
 
 	}
+	
+	public static GalleryModel getLastGallery(String data){
+		GalleryModel onegallery = null;
+
+		try {
+			JSONObject jObj = new JSONObject(data);
+			JSONArray jArray = jObj.getJSONArray("gallery");
+
+			JSONObject oneobj = null;
+
+			for(int i = 0; i < jArray.length(); i++){
+				onegallery = new GalleryModel();
+				oneobj = jArray.getJSONObject(i);
+
+				onegallery.setGalleryId(oneobj.getInt("gallery_id"));
+				onegallery.setParentId(oneobj.getInt("parent_id"));
+				onegallery.setFilename(oneobj.getString("filename"));
+
+			}
+			return onegallery;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public static List<GalleryModel> getGallery(String data){
 		List<GalleryModel> result = new ArrayList<GalleryModel>();
 
 		try {
 			JSONObject jObj = new JSONObject(data);
-			JSONArray jArray = jObj.getJSONArray("hashtags");
+			JSONArray jArray = jObj.getJSONArray("gallery");
 
 			JSONObject oneobj = null;
 
 			for(int i = 0; i < jArray.length(); i++){
-				GalleryModel onecategory = new GalleryModel();
+				GalleryModel onegallery = new GalleryModel();
 				oneobj = jArray.getJSONObject(i);
 
-				onecategory.setGalleryId(oneobj.getInt("gallery_id"));
-				onecategory.setFilename(oneobj.getString("filename"));
+				onegallery.setGalleryId(oneobj.getInt("gallery_id"));
+				onegallery.setParentId(oneobj.getInt("parent_id"));
+				onegallery.setFilename(oneobj.getString("filename"));
 
-				result.add(onecategory);
+				result.add(onegallery);
 
 			}
 			return result;

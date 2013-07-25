@@ -22,6 +22,7 @@ import com.healthtimejournal.model.CommentModel;
 import com.healthtimejournal.model.DiseaseDictionaryModel;
 import com.healthtimejournal.model.DoctorModel;
 import com.healthtimejournal.model.FamilyModel;
+import com.healthtimejournal.model.GalleryModel;
 import com.healthtimejournal.model.ParentModel;
 import com.healthtimejournal.model.ParentSicknessModel;
 import com.healthtimejournal.model.PostModel;
@@ -56,7 +57,6 @@ public class HttpClient {
 	private static final String DELETE_SHARING_DOCTOR_URL = "http://192.168.2.2/healthtime/Test/delete_sharing_doctor.php";
 	private static final String DELETE_DISEASE_URL = "http://192.168.2.2/healthtime/Test/delete_disease_dictionary.php";
 
-	
 	//Edit Php Urls
 	private static final String EDIT_SHARING_URL = "http://192.168.2.2/healthtime/Test/edit_sharing.php";
 	private static final String EDIT_DOCTOR_URL = "http://192.168.2.2/healthtime/Test/edit_doctor.php";
@@ -86,7 +86,9 @@ public class HttpClient {
 	private static final String RETRIEVE_SHARED_FROM_FAMILY_CHILD_URL = "http://192.168.2.2/healthtime/Test/retrieve_shared_from_family_child.php";
 	private static final String RETRIEVE_SHARED_TO_PARENT_CHILD_URL = "http://192.168.2.2/healthtime/Test/retrieve_shared_to_parent_child.php";
 	private static final String RETRIEVE_DISEASE_URL = "http://192.168.2.2/healthtime/Test/retrieve_disease_dictionary.php";
-
+	private static final String RETRIEVE_GALLERY_BY_PARENT_URL = "http://192.168.2.2/healthtime/Test/retrieve_gallery_by_parent.php";
+	private static final String RETRIEVE_GALLERY_BY_CHILD_URL = "http://192.168.2.2/healthtime/Test/retrieve_gallery_by_child.php";
+	private static final String RETRIEVE_GALLERY_LAST_UPLOAD_URL = "http://192.168.2.2/healthtime/Test/retrieve_gallery_last_upload.php";
 	
 	HttpURLConnection conn = null;
 	InputStream is = null;
@@ -124,16 +126,17 @@ public class HttpClient {
 		return client.makeHttpRequest(REGISTER_URL, "POST", params);
 	}
 	
-	public String addPost(String post){
+	public String addPost(PostModel post){
 
 		HttpResponseClient client = new HttpResponseClient();
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("to_parent_id", "1"));
-		params.add(new BasicNameValuePair("from_parent_id", "1"));
-		params.add(new BasicNameValuePair("child_id", "1"));
-		params.add(new BasicNameValuePair("post_content", post));
-		params.add(new BasicNameValuePair("file_id", "1"));
+		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(post.getToParentId())));
+		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(post.getFromParentId())));
+		params.add(new BasicNameValuePair("child_id", String.valueOf(post.getChildId())));
+		params.add(new BasicNameValuePair("post_content", post.getPostContent()));
+		params.add(new BasicNameValuePair("post_category_id", String.valueOf(post.getPostCategory())));
+		params.add(new BasicNameValuePair("file_id", String.valueOf(post.getFileId())));
 		return client.makeHttpRequest(POST_URL, "POST", params);
 	}
 	
@@ -205,13 +208,14 @@ public class HttpClient {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void addGallery(String selectedImagePath){
+	public void addGallery(GalleryModel onegallery){
 		
 		HttpURLConnection conn = null;
 		DataOutputStream dos = null;
 		DataInputStream inStream = null; 
 
-		String exsistingFileName = selectedImagePath;
+		int parentid = onegallery.getParentId();
+		String exsistingFileName = onegallery.getFilename();
 
 		String lineEnd = "\r\n";
 		String twoHyphens = "--";
@@ -239,6 +243,11 @@ public class HttpClient {
 			dos = new DataOutputStream( conn.getOutputStream() );
 
 			dos.writeBytes(twoHyphens + boundary + lineEnd);
+			dos.writeBytes("Content-Disposition: form-data; name=\"parent_id\"" + lineEnd);
+			dos.writeBytes(lineEnd);
+	        dos.writeBytes(String.valueOf(parentid));
+	        dos.writeBytes(lineEnd);
+	        dos.writeBytes(twoHyphens + boundary + lineEnd);
 			dos.writeBytes("Content-Disposition: form-data; name=\"uploadfile\";filename=\"" + exsistingFileName +"\"" + lineEnd);
 			dos.writeBytes(lineEnd);
 
@@ -739,6 +748,33 @@ public class HttpClient {
 		params.add(new BasicNameValuePair("shared_parent_id", String.valueOf(shared_parent_id)));
 		
 		return client.makeHttpRequest(RETRIEVE_SHARED_TO_PARENT_CHILD_URL, "GET", params);
+	}
+	
+	public String retrieve_gallery_by_parent(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_GALLERY_BY_PARENT_URL, "GET", params);
+	}
+	
+	public String retrieve_gallery_by_child(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_GALLERY_BY_CHILD_URL, "GET", params);
+	}
+	
+	public String retrieve_gallery_last_upload(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_GALLERY_LAST_UPLOAD_URL, "GET", params);
 	}
 	
 	
