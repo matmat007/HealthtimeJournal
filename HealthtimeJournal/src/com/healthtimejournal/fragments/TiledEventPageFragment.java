@@ -28,9 +28,6 @@ public class TiledEventPageFragment extends Fragment {
     public static final String ARG_CONTENT = "ARG_CONTENT";
 
     private int mPage;
-    
-    private int src[] = {R.drawable.img1, R.drawable.img2, R.drawable.img3, R.drawable.img4, R.drawable.img5};//for debug purpose only
-    private int n = 0;//for debug purpose only
 
     public static TiledEventPageFragment create(int page, List<PostModel> posts, ArrayList<String> contents) {
         Bundle args = new Bundle();
@@ -66,7 +63,6 @@ public class TiledEventPageFragment extends Fragment {
             grid.setColumnCount(2);
             grid.setRowCount(100);//for debug purpose only (should be dynamic)
             
-            n = 0;//for debug purpose only
             int spec_col = 0, spec_row = 0;
             for(int i = 0; i < getArguments().getStringArrayList(ARG_CONTENT).size(); i++){
             	Spec row = null, col = null;
@@ -134,7 +130,6 @@ public class TiledEventPageFragment extends Fragment {
     			});
             	
                 grid.addView(layout, populateGrid(layout, width, height, row, col, i));
-                n++;//for debug purpose only
             }
     	}
         
@@ -151,7 +146,7 @@ public class TiledEventPageFragment extends Fragment {
         if(getArguments().getStringArrayList(ARG_CONTENT) != null)
         	text.setText(getArguments().getStringArrayList(ARG_CONTENT).get(count));
         
-        img.setImageResource(src[n%5]);//for debug purpose only
+        img.setImageResource(R.drawable.default_img);//for debug purpose only
         
         return params;
     }

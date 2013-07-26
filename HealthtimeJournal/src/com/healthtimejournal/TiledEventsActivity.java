@@ -215,7 +215,10 @@ public class TiledEventsActivity extends FragmentActivity {
 			}
 			break;
 		case R.id.postAction:
+			if(children.size() > 0)
 			startActivity(new Intent(TiledEventsActivity.this, PostActivity.class));
+			else
+			Toast.makeText(this, "You have no child. Please add a child first", Toast.LENGTH_SHORT ).show();
 			break;
 		}
 		return true;

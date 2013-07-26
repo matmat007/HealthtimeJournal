@@ -45,34 +45,26 @@ public final class R {
     }
     public static final class drawable {
         public static final int camera=0x7f020000;
-        public static final int chiang_mai=0x7f020001;
-        public static final int custom_titlebar_background=0x7f020002;
+        public static final int custom_titlebar_background=0x7f020001;
+        public static final int default_img=0x7f020002;
         public static final int edittext_default=0x7f020003;
         public static final int edittext_pressed=0x7f020004;
         public static final int edittext_selector=0x7f020005;
         public static final int facebook_icon=0x7f020006;
         public static final int headbar_bevel_effect=0x7f020007;
-        public static final int himeji=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int icon_labeled=0x7f02000a;
-        public static final int img1=0x7f02000b;
-        public static final int img2=0x7f02000c;
-        public static final int img3=0x7f02000d;
-        public static final int img4=0x7f02000e;
-        public static final int img5=0x7f02000f;
-        public static final int item_selector=0x7f020010;
-        public static final int item_selector_disabled=0x7f020011;
-        public static final int login_background=0x7f020012;
-        public static final int menubar_bevel_effect=0x7f020013;
-        public static final int overscroll_left=0x7f020014;
-        public static final int overscroll_right=0x7f020015;
-        public static final int petronas_twin_tower=0x7f020016;
-        public static final int searchbar_default=0x7f020017;
-        public static final int searchbar_pressed=0x7f020018;
-        public static final int searchbar_selector=0x7f020019;
-        public static final int sidebar_bevel_effect=0x7f02001a;
-        public static final int ulm=0x7f02001b;
-        public static final int upload=0x7f02001c;
+        public static final int ic_launcher=0x7f020008;
+        public static final int icon_labeled=0x7f020009;
+        public static final int item_selector=0x7f02000a;
+        public static final int item_selector_disabled=0x7f02000b;
+        public static final int login_background=0x7f02000c;
+        public static final int menubar_bevel_effect=0x7f02000d;
+        public static final int overscroll_left=0x7f02000e;
+        public static final int overscroll_right=0x7f02000f;
+        public static final int searchbar_default=0x7f020010;
+        public static final int searchbar_pressed=0x7f020011;
+        public static final int searchbar_selector=0x7f020012;
+        public static final int sidebar_bevel_effect=0x7f020013;
+        public static final int upload=0x7f020014;
     }
     public static final class id {
         public static final int addChildBloodTypeSpinner=0x7f0b0009;

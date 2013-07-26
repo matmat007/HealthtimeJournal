@@ -1,14 +1,10 @@
 package com.healthtimejournal.model;
 
-import android.graphics.Bitmap;
-
-
-
 public class LabeledImage {
 	
 	private int id;
 	private String title;
-	private Bitmap img;
+	private String imgpath;
 	
 	public int getId() {
 		return id;
@@ -22,11 +18,11 @@ public class LabeledImage {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Bitmap getImg() {
-		return img;
+	public String getImg() {
+		return imgpath;
 	}
-	public void setImg(Bitmap img) {
-		this.img = img;
+	public void setImg(String imgpath) {
+		this.imgpath = imgpath;
 	}
 	
 }
