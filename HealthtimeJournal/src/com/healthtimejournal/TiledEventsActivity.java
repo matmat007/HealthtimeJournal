@@ -45,6 +45,8 @@ public class TiledEventsActivity extends FragmentActivity {
 	
 	final Context context = this;
 	
+	private ProgressDialog mProgress;
+	
 	private LinearLayout SideList;
 	private boolean isExpanded = false;
 	
@@ -67,15 +69,13 @@ public class TiledEventsActivity extends FragmentActivity {
 	private ViewPager viewPager;
 
 	private Facebook mFacebook;
-    private ProgressDialog mProgress;
 
     private static final String APP_ID = "460537864017391";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
-		mProgress = new ProgressDialog(context);
         mFacebook = new Facebook(APP_ID);
+        mProgress = new ProgressDialog(context);
  
         SessionStore.restore(mFacebook, context);
 		
@@ -154,7 +154,7 @@ public class TiledEventsActivity extends FragmentActivity {
 							Toast.makeText(getApplicationContext(), "You don't have a doctor account yet.", Toast.LENGTH_SHORT).show();
 						}
 						else if(childPosition == 2){
-							fbLogout();
+							logout();
 						}
 						break;
 
@@ -341,20 +341,20 @@ public class TiledEventsActivity extends FragmentActivity {
 		
 	}
 	
-	private void fbLogout() {
-        mProgress.setMessage("Disconnecting from Facebook");
+	private void logout() {
+        mProgress.setMessage("Disconnecting");
         mProgress.show();
  
         new Thread() {
             @Override
             public void run() {
+            	HealthtimeSession.clear(context);
                 SessionStore.clear(context);
- 
                 int what = 1;
  
                 try {
                     mFacebook.logout(context);
- 
+                    finish();
                     what = 0;
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -364,17 +364,16 @@ public class TiledEventsActivity extends FragmentActivity {
             }
         }.start();
     }
- 
-    private Handler mHandler = new Handler() {
+	
+	private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             mProgress.dismiss();
- 
             if (msg.what == 1) {
-                Toast.makeText(context, "Facebook logout failed", Toast.LENGTH_SHORT).show();
-            } else {
- 
-                Toast.makeText(context, "Disconnected from Facebook", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Logout failed", Toast.LENGTH_SHORT).show();
+            } 
+            else {
+                Toast.makeText(context, "Disconnected", Toast.LENGTH_SHORT).show();
             }
         }
     };

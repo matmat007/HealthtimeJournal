@@ -12,8 +12,10 @@ import android.util.Log;
 
 import com.healthtimejournal.customadapter.SharedAccountFragmentPageAdapter;
 import com.healthtimejournal.model.Account;
+import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.service.HealthtimeSession;
 import com.healthtimejournal.service.HttpClient;
+import com.healthtimejournal.service.JSONParser;
 
 public class SharedAccountActivity extends FragmentActivity{
 	
