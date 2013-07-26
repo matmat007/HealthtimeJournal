@@ -15,10 +15,12 @@ import android.widget.Toast;
 
 import com.healthtimejournal.R;
 import com.healthtimejournal.model.CommentModel;
+import com.healthtimejournal.service.Base64Decoder;
 
 public class CommentListAdapter extends BaseAdapter {
 	
 	private static LayoutInflater inflater = null;
+	Base64Decoder decoder;
 	
 	List<CommentModel> items;
 	Context context;
@@ -47,10 +49,10 @@ public class CommentListAdapter extends BaseAdapter {
 	        commentContent = (TextView)vi.findViewById(R.id.commentContent); 
 	        commentDate = (TextView)vi.findViewById(R.id.commentDate); 
 	        
-	        commentFriendImage.setImageBitmap(items.get(position).getImage());
+	        commentFriendImage.setImageBitmap(decoder.decodeBase64(items.get(position).getImage().toString()));
 	        commentFriendName.setText(items.get(position).getParentFirstName().toString() + " " + items.get(position).getParentLastName().toString());
 	        commentContent.setText(items.get(position).getCommentContent().toString());
-	        commentDate.setText("1/1/01");
+	        commentDate.setText(items.get(position).getCommentDate().toString());
 	        
 	        mainLayout = (RelativeLayout)vi.findViewById(R.id.mainLayout);
 	        mainLayout.setOnLongClickListener(new OnLongClickListener() {
