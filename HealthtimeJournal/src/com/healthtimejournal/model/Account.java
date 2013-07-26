@@ -3,19 +3,19 @@ package com.healthtimejournal.model;
 import java.util.List;
 
 public class Account {
-	private int name;
-	private List<LabeledImage> accounts;
+	private String title;
+	private List<ChildModel> accounts;
 	
-	public int getName() {
-		return name;
+	public String getName() {
+		return title;
 	}
-	public void setName(int name) {
-		this.name = name;
+	public void setName(String title) {
+		this.title = title;
 	}
-	public List<LabeledImage> getAccounts() {
+	public List<ChildModel> getAccounts() {
 		return accounts;
 	}
-	public void setAccounts(List<LabeledImage> accounts) {
+	public void setAccounts(List<ChildModel> accounts) {
 		this.accounts = accounts;
 	}
 }
