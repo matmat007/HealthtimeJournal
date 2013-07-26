@@ -169,7 +169,6 @@ public class PostActivity extends Activity {
 		return  m;
 	}
 
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -269,26 +268,26 @@ public class PostActivity extends Activity {
 
 		@Override
 		protected void onPreExecute() {
-	        super.onPreExecute();
-	        pDialog = new ProgressDialog(PostActivity.this);
-	        pDialog.setMessage("Please wait...");
-	        pDialog.setIndeterminate(false);
-	        pDialog.setCancelable(false);
-	        pDialog.show();
-	    }
-		
+			super.onPreExecute();
+			pDialog = new ProgressDialog(PostActivity.this);
+			pDialog.setMessage("Please wait...");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(false);
+			pDialog.show();
+		}
+
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
-			
+
 			GalleryModel onegallery = new GalleryModel();
 			onegallery.setParentId(HealthtimeSession.getParentId(getBaseContext()));
 			onegallery.setFilename(selectedImagePath);
 			a.addGallery(onegallery);
 			onegallery = null;
 			onegallery = JSONParser.getLastGallery(a.retrieve_gallery_last_upload(HealthtimeSession.getParentId(getBaseContext())));
-			
+
 			PostModel onepost = new PostModel();
 			onepost.setFromParentId(HealthtimeSession.getParentId(getBaseContext()));
 			onepost.setToParentId(1);
@@ -297,7 +296,7 @@ public class PostActivity extends Activity {
 			onepost.setPostContent(post.getText().toString());
 			onepost.setFileId(onegallery.getGalleryId());
 			a.addPost(onepost);
-			
+
 			return true;
 		}
 
