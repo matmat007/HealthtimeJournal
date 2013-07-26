@@ -1,82 +1,64 @@
 package com.healthtimejournal.customadapter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.healthtimejournal.R;
-import com.healthtimejournal.R.drawable;
-import com.healthtimejournal.R.id;
-import com.healthtimejournal.R.layout;
 import com.healthtimejournal.model.CommentModel;
 
 public class CommentListAdapter extends BaseAdapter {
 	
 	private static LayoutInflater inflater = null;
-	 
-	private ArrayList<CommentModel> setComment = init();
 	
-	public ArrayList<CommentModel> init(){
-		
-		ArrayList<CommentModel> tempList = new ArrayList<CommentModel>();
-		
-		CommentModel oneComment = new CommentModel();
-		oneComment.setImage(R.drawable.ic_launcher);
-		oneComment.setName("Joey Bing");
-		oneComment.setCommentContent("Bing Bong");
-	   	tempList.add(oneComment);
-	   	
-	   	oneComment = new CommentModel();
-		oneComment.setImage(R.drawable.ic_launcher);
-		oneComment.setName("Joey Bing");
-		oneComment.setCommentContent("Bing Bong");
-	   	tempList.add(oneComment);
-	    
-	   	oneComment = new CommentModel();
-		oneComment.setImage(R.drawable.ic_launcher);
-		oneComment.setName("Joey Bing");
-		oneComment.setCommentContent("Bing Bong");
-	   	tempList.add(oneComment);
+	List<CommentModel> items;
+	Context context;
 	
-	   	oneComment = new CommentModel();
-		oneComment.setImage(R.drawable.ic_launcher);
-		oneComment.setName("Joey Bing");
-		oneComment.setCommentContent("Bing Bong");
-	   	tempList.add(oneComment);
-	
-	   	return tempList;
-	}
-	
-	public CommentListAdapter(Context context) {
+	public CommentListAdapter(Context context,  List<CommentModel> items) {
 		inflater = LayoutInflater.from(context);
+		this.context = context;
+		this.items = items;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		
-		ViewHolder holder;
 
 	    View vi = convertView;
+	    
+	    final RelativeLayout mainLayout;
+		final ImageView commentFriendImage;
+		final TextView commentFriendName;
+		final TextView commentContent;
+		final TextView commentDate;
 	    
 	    if(convertView == null) {
 	        vi = inflater.inflate(R.layout.post_page_comment_one, null);
 	        
-	        holder = new ViewHolder();
+	        commentFriendImage = (ImageView)vi.findViewById(R.id.commentFriendImage); 
+	        commentFriendName = (TextView)vi.findViewById(R.id.commentFriendName); 
+	        commentContent = (TextView)vi.findViewById(R.id.commentContent); 
+	        commentDate = (TextView)vi.findViewById(R.id.commentDate); 
 	        
-	        holder.commentFriendImage = (ImageView)vi.findViewById(R.id.commentFriendImage); 
-	        holder.commentFriendName = (TextView)vi.findViewById(R.id.commentFriendName); 
-	        holder.commentContent = (TextView)vi.findViewById(R.id.commentContent); 
-	        holder.commentDate = (TextView)vi.findViewById(R.id.commentDate); 
+	        commentFriendImage.setImageBitmap(items.get(position).getImage());
+	        commentFriendName.setText(items.get(position).getParentFirstName().toString() + " " + items.get(position).getParentLastName().toString());
+	        commentContent.setText(items.get(position).getCommentContent().toString());
+	        commentDate.setText("1/1/01");
 	        
-	        holder.commentFriendImage.setImageResource(setComment.get(position).getImage());
-	        holder.commentFriendName.setText(setComment.get(position).getName().toString());
-	        holder.commentContent.setText(setComment.get(position).getCommentContent().toString());
-	        holder.commentDate.setText("1/1/01");
+	        mainLayout = (RelativeLayout)vi.findViewById(R.id.mainLayout);
+	        mainLayout.setOnLongClickListener(new OnLongClickListener() {
+	            public boolean onLongClick(View v) {
+	            	deleteComment(commentContent.getText().toString());
+	                return true;
+	            }
+	        });
 	    }
 	    
 	    return vi;
@@ -84,13 +66,13 @@ public class CommentListAdapter extends BaseAdapter {
 
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return setComment.size();
+		return items.size();
 
 	}
 
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
-		return setComment.get(position);
+		return items.get(position);
 
 	}
 
@@ -100,11 +82,8 @@ public class CommentListAdapter extends BaseAdapter {
 
 	}
 	
-	static class ViewHolder {            
-		ImageView commentFriendImage;
-		TextView commentFriendName;
-		TextView commentContent;
-		TextView commentDate;
-	}  
+	public void deleteComment(String a){
+		Toast.makeText(context, a, Toast.LENGTH_SHORT).show();
+	}
 
 }

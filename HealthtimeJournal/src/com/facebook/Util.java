@@ -72,7 +72,8 @@ public final class Util {
         return sb.toString();
     }
 
-    public static String encodeUrl(Bundle parameters) {
+    @SuppressWarnings("deprecation")
+	public static String encodeUrl(Bundle parameters) {
         if (parameters == null) {
             return "";
         }
@@ -87,7 +88,8 @@ public final class Util {
         return sb.toString();
     }
 
-    public static Bundle decodeUrl(String s) {
+    @SuppressWarnings("deprecation")
+	public static Bundle decodeUrl(String s) {
         Bundle params = new Bundle();
         if (s != null) {
             String array[] = s.split("&");
@@ -133,7 +135,8 @@ public final class Util {
      * @throws MalformedURLException - if the URL format is invalid
      * @throws IOException - if a network problem occurs
      */
-    public static String openUrl(String url, String method, Bundle params)
+    @SuppressWarnings("deprecation")
+	public static String openUrl(String url, String method, Bundle params)
           throws MalformedURLException, IOException {
         // random string as boundary for multi-part http post
         String strBoundary = "3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";

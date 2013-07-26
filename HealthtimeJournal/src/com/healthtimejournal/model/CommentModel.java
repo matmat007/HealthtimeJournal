@@ -1,13 +1,16 @@
 package com.healthtimejournal.model;
 
+import android.graphics.Bitmap;
+
 
 public class CommentModel {
 	
 	private int commentId;
-	private int parentId;
 	private int postId;
-	private int image;
-	private String name;
+	private int parentId;
+	private Bitmap image;
+	private String parentFirstName;
+	private String parentLastName;
 	private String commentDate;
 	private String commentContent;
 	
@@ -23,14 +26,6 @@ public class CommentModel {
 		this.commentId = commentId;
 	}
 	
-	public int getParentId() {
-		return parentId;
-	}
-
-	public void setParentId(int parentId) {
-		this.parentId = parentId;
-	}
-
 	public int getPostId() {
 		return postId;
 	}
@@ -39,20 +34,36 @@ public class CommentModel {
 		this.postId = postId;
 	}
 
-	public int getImage() {
-		return image;
+	public int getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
 	}
 	
-	public void setImage(int image) {
+	public Bitmap getImage() {
+		return image;
+	}
+
+	public void setImage(Bitmap image) {
 		this.image = image;
 	}
 	
-	public String getName() {
-		return name;
+	public String getParentFirstName() {
+		return parentFirstName;
+	}
+
+	public void setParentFirstName(String parentFirstName) {
+		this.parentFirstName = parentFirstName;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public String getParentLastName() {
+		return parentLastName;
+	}
+
+	public void setParentLastName(String parentLastName) {
+		this.parentLastName = parentLastName;
 	}
 	
 	public String getCommentDate() {
@@ -62,7 +73,7 @@ public class CommentModel {
 	public void setCommentDate(String commentDate) {
 		this.commentDate = commentDate;
 	}
-
+	
 	public String getCommentContent() {
 		return commentContent;
 	}
@@ -70,4 +81,5 @@ public class CommentModel {
 	public void setCommentContent(String commentContent) {
 		this.commentContent = commentContent;
 	}
+
 }

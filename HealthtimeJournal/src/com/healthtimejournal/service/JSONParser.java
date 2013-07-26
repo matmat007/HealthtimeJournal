@@ -120,7 +120,8 @@ public class JSONParser {
 				onecomment.setPostId(oneobj.getInt("post_id"));
 				onecomment.setParentId(oneobj.getInt("parent_id"));
 				//				onecomment.setImage(oneobj.getInt("first_name"));
-				onecomment.setName(oneobj.getString("last_name"));
+				onecomment.setParentFirstName(oneobj.getString("first_name"));
+				onecomment.setParentLastName(oneobj.getString("last_name"));
 				onecomment.setCommentDate(oneobj.getString("comment_date"));
 				onecomment.setCommentContent(oneobj.getString("comment_content"));
 

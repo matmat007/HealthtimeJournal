@@ -177,7 +177,6 @@ public class HttpClient {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("parent_id", String.valueOf(comment.getParentId())));
 		params.add(new BasicNameValuePair("post_id", String.valueOf(comment.getPostId())));
-		params.add(new BasicNameValuePair("comment_date", comment.getCommentDate()));
 		params.add(new BasicNameValuePair("comment_content", comment.getCommentContent()));
 		
 		return client.makeHttpRequest(ADD_COMMENT_URL, "POST", params);
