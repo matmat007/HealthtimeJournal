@@ -72,7 +72,7 @@ public class RegisterPartnerActivity extends Activity {
 		mAddTask.execute((Void) null);
 	}
 	
-	private class AddFamily extends AsyncTask<Void,Void,Boolean>{
+	private class AddFamily extends AsyncTask<Void,Void,String>{
 		public AddFamily(Activity activity){
 			this.activity = activity;
 		}
@@ -90,7 +90,7 @@ public class RegisterPartnerActivity extends Activity {
 	    }
 		
 		@Override
-		protected Boolean doInBackground(Void... params) {
+		protected String doInBackground(Void... params) {
 			HttpClient a = new HttpClient();
 			FamilyModel family = new FamilyModel();
 			String data = a.retrieve_parent(HealthtimeSession.getParentId(getBaseContext()));
@@ -106,20 +106,22 @@ public class RegisterPartnerActivity extends Activity {
 			}
 			Log.d("father", String.valueOf(family.getFatherId()));
 			Log.d("mother", String.valueOf(family.getMotherId()));
-			a.addFamily(family);
+			data = a.addFamily(family).trim();
 			// TODO Auto-generated method stub
-			return true;
+			return data;
 		}
 		
-		protected void onPostExecute(Boolean value){
+		protected void onPostExecute(String value){
 			super.onPostExecute(value);
 			mAddTask = null;
 			pDialog.dismiss();
-			if(value){
+			if(value != null){
+				ParentModel parent = HealthtimeSession.getParentInfo(getBaseContext());
+				HealthtimeSession.save(parent, getBaseContext());
 				startActivity(new Intent(RegisterPartnerActivity.this, TiledEventsActivity.class));
 			}
 			else{
-				Toast.makeText(activity, "Registration Failed", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getBaseContext(), "Registration Failed", Toast.LENGTH_SHORT).show();
 			}
 			
 		}
