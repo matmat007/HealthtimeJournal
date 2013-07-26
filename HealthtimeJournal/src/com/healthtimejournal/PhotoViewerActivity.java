@@ -23,9 +23,9 @@ public class PhotoViewerActivity extends Activity {
 	}
 
 	private class ImagePagerAdapter extends PagerAdapter {
-		private int[] mImages = new int[] { R.drawable.chiang_mai,
+		private int[] mImages; /*= new int[] { R.drawable.chiang_mai,
 				R.drawable.himeji, R.drawable.petronas_twin_tower,
-				R.drawable.ulm };
+				R.drawable.ulm };*/
 
 		@Override
 		public int getCount() {
