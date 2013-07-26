@@ -3,8 +3,6 @@ package com.healthtimejournal.customadapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONException;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -15,16 +13,17 @@ import com.healthtimejournal.fragments.TiledEventPageFragment;
 import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.PostModel;
 
-public class FragmentPageAdapter extends FragmentPagerAdapter{
+public class TiledEventFragmentPageAdapter extends FragmentPagerAdapter{
 	private List<ChildModel> children;
 	private List<List<PostModel>> posts;
 	private List<Fragment> fragments;
 	
-	public FragmentPageAdapter(FragmentManager fm, List<ChildModel> children, List<List<PostModel>> posts){
+	public TiledEventFragmentPageAdapter(FragmentManager fm, List<ChildModel> children, List<List<PostModel>> posts){
 		super(fm);
 		this.children = children;
 		this.posts = posts;
 		fragments = new ArrayList<Fragment>();
+		
 		findId();
     }
 

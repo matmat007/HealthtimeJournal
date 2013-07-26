@@ -53,7 +53,7 @@ public class PostPageActivity extends Activity {
 	    }); 
 		
 		commentList = (ListView)findViewById(R.id.commentList);
-		commentList.setAdapter(new CommentListAdapter(this));
+		//commentList.setAdapter(new CommentListAdapter(this));
 		
 	}
 
