@@ -55,7 +55,7 @@ public class PostActivity extends Activity {
 	ImageView img;
 
 	Bitmap bm = null;
-	String selectedImagePath;
+	String selectedImagePath = null;
 	Uri mCapturedImageURI;
 
 	@Override
@@ -282,12 +282,16 @@ public class PostActivity extends Activity {
 			HttpClient a = new HttpClient();
 
 			GalleryModel onegallery = new GalleryModel();
-			onegallery.setParentId(HealthtimeSession.getParentId(getBaseContext()));
-			onegallery.setFilename(selectedImagePath);
-			a.addGallery(onegallery);
-			onegallery = null;
-			onegallery = JSONParser.getLastGallery(a.retrieve_gallery_last_upload(HealthtimeSession.getParentId(getBaseContext())));
-
+			if(selectedImagePath != null){
+				onegallery.setParentId(HealthtimeSession.getParentId(getBaseContext()));
+				onegallery.setFilename(selectedImagePath);
+				a.addGallery(onegallery);
+				onegallery = null;
+				onegallery = JSONParser.getLastGallery(a.retrieve_gallery_last_upload(HealthtimeSession.getParentId(getBaseContext())));
+			}
+			else
+				onegallery.setGalleryId(0);
+			
 			PostModel onepost = new PostModel();
 			onepost.setFromParentId(HealthtimeSession.getParentId(getBaseContext()));
 			onepost.setToParentId(1);

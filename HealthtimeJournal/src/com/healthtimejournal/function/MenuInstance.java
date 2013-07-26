@@ -67,11 +67,11 @@ public class MenuInstance {
 		
 		temp = new ArrayList<String>();
 		temp.add("Create Doctor Page");
+		temp.add("Edit Doctor Page");
 		temp.add("Log out");
 		list.add(temp);
 		
 		Log.d("List", list.get(2).get(0));
-		
 		
 		return list;
 	}
