@@ -98,29 +98,29 @@ public final class R {
         public static final int commentFriendImage=0x7f0b0064;
         public static final int commentFriendName=0x7f0b0065;
         public static final int commentList=0x7f0b001d;
-        public static final int createDoctorButton=0x7f0b0029;
+        public static final int createDoctorButton=0x7f0b002a;
+        public static final int createDoctorText=0x7f0b0023;
         public static final int deletePostButton=0x7f0b001f;
         public static final int doctorButton=0x7f0b0083;
-        public static final int doctorConsultationText=0x7f0b0026;
-        public static final int doctorContact1Text=0x7f0b0027;
-        public static final int doctorContact2Text=0x7f0b0028;
-        public static final int doctorHospitalAddressText=0x7f0b0025;
-        public static final int doctorHospitalText=0x7f0b0024;
-        public static final int doctorProfileChildrenButton=0x7f0b0030;
-        public static final int doctorProfileConsulSched=0x7f0b002e;
-        public static final int doctorProfileContactNum=0x7f0b002f;
-        public static final int doctorProfileHospitals=0x7f0b002d;
-        public static final int doctorProfileImage=0x7f0b002a;
-        public static final int doctorProfileName=0x7f0b002b;
-        public static final int doctorProfileSettingsButton=0x7f0b0031;
-        public static final int doctorProfileSpecialty=0x7f0b002c;
-        public static final int doctorSpecialtyText=0x7f0b0023;
+        public static final int doctorConsultationText=0x7f0b0027;
+        public static final int doctorContact1Text=0x7f0b0028;
+        public static final int doctorContact2Text=0x7f0b0029;
+        public static final int doctorHospitalAddressText=0x7f0b0026;
+        public static final int doctorHospitalText=0x7f0b0025;
+        public static final int doctorProfileConsulSched=0x7f0b0030;
+        public static final int doctorProfileContactNum=0x7f0b0031;
+        public static final int doctorProfileHospitalAddress=0x7f0b002f;
+        public static final int doctorProfileHospitals=0x7f0b002e;
+        public static final int doctorProfileImage=0x7f0b002b;
+        public static final int doctorProfileName=0x7f0b002c;
+        public static final int doctorProfileSpecialty=0x7f0b002d;
+        public static final int doctorSpecialtyText=0x7f0b0024;
         public static final int editChildImage=0x7f0b0032;
         public static final int editInfoCancelButton=0x7f0b0037;
         public static final int editInfoSubmitButton=0x7f0b0036;
-        public static final int editParentCancelButton=0x7f0b003c;
+        public static final int editParentAttachFileButton=0x7f0b003c;
+        public static final int editParentCameraButton=0x7f0b003b;
         public static final int editParentImage=0x7f0b003a;
-        public static final int editParentSubmitButton=0x7f0b003b;
         public static final int feetEditText=0x7f0b0034;
         public static final int friendDesc=0x7f0b0044;
         public static final int friendList=0x7f0b0041;
@@ -240,7 +240,7 @@ public final class R {
         public static final int doctor_profile=0x7f03000a;
         public static final int edit_child_info_page=0x7f03000b;
         public static final int edit_information_page=0x7f03000c;
-        public static final int edit_parent_info_page=0x7f03000d;
+        public static final int edit_parent_photo_page=0x7f03000d;
         public static final int event_grid=0x7f03000e;
         public static final int event_item=0x7f03000f;
         public static final int friend_list_complete=0x7f030010;
@@ -297,19 +297,19 @@ public final class R {
          */
         public static final int bloodType=0x7f080022;
         public static final int cancel=0x7f080010;
-        public static final int children_under=0x7f08004f;
-        public static final int consultation=0x7f08004b;
-        public static final int contact_details=0x7f08004c;
-        public static final int contact_num1=0x7f08004d;
-        public static final int contact_num2=0x7f08004e;
-        /**  Doctor Page 
-         */
-        public static final int create_doctor=0x7f080045;
+        public static final int children_under=0x7f080050;
+        public static final int consultation=0x7f08004c;
+        public static final int contact_details=0x7f08004d;
+        public static final int contact_num1=0x7f08004e;
+        public static final int contact_num2=0x7f08004f;
+        public static final int create_doctor=0x7f080046;
         public static final int cross_mark=0x7f080040;
         public static final int delete=0x7f080038;
         public static final int description=0x7f080042;
-        public static final int edit_doctor=0x7f080046;
-        public static final int edit_info=0x7f080050;
+        /**  Doctor Page 
+         */
+        public static final int doctor_profile=0x7f080045;
+        public static final int edit_doctor=0x7f080047;
         /**  Registration 
          */
         public static final int email=0x7f080012;
@@ -328,9 +328,9 @@ public final class R {
         public static final int health_growth=0x7f08002b;
         public static final int height_graph=0x7f080033;
         public static final int hello_world=0x7f080043;
-        public static final int hospital=0x7f080049;
-        public static final int hospital_address=0x7f08004a;
-        public static final int hospital_details=0x7f080048;
+        public static final int hospital=0x7f08004a;
+        public static final int hospital_address=0x7f08004b;
+        public static final int hospital_details=0x7f080049;
         /**  Edit Information 
          */
         public static final int inches=0x7f080039;
@@ -385,7 +385,7 @@ public final class R {
         /**  Friend List 
          */
         public static final int shared_acc=0x7f080024;
-        public static final int specialty=0x7f080047;
+        public static final int specialty=0x7f080048;
         public static final int start=0x7f08000e;
         public static final int step1=0x7f080014;
         public static final int step2=0x7f080015;

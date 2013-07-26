@@ -1,14 +1,11 @@
 package com.healthtimejournal.model;
 
-import android.graphics.Bitmap;
-
-
 public class CommentModel {
 	
 	private int commentId;
 	private int postId;
 	private int parentId;
-	private Bitmap image;
+	private String image;
 	private String parentFirstName;
 	private String parentLastName;
 	private String commentDate;
@@ -42,11 +39,11 @@ public class CommentModel {
 		this.parentId = parentId;
 	}
 	
-	public Bitmap getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(Bitmap image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 	

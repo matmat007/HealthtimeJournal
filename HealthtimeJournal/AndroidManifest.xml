@@ -126,7 +126,7 @@
         	android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.healthtimejournal.EditParentInfoActivity"
+            android:name="com.healthtimejournal.ParentProfilePhotoActivity"
             android:label="@string/app_name"
         	android:screenOrientation="portrait" >
         </activity>

@@ -62,6 +62,7 @@ public class HttpClient {
 	private static final String EDIT_DOCTOR_URL = "http://192.168.2.2/healthtime/Test/edit_doctor.php";
 	private static final String EDIT_MEDICAL_HISTORY_URL = "http://192.168.2.2/healthtime/Test/edit_medical_history.php";
 	private static final String EDIT_DISEASE_URL = "http://192.168.2.2/healthtime/Test/edit_disease_dictionary.php";
+	private static final String EDIT_PARENT_PHOTO_URL = "http://192.168.2.2/healthtime/Test/edit_parent_photo.php";
 	
 	//Retrieve Php URLs
 	private static final String HASHTAG_URL = "http://192.168.2.2/healthtime/Test/retrieve_all_tags.php";
@@ -540,6 +541,18 @@ public class HttpClient {
 		return client.makeHttpRequest(EDIT_DISEASE_URL, "POST", params);
 		
 	}
+	
+	public String editParentPhoto(ParentModel parent){
+		
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("parent_id", String.valueOf(parent.getParentId())));
+		params.add(new BasicNameValuePair("parent_image_id", String.valueOf(parent.getImage())));
+		
+		return client.makeHttpRequest(EDIT_PARENT_PHOTO_URL, "POST", params);
+	}
+		
 	
 	//End of Edit Methods
 	

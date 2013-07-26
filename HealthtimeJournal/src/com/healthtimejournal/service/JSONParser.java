@@ -261,6 +261,9 @@ public class JSONParser {
 
 				onedoctor.setDoctorId(oneobj.getInt("doctor_id"));
 				onedoctor.setParentId(oneobj.getInt("parent_id"));
+				onedoctor.setFirstName(oneobj.getString("first_name"));
+				onedoctor.setLastName(oneobj.getString("last_name"));
+				onedoctor.setImage(oneobj.getString("filename"));
 				onedoctor.setSpecialty(oneobj.getString("specialty"));
 				onedoctor.setHospital(oneobj.getString("hospital"));
 				onedoctor.setHospitalAddress(oneobj.getString("hospital_address"));
@@ -292,6 +295,9 @@ public class JSONParser {
 
 			onedoctor.setDoctorId(oneobj.getInt("doctor_id"));
 			onedoctor.setParentId(oneobj.getInt("parent_id"));
+			onedoctor.setFirstName(oneobj.getString("first_name"));
+			onedoctor.setLastName(oneobj.getString("last_name"));
+			onedoctor.setImage(oneobj.getString("filename"));
 			onedoctor.setSpecialty(oneobj.getString("specialty"));
 			onedoctor.setHospital(oneobj.getString("hospital"));
 			onedoctor.setHospitalAddress(oneobj.getString("hospital_address"));
