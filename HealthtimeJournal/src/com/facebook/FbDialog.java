@@ -16,6 +16,7 @@
 
 package com.facebook;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -39,12 +40,14 @@ import android.widget.TextView;
 import com.healthtimejournal.R;
 import com.facebook.Facebook.DialogListener;
 
+@SuppressLint("SetJavaScriptEnabled")
 public class FbDialog extends Dialog {
 
     static final int FB_BLUE = 0xFF6D84B4;
     static final float[] DIMENSIONS_LANDSCAPE = {460, 260};
     static final float[] DIMENSIONS_PORTRAIT = {280, 420};
-    static final FrameLayout.LayoutParams FILL = 
+    @SuppressWarnings("deprecation")
+	static final FrameLayout.LayoutParams FILL = 
         new FrameLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 
                          ViewGroup.LayoutParams.FILL_PARENT);
     static final int MARGIN = 4;
@@ -65,7 +68,8 @@ public class FbDialog extends Dialog {
         mListener = listener;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSpinner = new ProgressDialog(getContext());

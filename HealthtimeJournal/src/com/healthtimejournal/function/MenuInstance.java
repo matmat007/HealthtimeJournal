@@ -48,7 +48,7 @@ public class MenuInstance {
 		List<List<String>> list = new ArrayList<List<String>>();
 		List<String> temp = new ArrayList<String>();
 		
-		temp.add("News Feed");
+		temp.add("Social");
 		temp.add("Notification");
 		temp.add("Album");
 		list.add(temp);
@@ -56,19 +56,22 @@ public class MenuInstance {
         Log.d("List", list.get(0).get(0));
 		
 		temp = new ArrayList<String>();
-		for(ChildModel s : child){
-			temp.add(s.getFirstName() + " " + s.getLastName());
-		}
-		list.add(temp);
 		
+		if(child != null){
+			for(ChildModel s : child){
+				temp.add(s.getFirstName() + " " + s.getLastName());
+			}
+		}
+		temp.add("Add Child");
+		list.add(temp);
 		
 		temp = new ArrayList<String>();
 		temp.add("Create Doctor Page");
+		temp.add("Edit Doctor Page");
 		temp.add("Log out");
 		list.add(temp);
 		
 		Log.d("List", list.get(2).get(0));
-		
 		
 		return list;
 	}

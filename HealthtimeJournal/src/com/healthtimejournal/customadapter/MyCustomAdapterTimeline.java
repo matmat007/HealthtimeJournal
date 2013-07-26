@@ -26,13 +26,11 @@ import com.facebook.AsyncFacebookRunner;
 import com.facebook.BaseRequestListener;
 import com.facebook.DialogError;
 import com.facebook.Facebook;
+import com.facebook.Facebook.DialogListener;
 import com.facebook.FacebookError;
 import com.facebook.SessionStore;
-import com.facebook.Facebook.DialogListener;
-import com.healthtimejournal.MainActivity;
 import com.healthtimejournal.PostPageActivity;
 import com.healthtimejournal.R;
-import com.healthtimejournal.RegisterPageActivity;
 import com.healthtimejournal.model.TimelineItem;
 
 public class MyCustomAdapterTimeline extends BaseAdapter{
@@ -215,20 +213,6 @@ public class MyCustomAdapterTimeline extends BaseAdapter{
                 Toast.makeText(activity, "Connected to Facebook as " + username, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(activity, "Connected to Facebook", Toast.LENGTH_SHORT).show();
-            }
-        }
-    };
- 
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            mProgress.dismiss();
- 
-            if (msg.what == 1) {
-                Toast.makeText(activity, "Facebook logout failed", Toast.LENGTH_SHORT).show();
-            } else {
- 
-                Toast.makeText(activity, "Disconnected from Facebook", Toast.LENGTH_SHORT).show();
             }
         }
     };

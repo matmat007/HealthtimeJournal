@@ -65,7 +65,7 @@ public class HttpResponseClient {
     			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
     			conn.setRequestProperty("Connection", "close");
     			conn.connect();
-            }           
+            }
  
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
