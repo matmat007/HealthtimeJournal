@@ -33,6 +33,7 @@ import com.healthtimejournal.customadapter.MyCustomExpandableListAdapter;
 import com.healthtimejournal.customadapter.TiledEventFragmentPageAdapter;
 import com.healthtimejournal.function.MenuInstance;
 import com.healthtimejournal.model.ChildModel;
+import com.healthtimejournal.model.DoctorModel;
 import com.healthtimejournal.model.GroupList;
 import com.healthtimejournal.model.PostModel;
 import com.healthtimejournal.service.HealthtimeSession;
@@ -46,10 +47,17 @@ public class TiledEventsActivity extends FragmentActivity {
 	
 	private LinearLayout SideList;
 	private boolean isExpanded = false;
+	
 	private EventChildNameTask eTask = null;
+	private EventDoctorTask eDoctorTask = null;
 	private EventTileTask eTileTask = null;
+	
 	private List<ChildModel> children = null;
 	private List<GroupList> list = null;
+	
+	private DoctorModel onedoctor = null;
+	private int isDoctor;
+	
 	private int width = 0;
 	
 	private MyCustomExpandableListAdapter adapter;
@@ -85,6 +93,7 @@ public class TiledEventsActivity extends FragmentActivity {
         
         retrieve_child();
         retrieve_post_by_child();
+        retrieve_doctor_by_parent();
         
         listview = (ExpandableListView)findViewById(R.id.listview);
         
@@ -127,15 +136,24 @@ public class TiledEventsActivity extends FragmentActivity {
 						}
 						break;
 					case 1:
-						if(childPosition == 0){
+						if(childPosition == children.size()){
 							startActivity(new Intent(TiledEventsActivity.this, AddChildActivity.class));
 						}
 						break;
 					case 2:
-						if(childPosition == 0){
+						if(childPosition == 0 && isDoctor == 0){
+							startActivity(new Intent(TiledEventsActivity.this, CreateDoctorActivity.class));
+						}
+						else if(childPosition == 0 && isDoctor == 1){
+							Toast.makeText(getApplicationContext(), "You are already a doctor.", Toast.LENGTH_SHORT).show();
+						}
+						else if(childPosition == 1 && isDoctor == 1){
 							startActivity(new Intent(TiledEventsActivity.this, EditDoctorActivity.class));
 						}
-						else if(childPosition == 1){
+						else if(childPosition == 1 && isDoctor == 0){
+							Toast.makeText(getApplicationContext(), "You don't have a doctor account yet.", Toast.LENGTH_SHORT).show();
+						}
+						else if(childPosition == 2){
 							fbLogout();
 						}
 						break;
@@ -163,6 +181,15 @@ public class TiledEventsActivity extends FragmentActivity {
 		
 		eTileTask = new EventTileTask();
 		eTileTask.execute();
+	}
+	
+	private void retrieve_doctor_by_parent(){
+		if(eDoctorTask != null){
+			return;
+		}
+		
+		eDoctorTask = new EventDoctorTask();
+		eDoctorTask.execute();
 	}
 
 	@Override
@@ -192,6 +219,30 @@ public class TiledEventsActivity extends FragmentActivity {
 			break;
 		}
 		return true;
+	}
+	
+	private class EventDoctorTask extends AsyncTask<Void, Void, String>{
+		@Override
+		protected String doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			HttpClient a = new HttpClient();
+			String data = a.retrieve_doctor_by_parent(HealthtimeSession.getParentId(getBaseContext()));
+			return data;
+		}
+		
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+	        
+			onedoctor = JSONParser.getOneDoctor(result);
+			
+			if(onedoctor != null)
+				isDoctor = 1;
+			else
+				isDoctor = 0;
+			
+		}
+		
 	}
 	
 	private class EventChildNameTask extends AsyncTask<Void, Void, String>{
