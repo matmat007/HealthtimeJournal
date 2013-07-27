@@ -49,8 +49,8 @@ public class CommentListAdapter extends BaseAdapter {
 	        commentContent = (TextView)vi.findViewById(R.id.commentContent); 
 	        commentDate = (TextView)vi.findViewById(R.id.commentDate); 
 	        
-	        commentFriendImage.setImageBitmap(decoder.decodeBase64(items.get(position).getImage().toString()));
-	        commentFriendName.setText(items.get(position).getParentFirstName().toString() + " " + items.get(position).getParentLastName().toString());
+//	        commentFriendImage.setImageBitmap(decoder.decodeBase64(items.get(position).getImage().toString()));
+//	        commentFriendName.setText(items.get(position).getParentFirstName().toString() + " " + items.get(position).getParentLastName().toString());
 	        commentContent.setText(items.get(position).getCommentContent().toString());
 	        commentDate.setText(items.get(position).getCommentDate().toString());
 	        

@@ -5,9 +5,6 @@ public class CommentModel {
 	private int commentId;
 	private int postId;
 	private int parentId;
-	private String image;
-	private String parentFirstName;
-	private String parentLastName;
 	private String commentDate;
 	private String commentContent;
 	
@@ -37,30 +34,6 @@ public class CommentModel {
 
 	public void setParentId(int parentId) {
 		this.parentId = parentId;
-	}
-	
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-	
-	public String getParentFirstName() {
-		return parentFirstName;
-	}
-
-	public void setParentFirstName(String parentFirstName) {
-		this.parentFirstName = parentFirstName;
-	}
-	
-	public String getParentLastName() {
-		return parentLastName;
-	}
-
-	public void setParentLastName(String parentLastName) {
-		this.parentLastName = parentLastName;
 	}
 	
 	public String getCommentDate() {

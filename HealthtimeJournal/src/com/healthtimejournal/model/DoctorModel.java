@@ -4,9 +4,6 @@ public class DoctorModel {
 	
 	private int doctorId;
 	private int parentId;
-	private String image;
-	private String firstName;
-	private String lastName;
 	private String specialty;
 	private String hospital;
 	private String hospitalAddress;
@@ -32,30 +29,6 @@ public class DoctorModel {
 	
 	public void setParentId(int parentId) {
 		this.parentId = parentId;
-	}
-	
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getSpecialty() {

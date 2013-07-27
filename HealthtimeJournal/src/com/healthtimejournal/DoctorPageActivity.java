@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.healthtimejournal.model.DoctorModel;
+import com.healthtimejournal.model.GalleryModel;
+import com.healthtimejournal.model.ParentModel;
 import com.healthtimejournal.service.Base64Decoder;
 import com.healthtimejournal.service.HttpClient;
 import com.healthtimejournal.service.JSONParser;
@@ -89,13 +91,19 @@ public class DoctorPageActivity extends Activity {
 			super.onPostExecute(value);
 	        pDialog.dismiss();
 	        
+	        HttpClient a = new HttpClient();
+	        
 			DoctorModel doctor = new DoctorModel();
 			
 			doctor = JSONParser.getOneDoctor(value);
 
+			ParentModel parent = JSONParser.getOneParent(a.retrieve_parent(doctor.getParentId()));
+			
+			GalleryModel gallery = JSONParser.getOneGallery(a.retrieve_gallery_by_parent(doctor.getParentId()));
+			
 			doctorid = doctor.getDoctorId();
-			doctorProfileImage.setImageBitmap(decoder.decodeBase64(doctor.getImage().toString()));
-			doctorProfileName.setText("Doctor Name:\n" + doctor.getFirstName().toString() + " " + doctor.getLastName().toString());
+			doctorProfileImage.setImageBitmap(decoder.decodeBase64(gallery.getFilename()));
+			doctorProfileName.setText("Doctor Name:\n" + parent.getFirstName().toString() + " " + parent.getLastName().toString());
 			doctorProfileSpecialty.setText("Doctor Specialty:\n" + doctor.getSpecialty().toString());
 			doctorProfileHospitals.setText("Doctor Hospital:\n" + doctor.getHospital().toString());
 			doctorProfileHospitalAddress.setText("Doctor Hospital Address:\n" + doctor.getHospitalAddress().toString());

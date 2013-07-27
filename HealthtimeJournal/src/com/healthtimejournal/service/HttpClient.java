@@ -90,6 +90,7 @@ public class HttpClient {
 	private static final String RETRIEVE_SHARED_TO_PARENT_CHILD_URL = "http://192.168.2.2/healthtime/Test/retrieve_shared_to_parent_child.php";
 	private static final String RETRIEVE_DISEASE_URL = "http://192.168.2.2/healthtime/Test/retrieve_disease_dictionary.php";
 	private static final String RETRIEVE_GALLERY_BY_PARENT_URL = "http://192.168.2.2/healthtime/Test/retrieve_gallery_by_parent.php";
+	private static final String RETRIEVE_GALLERY_BY_POST_URL = "http://192.168.2.2/healthtime/Test/retrieve_gallery_by_post.php";
 	private static final String RETRIEVE_GALLERY_BY_CHILD_URL = "http://192.168.2.2/healthtime/Test/retrieve_gallery_by_child.php";
 	private static final String RETRIEVE_GALLERY_LAST_UPLOAD_URL = "http://192.168.2.2/healthtime/Test/retrieve_gallery_last_upload.php";
 	
@@ -773,6 +774,15 @@ public String editFamily(FamilyModel family){
 		params.add(new BasicNameValuePair("shared_parent_id", String.valueOf(shared_parent_id)));
 		
 		return client.makeHttpRequest(RETRIEVE_SHARED_TO_PARENT_CHILD_URL, "GET", params);
+	}
+	
+	public String retrieve_gallery_by_post(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_GALLERY_BY_POST_URL, "GET", params);
 	}
 	
 	public String retrieve_gallery_by_parent(int id){

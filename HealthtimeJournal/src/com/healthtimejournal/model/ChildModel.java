@@ -10,7 +10,6 @@ public class ChildModel {
 	private String bloodType;
 	private int familyId;
 	private int childImageId;
-	private String image;
 
 	public ChildModel(){
 		
@@ -78,14 +77,6 @@ public class ChildModel {
 
 	public void setChildImageId(int childImageId) {
 		this.childImageId = childImageId;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
 	}
 	
 }

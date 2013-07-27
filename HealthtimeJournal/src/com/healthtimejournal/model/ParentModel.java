@@ -12,7 +12,6 @@ public class ParentModel {
 	private int familyId;
 	private int accountStatus;
 	private int parentImageId;
-	private String image;
 	
 	public ParentModel(){
 		
@@ -96,14 +95,6 @@ public class ParentModel {
 
 	public void setParentImageId(int parentImageId) {
 		this.parentImageId = parentImageId;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
 	}
 
 }
