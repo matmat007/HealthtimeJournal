@@ -549,7 +549,7 @@ public class HttpClient {
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("parent_id", String.valueOf(parent.getParentId())));
-		params.add(new BasicNameValuePair("parent_image_id", String.valueOf(parent.getImage())));
+		params.add(new BasicNameValuePair("parent_image_id", String.valueOf(parent.getParentImageId())));
 		
 		return client.makeHttpRequest(EDIT_PARENT_PHOTO_URL, "POST", params);
 	}

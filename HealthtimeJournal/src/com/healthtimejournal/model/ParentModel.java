@@ -9,9 +9,10 @@ public class ParentModel {
 	private String password;
 	private String gender;
 	private String bloodType;
-	private int image;
 	private int familyId;
 	private int accountStatus;
+	private int parentImageId;
+	private String image;
 	
 	public ParentModel(){
 		
@@ -73,14 +74,6 @@ public class ParentModel {
 		this.bloodType = bloodType;
 	}
 
-	public int getImage() {
-		return image;
-	}
-
-	public void setImage(int image) {
-		this.image = image;
-	}
-
 	public int getFamilyId() {
 		return familyId;
 	}
@@ -95,6 +88,22 @@ public class ParentModel {
 
 	public void setAccountStatus(int accountStatus) {
 		this.accountStatus = accountStatus;
+	}
+
+	public int getParentImageId() {
+		return parentImageId;
+	}
+
+	public void setParentImageId(int parentImageId) {
+		this.parentImageId = parentImageId;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

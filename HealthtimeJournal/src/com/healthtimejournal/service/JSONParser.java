@@ -90,6 +90,7 @@ public class JSONParser {
 				onechild.setBirthdate(oneobj.getString("birthdate"));
 				onechild.setBloodType(oneobj.getString("blood_type"));
 				onechild.setFamilyId(oneobj.getInt("family_id"));
+				onechild.setImage(oneobj.getString("filename"));
 				//				onechild.setChildImageId(oneobj.getInt("child_image_id"));
 
 				result.add(onechild);
@@ -333,6 +334,7 @@ public class JSONParser {
 				oneparent.setPassword(oneobj.getString("password"));
 				oneparent.setGender(oneobj.getString("gender"));
 				oneparent.setBloodType(oneobj.getString("blood_type"));
+				oneparent.setImage(oneobj.getString("filename"));
 				/*oneparent.setImage(oneobj.getInt("parent_image_id"));
 				oneparent.setFamilyId(oneobj.getInt("family_id"));*/
 				oneparent.setAccountStatus(oneobj.getInt("account_status"));

@@ -154,6 +154,9 @@ public class TiledEventsActivity extends FragmentActivity {
 							Toast.makeText(getApplicationContext(), "You don't have a doctor account yet.", Toast.LENGTH_SHORT).show();
 						}
 						else if(childPosition == 2){
+							startActivity(new Intent(TiledEventsActivity.this, ParentProfilePhotoActivity.class));
+						}
+						else if(childPosition == 3){
 							logout();
 						}
 						break;

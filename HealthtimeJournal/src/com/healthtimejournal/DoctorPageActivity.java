@@ -33,6 +33,9 @@ public class DoctorPageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.doctor_profile);
 		
+		getActionBar().setHomeButtonEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		doctorProfileImage = (ImageView)findViewById(R.id.doctorProfileImage);
 		
 		doctorProfileName = (TextView)findViewById(R.id.doctorProfileName);

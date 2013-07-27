@@ -16,8 +16,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -37,6 +39,8 @@ public class ParentProfilePhotoActivity extends Activity {
 	ImageView editParentCameraButton;
 	ImageView editParentAttachButton;
 	ImageView img;
+	
+	Button setPhotoButton;
 
 	Bitmap bm = null;
 	String selectedImagePath = null;
@@ -46,6 +50,9 @@ public class ParentProfilePhotoActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit_parent_photo_page);
+		
+		getActionBar().setHomeButtonEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		img = (ImageView)findViewById(R.id.editParentImage);
 		
@@ -63,6 +70,25 @@ public class ParentProfilePhotoActivity extends Activity {
 			}
         });
 		
+		setPhotoButton = (Button)findViewById(R.id.setParentImage);
+		setPhotoButton.setOnClickListener(new OnClickListener() { 
+			public void onClick(View arg0) {
+				attemptUpload();
+			}
+        });
+		
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch(item.getItemId()){
+		case android.R.id.home:
+			finish();
+			break;
+		case R.id.postAction:
+			break;
+		}
+		return true;
 	}
 	
 	public void attemptUpload(){
@@ -161,7 +187,7 @@ public class ParentProfilePhotoActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDialog = new ProgressDialog(getApplicationContext());
+			pDialog = new ProgressDialog(ParentProfilePhotoActivity.this);
 			pDialog.setMessage("Please wait...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
@@ -186,7 +212,7 @@ public class ParentProfilePhotoActivity extends Activity {
 			
 			ParentModel oneparent = new ParentModel();
 			oneparent.setParentId(HealthtimeSession.getParentId(getBaseContext()));
-			oneparent.setImage(onegallery.getGalleryId());
+			oneparent.setParentImageId(onegallery.getGalleryId());
 			a.editParentPhoto(oneparent);
 			
 			return true;
