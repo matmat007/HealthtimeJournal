@@ -138,6 +138,29 @@ public class JSONParser {
 
 	}
 
+	public static FamilyModel getOneFamily(String data){
+
+		try {
+			JSONObject jObj = new JSONObject(data);
+			JSONArray jArray = jObj.getJSONArray("family");
+
+			JSONObject oneobj = null;
+			FamilyModel onefamily = new FamilyModel();
+			oneobj = jArray.getJSONObject(0);
+
+			onefamily.setFamilyId(oneobj.getInt("family_id"));
+			onefamily.setFatherId(oneobj.getInt("father_id"));
+			onefamily.setMotherId(oneobj.getInt("mother_id"));
+
+			return onefamily;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
 	public static List<FamilyModel> getFamily(String data){
 		List<FamilyModel> result = new ArrayList<FamilyModel>();
 
@@ -165,7 +188,7 @@ public class JSONParser {
 		return null;
 
 	}
-	
+
 	public static GalleryModel getLastGallery(String data){
 		GalleryModel onegallery = null;
 
@@ -524,7 +547,7 @@ public class JSONParser {
 				onediseasedictionary.setDescription(oneobj.getString("description"));
 				onediseasedictionary.setSymptom(oneobj.getString("symptom"));
 				onediseasedictionary.setTreatment(oneobj.getString("treatment"));
-				
+
 				result.add(onediseasedictionary);
 
 			}
@@ -536,5 +559,5 @@ public class JSONParser {
 		return null;
 
 	}
-	
+
 }

@@ -40,6 +40,7 @@
     <string name="not_match">These do not match!</string>
     <string name="reg_3">Is your husband/wife using HealthTime Journal?</string>
     <string name="reg_part">Do you want to register your husband/wife in HealthTime Journal?</string>
+    <string name="reg_family">Family Member</string>
 
     <!-- Adding a Child -->
     <string name="bloodType">Blood Type</string>
