@@ -19,7 +19,9 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
@@ -71,6 +73,8 @@ public class TiledEventsActivity extends FragmentActivity {
 	private Facebook mFacebook;
 
     private static final String APP_ID = "460537864017391";
+    
+    private EditText searchbar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +98,13 @@ public class TiledEventsActivity extends FragmentActivity {
         retrieve_child();
         retrieve_post_by_child();
         retrieve_doctor_by_parent();
+        
+        searchbar = (EditText)findViewById(R.id.searchbar);
+        searchbar.setOnClickListener(new OnClickListener() { 
+			public void onClick(View arg0) {
+				startActivity(new Intent(TiledEventsActivity.this, SearchBarActivity.class));
+			}
+        });
         
         listview = (ExpandableListView)findViewById(R.id.listview);
         

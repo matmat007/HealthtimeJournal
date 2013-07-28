@@ -373,9 +373,8 @@ public class JSONParser {
 				oneparent.setPassword(oneobj.getString("password"));
 				oneparent.setGender(oneobj.getString("gender"));
 				oneparent.setBloodType(oneobj.getString("blood_type"));
-				oneparent.setParentImageId(oneobj.getInt("parent_image_id"));
-				oneparent.setFamilyId(oneobj.getInt("family_id"));
-				oneparent.setAccountStatus(oneobj.getInt("account_status"));
+//				oneparent.setParentImageId(oneobj.getInt("parent_image_id"));
+//				oneparent.setAccountStatus(oneobj.getInt("account_status"));
 
 				result.add(oneparent);
 
@@ -466,7 +465,7 @@ public class JSONParser {
 
 				onepost.setPostId(oneobj.getInt("post_id"));
 				onepost.setToParentId(oneobj.getInt("to_parent_id"));
-				onepost.setFromParentId(oneobj.getInt("from_parent_id"));
+//				onepost.setFromParentId(oneobj.getInt("from_parent_id"));
 				onepost.setChildId(oneobj.getInt("child_id"));
 				onepost.setPostCategory(oneobj.getInt("post_category_id"));
 				onepost.setPostContent(oneobj.getString("post_content"));

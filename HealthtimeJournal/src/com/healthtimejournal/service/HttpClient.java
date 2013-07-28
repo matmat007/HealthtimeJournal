@@ -93,6 +93,9 @@ public class HttpClient {
 	private static final String RETRIEVE_GALLERY_BY_POST_URL = "http://192.168.2.4/healthtime/Test/retrieve_gallery_by_post.php";
 	private static final String RETRIEVE_GALLERY_BY_CHILD_URL = "http://192.168.2.4/healthtime/Test/retrieve_gallery_by_child.php";
 	private static final String RETRIEVE_GALLERY_LAST_UPLOAD_URL = "http://192.168.2.4/healthtime/Test/retrieve_gallery_last_upload.php";
+	private static final String RETRIEVE_ALL_PARENT_URL = "http://192.168.2.4/healthtime/Test/retrieve_all_parent.php";
+	private static final String RETRIEVE_ALL_CHILD_URL = "http://192.168.2.4/healthtime/Test/retrieve_all_child.php";
+	private static final String RETRIEVE_ALL_DOCTOR_URL = "http://192.168.2.4/healthtime/Test/retrieve_all_doctor.php";
 	
 	HttpURLConnection conn = null;
 	InputStream is = null;
@@ -810,6 +813,30 @@ public class HttpClient {
 		params.add(new BasicNameValuePair("id", String.valueOf(id)));
 		
 		return client.makeHttpRequest(RETRIEVE_GALLERY_LAST_UPLOAD_URL, "GET", params);
+	}
+	
+	public String retrieve_all_parent(){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		
+		return client.makeHttpRequest(RETRIEVE_ALL_PARENT_URL, "GET", params);
+	}
+	
+	public String retrieve_all_child(){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		
+		return client.makeHttpRequest(RETRIEVE_ALL_CHILD_URL, "GET", params);
+	}
+	
+	public String retrieve_all_doctor(){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		
+		return client.makeHttpRequest(RETRIEVE_ALL_DOCTOR_URL, "GET", params);
 	}
 	
 	
