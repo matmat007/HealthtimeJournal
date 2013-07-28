@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.healthtimejournal.model.FamilyModel;
 import com.healthtimejournal.model.ParentModel;
+import com.healthtimejournal.service.HealthtimeSession;
 import com.healthtimejournal.service.HttpClient;
 import com.healthtimejournal.service.JSONParser;
 
@@ -89,8 +91,27 @@ public class RegisterFamilyActivity extends Activity {
 			return;
 		}
 		
-		mRegTask = new RegisterTask();
-		mRegTask.execute();
+		String mEmail = email.getText().toString();
+		String mPass = password.getText().toString();
+		boolean cancel = false;
+		View focusView = null;
+		if(TextUtils.isEmpty(mEmail)){
+			email.setError(getString(R.string.required_not_met));
+			focusView = email;
+			cancel = true;
+		}
+		if(TextUtils.isEmpty(mPass)){
+			password.setError(getString(R.string.required_not_met));
+			focusView = password;
+			cancel = true;
+		}
+		if(cancel){
+			focusView.requestFocus();
+		}
+		else{
+			mRegTask = new RegisterTask();
+			mRegTask.execute();
+		}
 
 	}
 
@@ -105,14 +126,13 @@ public class RegisterFamilyActivity extends Activity {
 	//		
 	//	}
 
-	private class RegisterTask extends AsyncTask<Void,Void,String>{
+	private class RegisterTask extends AsyncTask<Void,Void,Boolean>{
 
 		private ProgressDialog pDialog;
-		private Activity activity;
 
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDialog = new ProgressDialog(activity);
+			pDialog = new ProgressDialog(RegisterFamilyActivity.this);
 			pDialog.setMessage("Checking.. Please wait...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
@@ -120,43 +140,39 @@ public class RegisterFamilyActivity extends Activity {
 		}
 
 		@Override
-		protected String doInBackground(Void... params) {
+		protected Boolean doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
 			String data = a.loginUser(email.getText().toString(), password.getText().toString());
-			return data;
+			ParentModel oneparent = JSONParser.getOneParent(data);
+			int tempParentId = oneparent.getParentId();
+			
+			String tempfamily = a.retrieve_family(tempParentId);
+			
+			FamilyModel onefamily = JSONParser.getOneFamily(tempfamily);
+			
+			if(onefamily.getFatherId() == 0) {
+				onefamily.setFatherId(HealthtimeSession.getParentId(getBaseContext()));
+				a.editFamily(onefamily);
+			}
+			else if(onefamily.getMotherId() == 0) {
+				onefamily.setMotherId(HealthtimeSession.getParentId(getBaseContext()));
+				a.editFamily(onefamily);
+			}
+			return true;
 		}
 
-		protected void onPostExecute(String data){
+		protected void onPostExecute(Boolean data){
 			super.onPostExecute(data);
 			pDialog.dismiss();
-			HttpClient a = new HttpClient();
-			ParentModel oneparent = JSONParser.getOneParent(data);
 			
-			if(!(oneparent == null)){
-				
-				int tempParentId = oneparent.getParentId();
-				
-				String tempfamily = a.retrieve_family(tempParentId);
-				
-				FamilyModel onefamily = JSONParser.getOneFamily(tempfamily);
-				
-				if(onefamily.getFatherId() == 0) {
-					onefamily.setFatherId(tempParentId);
-					a.editFamily(onefamily);
-					Toast.makeText(activity, "Successful", Toast.LENGTH_SHORT).show();
-					startActivity(new Intent(RegisterFamilyActivity.this, TiledEventsActivity.class));
-				}
-				else if(onefamily.getMotherId() == 0) {
-					onefamily.setMotherId(tempParentId);
-					a.editFamily(onefamily);
-					Toast.makeText(activity, "Successful", Toast.LENGTH_SHORT).show();
-					startActivity(new Intent(RegisterFamilyActivity.this, TiledEventsActivity.class));
-				}
+			if(data){
+				Toast.makeText(RegisterFamilyActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+				startActivity(new Intent(RegisterFamilyActivity.this, TiledEventsActivity.class));
 				
 			}
 			else{
-				Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show();
+				Toast.makeText(RegisterFamilyActivity.this, "Failed", Toast.LENGTH_SHORT).show();
 				email.setText("");
 				password.setText("");
 			}
