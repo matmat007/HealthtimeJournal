@@ -4,12 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <EditText 
+    <SearchView 
         android:id="@+id/shared_account_search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:hint="@string/search"/>
+        android:iconifiedByDefault="false"
+        android:queryHint="@string/search"/>
     
     <ListView 
         android:id="@+id/shared_account_list"

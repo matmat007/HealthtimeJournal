@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
-import com.healthtimejournal.customadapter.SharedAccountFragmentPageAdapter;
+import com.healthtimejournal.customadapter.fragmentadapter.SharedAccountFragmentPageAdapter;
 import com.healthtimejournal.model.Account;
 import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.service.HealthtimeSession;

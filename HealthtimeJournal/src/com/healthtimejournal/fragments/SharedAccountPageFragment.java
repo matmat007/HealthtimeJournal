@@ -2,6 +2,7 @@ package com.healthtimejournal.fragments;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.healthtimejournal.ProfileChildAccountActivity;
 import com.healthtimejournal.R;
 
 public class SharedAccountPageFragment extends Fragment{
@@ -49,7 +51,7 @@ public class SharedAccountPageFragment extends Fragment{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				
+				startActivity(new Intent(getActivity().getBaseContext(), ProfileChildAccountActivity.class));
 			}
 		});
     	

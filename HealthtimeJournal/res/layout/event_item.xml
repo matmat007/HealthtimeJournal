@@ -24,7 +24,6 @@
 	        android:singleLine="true"
 			android:ellipsize="marquee"
 			android:marqueeRepeatLimit="marquee_forever"
-	        android:text="lalsjkdflaksjfdlaskdjfalsdjfalsdjfalsdfjalskdfajasdfasdfadsfadsfasdfasfasdf"
 	        android:gravity="left"
 	        android:layout_weight="1"
 	        android:textSize="12sp"

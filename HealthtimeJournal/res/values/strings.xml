@@ -58,6 +58,7 @@
     <string name="life_events">Life Events</string>
     <string name="health_growth">Health and Growth</string>
     <string name="timeline">Timeline</string>
+    <string name="about">About</string>
 
     <!-- Parent Profile -->
     <string name="my_shared">My Shared Accounts</string>
@@ -71,6 +72,7 @@
     <!-- Health and Growth -->
     <string name="weight_graph">Child Weight Progress</string>
     <string name="height_graph">Child Height Progress</string>
+    <string name="graph">Graph</string>
 
     <!-- Set Privilege Context -->
     <string name="level_3">Can Edit Profile</string>
@@ -92,6 +94,7 @@
     <string name="view_comment">Comment</string>
     <string name="share_post">Share</string>
     <string name="cross_mark">X</string>
+    <string name="sort">Sort</string>
 
     <!-- Post -->
     <string name="post_hint">What happened today?</string>
@@ -117,8 +120,9 @@
     <string name="title_activity_register_partner2">RegisterPartner2Activity</string>
     <string name="title_activity_register_family">RegisterFamilyActivity</string>
     <string name="title_activity_task_without_ui">TaskWithoutUIActivity</string>
-    
+
     <!-- Album Name in Gallery Android -->
-    <string name="album_name">Healthtime Journal</string>  
+    <string name="album_name">Healthtime Journal</string>
+    <string name="title_activity_profile_child">ProfileChildActivity</string>
 
 </resources>
