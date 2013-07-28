@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.widget.GridView;
@@ -25,7 +24,7 @@ public class AlbumActivity extends Activity {
 			LabeledImage one = new LabeledImage();
 			one.setId(i);
 			one.setTitle("Sample text when text is too long blah blah blah sample text");
-			one.setImg(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
+			one.setImg("");
 			list.add(one);
 		}
 		

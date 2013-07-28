@@ -119,9 +119,6 @@ public class JSONParser {
 				onecomment.setCommentId(oneobj.getInt("comment_id"));
 				onecomment.setPostId(oneobj.getInt("post_id"));
 				onecomment.setParentId(oneobj.getInt("parent_id"));
-				//				onecomment.setImage(oneobj.getInt("first_name"));
-				onecomment.setParentFirstName(oneobj.getString("first_name"));
-				onecomment.setParentLastName(oneobj.getString("last_name"));
 				onecomment.setCommentDate(oneobj.getString("comment_date"));
 				onecomment.setCommentContent(oneobj.getString("comment_content"));
 
@@ -129,6 +126,29 @@ public class JSONParser {
 
 			}
 			return result;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
+	public static FamilyModel getOneFamily(String data){
+
+		try {
+			JSONObject jObj = new JSONObject(data);
+			JSONArray jArray = jObj.getJSONArray("family");
+
+			JSONObject oneobj = null;
+			FamilyModel onefamily = new FamilyModel();
+			oneobj = jArray.getJSONObject(0);
+
+			onefamily.setFamilyId(oneobj.getInt("family_id"));
+			onefamily.setFatherId(oneobj.getInt("father_id"));
+			onefamily.setMotherId(oneobj.getInt("mother_id"));
+
+			return onefamily;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -165,6 +185,32 @@ public class JSONParser {
 
 	}
 	
+	public static GalleryModel getOneGallery(String data){
+		GalleryModel onegallery = null;
+
+		try {
+			JSONObject jObj = new JSONObject(data);
+			JSONArray jArray = jObj.getJSONArray("gallery");
+
+			JSONObject oneobj = null;
+
+			for(int i = 0; i < jArray.length(); i++){
+				onegallery = new GalleryModel();
+				oneobj = jArray.getJSONObject(i);
+
+				onegallery.setGalleryId(oneobj.getInt("gallery_id"));
+				onegallery.setParentId(oneobj.getInt("parent_id"));
+				onegallery.setFilename(oneobj.getString("filename"));
+
+			}
+			return onegallery;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static GalleryModel getLastGallery(String data){
 		GalleryModel onegallery = null;
 
@@ -327,9 +373,8 @@ public class JSONParser {
 				oneparent.setPassword(oneobj.getString("password"));
 				oneparent.setGender(oneobj.getString("gender"));
 				oneparent.setBloodType(oneobj.getString("blood_type"));
-				/*oneparent.setImage(oneobj.getInt("parent_image_id"));
-				oneparent.setFamilyId(oneobj.getInt("family_id"));*/
-				oneparent.setAccountStatus(oneobj.getInt("account_status"));
+//				oneparent.setParentImageId(oneobj.getInt("parent_image_id"));
+//				oneparent.setAccountStatus(oneobj.getInt("account_status"));
 
 				result.add(oneparent);
 
@@ -420,9 +465,7 @@ public class JSONParser {
 
 				onepost.setPostId(oneobj.getInt("post_id"));
 				onepost.setToParentId(oneobj.getInt("to_parent_id"));
-				//				onepost.setFromParentId(oneobj.getInt("from_parent_id"));
-				//				onepost.setFromParentName(oneobj.getString(""));
-				//				onepost.setFromParentImage(oneobj.getString(""));
+//				onepost.setFromParentId(oneobj.getInt("from_parent_id"));
 				onepost.setChildId(oneobj.getInt("child_id"));
 				onepost.setPostCategory(oneobj.getInt("post_category_id"));
 				onepost.setPostContent(oneobj.getString("post_content"));
@@ -516,7 +559,7 @@ public class JSONParser {
 				onediseasedictionary.setDescription(oneobj.getString("description"));
 				onediseasedictionary.setSymptom(oneobj.getString("symptom"));
 				onediseasedictionary.setTreatment(oneobj.getString("treatment"));
-				
+
 				result.add(onediseasedictionary);
 
 			}
@@ -528,5 +571,5 @@ public class JSONParser {
 		return null;
 
 	}
-	
+
 }

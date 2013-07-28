@@ -19,8 +19,8 @@
         <item>High Cholesterol</item>
         <item>Liver Disease</item>
         <item>Kidney Disease</item>
-        <item>Nasal</item>
-        <item>Tubercolosis</item>
+        <item>Nasal Allergy</item>
+        <item>Tuberculosis</item>
     </string-array>
     
     <string-array name="test_post_name">

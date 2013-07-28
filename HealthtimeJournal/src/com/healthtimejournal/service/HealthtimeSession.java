@@ -56,6 +56,21 @@ public class HealthtimeSession {
 	    	return savedSession.getString("password", "");
 	}
 	
+	public static ParentModel getParentInfo(Context context){
+		SharedPreferences savedSession =
+	            context.getSharedPreferences(SESSION, Context.MODE_PRIVATE);
+		
+		ParentModel parent = new ParentModel();
+		parent.setParentId(savedSession.getInt("parent_id", 0));
+		parent.setFirstName(savedSession.getString("first_name", ""));
+		parent.setLastName(savedSession.getString("last_name", ""));
+		parent.setEmail(savedSession.getString("email", ""));
+		parent.setPassword(savedSession.getString("password", ""));
+		parent.setFamilyId(savedSession.getInt("family_id", 0));
+		
+		return parent;
+	}
+	
 	public static void clear(Context context) {
         Editor editor = context.getSharedPreferences(SESSION, Context.MODE_PRIVATE).edit();
         editor.clear();

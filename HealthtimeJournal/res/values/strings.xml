@@ -21,6 +21,7 @@
     <string name="previous">Previous</string>
     <string name="cancel">Cancel</string>
     <string name="addChild">Add Child</string>
+    <string name="setParent">Set Photo</string>
 
     <!-- Registration -->
     <string name="email">Username</string>
@@ -39,6 +40,7 @@
     <string name="not_match">These do not match!</string>
     <string name="reg_3">Is your husband/wife using HealthTime Journal?</string>
     <string name="reg_part">Do you want to register your husband/wife in HealthTime Journal?</string>
+    <string name="reg_family">Family Member</string>
 
     <!-- Adding a Child -->
     <string name="bloodType">Blood Type</string>
@@ -100,6 +102,7 @@
     <string name="title_activity_album">AlbumActivity</string>
 
     <!-- Doctor Page -->
+    <string name="doctor_profile">Doctor Profile</string>
     <string name="create_doctor">Create Doctor</string>
     <string name="edit_doctor">Edit Doctor</string>
     <string name="specialty">Specialty</string>
@@ -111,7 +114,6 @@
     <string name="contact_num1">Contact Number 1</string>
     <string name="contact_num2">Contact Number 2</string>
     <string name="children_under">Children Under</string>
-    <string name="edit_info">Edit Information</string>
     <string name="title_activity_register_page3">RegisterPage3Activity</string>
     <string name="title_activity_register_partner">RegisterPartnerActivity</string>
     <string name="title_activity_register_partner2">RegisterPartner2Activity</string>
