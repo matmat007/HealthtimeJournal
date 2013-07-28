@@ -1,4 +1,4 @@
-package com.healthtimejournal.customadapter;
+package com.healthtimejournal.customadapter.fragmentadapter;
 
 import java.util.ArrayList;
 import java.util.List;

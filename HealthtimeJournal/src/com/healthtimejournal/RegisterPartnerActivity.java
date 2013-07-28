@@ -117,6 +117,7 @@ public class RegisterPartnerActivity extends Activity {
 			pDialog.dismiss();
 			if(value != null){
 				ParentModel parent = HealthtimeSession.getParentInfo(getBaseContext());
+				parent.setFamilyId(Integer.parseInt(value));
 				HealthtimeSession.save(parent, getBaseContext());
 				startActivity(new Intent(RegisterPartnerActivity.this, TiledEventsActivity.class));
 			}

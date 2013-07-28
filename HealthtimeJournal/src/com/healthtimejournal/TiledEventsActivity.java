@@ -30,7 +30,7 @@ import com.facebook.Facebook;
 import com.facebook.SessionStore;
 import com.healthtimejournal.customView.MyCustomHSV;
 import com.healthtimejournal.customadapter.MyCustomExpandableListAdapter;
-import com.healthtimejournal.customadapter.TiledEventFragmentPageAdapter;
+import com.healthtimejournal.customadapter.fragmentadapter.TiledEventFragmentPageAdapter;
 import com.healthtimejournal.function.MenuInstance;
 import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.DoctorModel;
@@ -195,7 +195,7 @@ public class TiledEventsActivity extends FragmentActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_main, menu);
+		getMenuInflater().inflate(R.menu.tiled_event_activity, menu);
 		return true;
 	}
 	
@@ -215,7 +215,10 @@ public class TiledEventsActivity extends FragmentActivity {
 			}
 			break;
 		case R.id.postAction:
+			if(children.size() > 0)
 			startActivity(new Intent(TiledEventsActivity.this, PostActivity.class));
+			else
+			Toast.makeText(this, "You have no child. Please add a child first", Toast.LENGTH_SHORT ).show();
 			break;
 		}
 		return true;
