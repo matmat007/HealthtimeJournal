@@ -23,7 +23,7 @@
     <string name="addChild">Add Child</string>
 
     <!-- Registration -->
-    <string name="email">Username</string>
+    <string name="email">Email</string>
     <string name="pass">Password</string>
     <string name="step1">Step 1 of 2: Account Information</string>
     <string name="step2">Step 2 of 2: Personal Background</string>
@@ -68,6 +68,7 @@
     <!-- Life Events -->
     <string name="firsts">Firsts</string>
     <string name="milestones">Milestones</string>
+    <string name="add_milestones">Add Milestone</string>
 
     <!-- Health and Growth -->
     <string name="weight_graph">Child Weight Progress</string>

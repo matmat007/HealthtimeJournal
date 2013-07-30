@@ -9,15 +9,19 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.healthtimejournal.fragments.ChildAccountPageFragment;
+import com.healthtimejournal.fragments.ChildAccountAlbumPageFragment;
+import com.healthtimejournal.fragments.ChildAccountProfilePageFragment;
+import com.healthtimejournal.model.ChildModel;
 
 public class ProfileChildAccountFragmentPageAdapter extends FragmentPagerAdapter{
 
 	List<Fragment> fragments;
+	ChildModel child;
 	
-	public ProfileChildAccountFragmentPageAdapter(FragmentManager fm) {
+	public ProfileChildAccountFragmentPageAdapter(FragmentManager fm, ChildModel child) {
 		// TODO Auto-generated constructor stub
 		super(fm);
+		this.child = child;
 		
 		instantiatefragments();
 	}
@@ -31,7 +35,7 @@ public class ProfileChildAccountFragmentPageAdapter extends FragmentPagerAdapter
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 1;
+		return 2;
 	}
 	
 	@Override
@@ -48,10 +52,13 @@ public class ProfileChildAccountFragmentPageAdapter extends FragmentPagerAdapter
     private void instantiatefragments(){
     	fragments = new ArrayList<Fragment>();
     	
-    	for(int i = 0; i < 1; i++){
+    	for(int i = 0; i < 2; i++){
     		switch(i){
     			case 0:
-    				fragments.add(ChildAccountPageFragment.create());
+    				fragments.add(ChildAccountProfilePageFragment.create(child));
+    				break;
+    			case 1:
+    				fragments.add(ChildAccountAlbumPageFragment.create());
     				break;
     		}
     	}

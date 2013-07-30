@@ -23,20 +23,25 @@ import com.healthtimejournal.model.SharingModel;
 
 public class JSONParser {
 
-	public static List<String> getChildren(String data){
-		List<String> list = new ArrayList<String>();
-
+	public static ChildModel getOneChild(String data){
 		try{
+			ChildModel model = new ChildModel();
 			JSONObject jobj = new JSONObject(data);
-			JSONArray jarr = jobj.getJSONArray("child");
+			JSONArray jArray = jobj.getJSONArray("child");
 
-			JSONObject oneObj = null;
-
-			for(int i = 0; i < jarr.length(); i++){
-				oneObj = jarr.getJSONObject(i);
-				list.add(oneObj.getString("first_name") + " " + oneObj.getString("last_name"));
-			}
-			return list;
+			JSONObject oneObj = jArray.getJSONObject(0);
+			model.setChildId(oneObj.getInt("child_id"));
+			model.setFirstName(oneObj.getString("first_name"));
+			model.setLastName(oneObj.getString("last_name"));
+			if(oneObj.getInt("gender") == 1)
+				model.setGender("Male");
+			else
+				model.setGender("Female");
+			model.setBirthdate(oneObj.getString("birthdate"));
+			model.setBloodType(oneObj.getString("blood_type"));
+			model.setFamilyId(oneObj.getInt("family_id"));
+			
+			return model;
 		} catch(JSONException e){
 			e.printStackTrace();
 		}
