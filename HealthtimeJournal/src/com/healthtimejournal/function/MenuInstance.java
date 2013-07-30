@@ -68,6 +68,7 @@ public class MenuInstance {
 		temp = new ArrayList<String>();
 		temp.add("Create Doctor Page");
 		temp.add("Edit Doctor Page");
+		temp.add("Set Parent Photo");
 		temp.add("Log out");
 		list.add(temp);
 		

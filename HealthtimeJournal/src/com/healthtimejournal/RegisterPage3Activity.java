@@ -19,11 +19,11 @@ public class RegisterPage3Activity extends Activity {
 		setContentView(R.layout.register_page3);
 		yesButton = (Button)findViewById(R.id.yesButton);
 		yesButton.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+				Intent a = new Intent(RegisterPage3Activity.this, RegisterFamilyActivity.class);
+				startActivity(a);
 			}
 		});
 		

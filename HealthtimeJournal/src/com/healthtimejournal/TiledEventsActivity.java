@@ -19,7 +19,9 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
@@ -44,7 +46,8 @@ import com.healthtimejournal.service.JSONParser;
 public class TiledEventsActivity extends FragmentActivity {
 	
 	final Context context = this;
-	
+
+	private ProgressDialog mProgress;
 	private LinearLayout SideList;
 	private boolean isExpanded = false;
 	
@@ -67,12 +70,17 @@ public class TiledEventsActivity extends FragmentActivity {
 	private ViewPager viewPager;
 
 	private Facebook mFacebook;
-    private ProgressDialog mProgress;
 
     private static final String APP_ID = "460537864017391";
+    
+    private EditText searchbar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+        mFacebook = new Facebook(APP_ID);
+        mProgress = new ProgressDialog(context);
+ 
+        SessionStore.restore(mFacebook, context);
 		
 		mProgress = new ProgressDialog(context);
         mFacebook = new Facebook(APP_ID);
@@ -94,6 +102,13 @@ public class TiledEventsActivity extends FragmentActivity {
         retrieve_child();
         retrieve_post_by_child();
         retrieve_doctor_by_parent();
+        
+        searchbar = (EditText)findViewById(R.id.searchbar);
+        searchbar.setOnClickListener(new OnClickListener() { 
+			public void onClick(View arg0) {
+				startActivity(new Intent(TiledEventsActivity.this, SearchBarActivity.class));
+			}
+        });
         
         listview = (ExpandableListView)findViewById(R.id.listview);
         
@@ -154,7 +169,10 @@ public class TiledEventsActivity extends FragmentActivity {
 							Toast.makeText(getApplicationContext(), "You don't have a doctor account yet.", Toast.LENGTH_SHORT).show();
 						}
 						else if(childPosition == 2){
-							fbLogout();
+							startActivity(new Intent(TiledEventsActivity.this, ParentProfilePhotoActivity.class));
+						}
+						else if(childPosition == 3){
+							logout();
 						}
 						break;
 
@@ -306,6 +324,7 @@ public class TiledEventsActivity extends FragmentActivity {
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
+			Log.d("parent_id",String.valueOf(HealthtimeSession.getParentId(getBaseContext())));
 			String data = a.retrieve_all_post(HealthtimeSession.getParentId(getBaseContext()));
 			return data;
 		}
@@ -331,7 +350,7 @@ public class TiledEventsActivity extends FragmentActivity {
 	        	}
 	        	arrangeEvents.add(model);
 	        	}
-	        	
+	        	Log.d("logggg", ""+arrangeEvents.size());
 	        	viewPager.setAdapter(new TiledEventFragmentPageAdapter(getSupportFragmentManager(), children, arrangeEvents));
 	        }
 	        
@@ -340,20 +359,20 @@ public class TiledEventsActivity extends FragmentActivity {
 		
 	}
 	
-	private void fbLogout() {
-        mProgress.setMessage("Disconnecting from Facebook");
+	private void logout() {
+        mProgress.setMessage("Disconnecting");
         mProgress.show();
  
         new Thread() {
             @Override
             public void run() {
+            	HealthtimeSession.clear(context);
                 SessionStore.clear(context);
- 
                 int what = 1;
  
                 try {
                     mFacebook.logout(context);
- 
+                    finish();
                     what = 0;
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -363,17 +382,16 @@ public class TiledEventsActivity extends FragmentActivity {
             }
         }.start();
     }
- 
-    private Handler mHandler = new Handler() {
+	
+	private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             mProgress.dismiss();
- 
             if (msg.what == 1) {
-                Toast.makeText(context, "Facebook logout failed", Toast.LENGTH_SHORT).show();
-            } else {
- 
-                Toast.makeText(context, "Disconnected from Facebook", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Logout failed", Toast.LENGTH_SHORT).show();
+            } 
+            else {
+                Toast.makeText(context, "Disconnected", Toast.LENGTH_SHORT).show();
             }
         }
     };

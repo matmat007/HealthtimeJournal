@@ -89,7 +89,7 @@ public class ChildAccountProfilePageFragment extends Fragment{
     	flayout.setPadding(2, 10, 2, 5);
     	
     	layout.addView(flayout, 1);
-    }
+    } 
     
     private void instantiateMilestone(ScrollView scroll, LayoutInflater inflater, ViewGroup container){
     	LinearLayout layout = (LinearLayout) scroll.findViewById(R.id.profile_child_account_milestone);

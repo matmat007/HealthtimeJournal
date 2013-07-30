@@ -52,7 +52,7 @@ public class ParentProfileActivity extends Activity {
 		parentInfoButton = (Button)findViewById(R.id.parentInformationButton);
 		parentInfoButton.setOnClickListener(new OnClickListener() { 
 			public void onClick(View arg0) {
-				Intent a = new Intent(ParentProfileActivity.this, EditParentInfoActivity.class);
+				Intent a = new Intent(ParentProfileActivity.this, ParentProfilePhotoActivity.class);
 		        startActivity(a);
 			}
 	    }); 

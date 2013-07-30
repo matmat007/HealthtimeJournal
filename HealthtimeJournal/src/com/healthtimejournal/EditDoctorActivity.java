@@ -2,6 +2,7 @@ package com.healthtimejournal;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.healthtimejournal.model.DoctorModel;
@@ -24,6 +26,8 @@ public class EditDoctorActivity extends Activity {
 	
 	private int doctorid;
 	
+	TextView createDoctorText;
+
 	Button createButton;
 	Button cancelButton;
 	
@@ -45,6 +49,9 @@ public class EditDoctorActivity extends Activity {
 		mRetDoctorTask = new RetrieveDoctorTask();
 		mRetDoctorTask.execute();
 		
+		createDoctorText = (TextView)findViewById(R.id.createDoctorText);
+		createDoctorText.setText("Edit Doctor");
+		
 		doctorSpecialty = (EditText)findViewById(R.id.doctorSpecialtyText);
 		doctorHospital = (EditText)findViewById(R.id.doctorHospitalText);
 		doctorHospitalAddress = (EditText)findViewById(R.id.doctorHospitalAddressText);
@@ -53,6 +60,7 @@ public class EditDoctorActivity extends Activity {
 		doctorContact2 = (EditText)findViewById(R.id.doctorContact2Text);
 		
 		createButton = (Button)findViewById(R.id.createDoctorButton);
+		createButton.setText("Edit Doctor");
 		createButton.setOnClickListener(new OnClickListener() { 
 			public void onClick(View arg0) {
 				attemptEditDoctor();
@@ -164,7 +172,7 @@ public class EditDoctorActivity extends Activity {
 			pDialog.dismiss();
 			if(value){
 				Toast.makeText(activity, "Registration Successful", Toast.LENGTH_SHORT).show();
-//				activity.finish();
+				startActivity(new Intent(EditDoctorActivity.this,TiledEventsActivity.class));
 			}
 			else{
 				Toast.makeText(activity, "Registration Failed", Toast.LENGTH_SHORT).show();

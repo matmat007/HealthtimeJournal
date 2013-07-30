@@ -3,6 +3,7 @@ package com.healthtimejournal;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -158,7 +159,7 @@ public class CreateDoctorActivity extends Activity {
 			pDialog.dismiss();
 			if(value){
 				Toast.makeText(activity, "Registration Successful", Toast.LENGTH_SHORT).show();
-				activity.finish();
+				startActivity(new Intent(CreateDoctorActivity.this,TiledEventsActivity.class));
 			}
 			else{
 				Toast.makeText(activity, "Registration Failed", Toast.LENGTH_SHORT).show();
