@@ -96,6 +96,7 @@ public class HttpClient {
 	private static final String RETRIEVE_ALL_PARENT_URL = "http://192.168.0.195/healthtime/Test/retrieve_all_parent.php";
 	private static final String RETRIEVE_ALL_CHILD_URL = "http://192.168.0.195/healthtime/Test/retrieve_all_child.php";
 	private static final String RETRIEVE_ALL_DOCTOR_URL = "http://192.168.0.195/healthtime/Test/retrieve_all_doctor.php";
+	private static final String RETRIEVE_SHARING_BY_CHILD_URL = "http://192.168.0.195/healthtime/Test/retrieve_sharing_by_child.php";
 	
 	HttpURLConnection conn = null;
 	InputStream is = null;
@@ -484,9 +485,6 @@ public class HttpClient {
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("sharing_id", String.valueOf(sharing.getSharingId())));
-		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(sharing.getToParentId())));
-		params.add(new BasicNameValuePair("from_family_id", String.valueOf(sharing.getFromFamilyId())));
-		params.add(new BasicNameValuePair("child_id", String.valueOf(sharing.getChildId())));
 		params.add(new BasicNameValuePair("privilege", String.valueOf(sharing.getPrivilege())));
 		
 		return client.makeHttpRequest(EDIT_SHARING_URL, "POST", params);
@@ -837,6 +835,15 @@ public class HttpClient {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		
 		return client.makeHttpRequest(RETRIEVE_ALL_DOCTOR_URL, "GET", params);
+	}
+	
+	public String retrieve_sharing_by_child(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_SHARING_BY_CHILD_URL, "GET", params);
 	}
 	
 	

@@ -134,7 +134,7 @@ public class SetPrivilegeContext extends BaseDialogPrivilege {
 		
 	}
 	
-	public void editSharing(){
+	private void editSharing(){
 		if(mSharingTask != null){
 			return;
 		}
@@ -171,7 +171,6 @@ public class SetPrivilegeContext extends BaseDialogPrivilege {
 			sharing.setPrivilege(privilege);
 			
 			a.editSharing(sharing);
-			
 			return true;
 		}
 		

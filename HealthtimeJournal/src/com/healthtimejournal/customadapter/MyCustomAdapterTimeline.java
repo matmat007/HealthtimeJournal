@@ -8,6 +8,7 @@ import org.json.JSONTokener;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -83,7 +84,7 @@ public class MyCustomAdapterTimeline extends BaseAdapter{
 		View vi = arg1;
 		
 		if(vi == null){
-			LayoutInflater inflater = (LayoutInflater)activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			vi = inflater.inflate(R.layout.timeline_item, null);
 		}
 		

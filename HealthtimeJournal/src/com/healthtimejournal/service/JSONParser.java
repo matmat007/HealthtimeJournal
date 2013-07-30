@@ -16,6 +16,7 @@ import com.healthtimejournal.model.FamilyModel;
 import com.healthtimejournal.model.GalleryModel;
 import com.healthtimejournal.model.Hashtag;
 import com.healthtimejournal.model.ParentModel;
+import com.healthtimejournal.model.ParentPrivilegeModel;
 import com.healthtimejournal.model.ParentSicknessModel;
 import com.healthtimejournal.model.PostModel;
 import com.healthtimejournal.model.SharingDoctorModel;
@@ -578,6 +579,53 @@ public class JSONParser {
 		}
 		return null;
 
+	}
+	
+	public static List<ParentPrivilegeModel> getParentPrivilege(String data){
+		List<ParentPrivilegeModel> result = null;
+		
+		try {
+			JSONObject jObj = new JSONObject(data);
+			JSONArray jArray = jObj.getJSONArray("parent");
+
+			JSONObject oneobj = null;
+			result = new ArrayList<ParentPrivilegeModel>();
+			
+			for(int i = 0; i < jArray.length(); i++){
+				ParentPrivilegeModel oneparent = new ParentPrivilegeModel();
+				oneobj = jArray.getJSONObject(i);
+				
+				ParentModel parent = new ParentModel();
+				parent.setParentId(oneobj.getInt("parent_id"));
+				parent.setFirstName(oneobj.getString("first_name"));
+				parent.setLastName(oneobj.getString("last_name"));
+				parent.setEmail(oneobj.getString("email"));
+				parent.setPassword(oneobj.getString("password"));
+				if(oneobj.getInt("gender") == 1)
+					parent.setGender("Male");
+				else
+					parent.setGender("Female");
+				parent.setBloodType(oneobj.getString("blood_type"));
+				
+				SharingModel share = new SharingModel();
+				share.setSharingId(oneobj.getInt("sharing_id"));
+				share.setFromFamilyId(oneobj.getInt("from_family_id"));
+				share.setToParentId(oneobj.getInt("to_parent_id"));
+				share.setChildId(oneobj.getInt("child_id"));
+				share.setPrivilege(oneobj.getInt("privilege"));
+				
+				oneparent.setParents(parent);
+				oneparent.setShare(share);
+				
+				result.add(oneparent);
+
+			}
+			return result;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
