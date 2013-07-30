@@ -306,7 +306,6 @@ public class TiledEventsActivity extends FragmentActivity {
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
-			Log.d("parent_id",String.valueOf(HealthtimeSession.getParentId(getBaseContext())));
 			String data = a.retrieve_all_post(HealthtimeSession.getParentId(getBaseContext()));
 			return data;
 		}
@@ -332,7 +331,7 @@ public class TiledEventsActivity extends FragmentActivity {
 	        	}
 	        	arrangeEvents.add(model);
 	        	}
-	        	Log.d("logggg", ""+arrangeEvents.size());
+	        	
 	        	viewPager.setAdapter(new TiledEventFragmentPageAdapter(getSupportFragmentManager(), children, arrangeEvents));
 	        }
 	        
