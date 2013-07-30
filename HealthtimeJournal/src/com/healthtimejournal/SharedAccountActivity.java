@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
-import com.healthtimejournal.customadapter.SharedAccountFragmentPageAdapter;
+import com.healthtimejournal.customadapter.fragmentadapter.SharedAccountFragmentPageAdapter;
 import com.healthtimejournal.model.Account;
 import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.service.HealthtimeSession;
@@ -73,17 +73,11 @@ public class SharedAccountActivity extends FragmentActivity{
 				temp = new ArrayList<ChildModel>();
 			accounts.add(insertChildren(temp, "My Children"));
 			
-			data = a.retrieve_shared_from_family_child(HealthtimeSession.getFamilyId(getBaseContext()));
-			temp = JSONParser.getChild(data);
-			if(temp == null)
-				temp = new ArrayList<ChildModel>();
-			accounts.add(insertChildren(temp, "From Family"));
-			
 			data = a.retrieve_shared_to_parent_child(HealthtimeSession.getFamilyId(getBaseContext()), HealthtimeSession.getParentId(getBaseContext()));
 			temp = JSONParser.getChild(data);
 			if(temp == null)
 				temp = new ArrayList<ChildModel>();
-			accounts.add(insertChildren(temp, "To Parent"));
+			accounts.add(insertChildren(temp, "Shared Children"));
 			
 			return accounts;
 		}

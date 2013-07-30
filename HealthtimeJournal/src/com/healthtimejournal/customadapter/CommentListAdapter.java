@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.healthtimejournal.R;
 import com.healthtimejournal.model.CommentModel;
@@ -26,6 +27,8 @@ public class CommentListAdapter extends BaseAdapter {
 	private static LayoutInflater inflater = null;
 	Base64Decoder decoder;
 	
+	ViewHolder holder;
+	
 	List<CommentModel> comment;
 	Context context;
 	
@@ -36,10 +39,14 @@ public class CommentListAdapter extends BaseAdapter {
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		
-		ViewHolder holder;
 
 	    View vi = convertView;
+	    
+	    final RelativeLayout mainLayout;
+		final ImageView commentFriendImage;
+		final TextView commentFriendName;
+		final TextView commentContent;
+		final TextView commentDate;
 	    
 	    if(convertView == null) {
 	    	holder = new ViewHolder();

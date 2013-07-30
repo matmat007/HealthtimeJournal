@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+	    
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:paddingBottom="10dp">
+	        
+	        <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content">
+	            
+		        <ImageView
+		            android:id="@+id/profile_child_account_profile_img"
+		            android:contentDescription="@string/description"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:scaleType="fitXY"
+		            android:adjustViewBounds="true"/>
+		        
+	        </LinearLayout>
+	        
+	        <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	            android:layout_gravity="bottom">
+	            
+	            <TextView 
+	                android:id="@+id/profile_child_account_name"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textSize="16sp"
+	                android:textStyle="bold"
+	                android:paddingLeft="5dp"/>
+	            
+	        </LinearLayout>
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	        android:id="@+id/profile_child_account_about" 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+	        
+		    <TextView 
+		        android:paddingTop="10dp"
+		        android:text="@string/about"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textStyle="bold"
+		        android:textSize="20sp"
+		        android:gravity="center_horizontal"
+		        style="?android:attr/listSeparatorTextViewStyle"/>
+		    
+		    <TextView 
+		        android:id="@+id/profile_child_account_about_gender"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"/>
+		    
+		    <TextView 
+		        android:id="@+id/profile_child_account_about_bloodtype"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"/>
+		    
+		</LinearLayout>
+	    
+	    <LinearLayout 
+	        android:id="@+id/profile_child_account_graph"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+	        
+		    <TextView
+		        android:paddingTop="10dp"
+		        android:text="@string/graph"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textStyle="bold"
+		        android:textSize="20sp"
+		        android:gravity="center_horizontal"
+		        style="?android:attr/listSeparatorTextViewStyle"/>
+		    
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/profile_child_account_milestone" 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">    
+	        
+		    <TextView
+		        android:paddingTop="10dp"
+		        android:text="@string/milestones"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textStyle="bold"
+		        android:textSize="20sp"
+		        android:gravity="center_horizontal"
+		        style="?android:attr/listSeparatorTextViewStyle"/>
+		    
+		</LinearLayout>
+		
+	</LinearLayout>
+	
+</ScrollView>

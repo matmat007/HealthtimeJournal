@@ -25,7 +25,6 @@ import com.healthtimejournal.service.JSONParser;
 public class RegisterFamilyActivity extends Activity {
 
 	//	private NameTask mNameTask = null;
-
 	private RegisterTask mRegTask = null;
 	MultiAutoCompleteTextView name;
 	List<String> items;

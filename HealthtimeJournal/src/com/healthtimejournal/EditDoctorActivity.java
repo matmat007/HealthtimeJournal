@@ -27,7 +27,7 @@ public class EditDoctorActivity extends Activity {
 	private int doctorid;
 	
 	TextView createDoctorText;
-	
+
 	Button createButton;
 	Button cancelButton;
 	

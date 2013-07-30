@@ -1,4 +1,4 @@
-package com.healthtimejournal.customadapter;
+package com.healthtimejournal.customadapter.fragmentadapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,14 +52,17 @@ public class SharedAccountFragmentPageAdapter extends FragmentPagerAdapter{
     	fragments = new ArrayList<Fragment>();
     	
     	for(Account a : accounts){
+    		ArrayList<Integer> ids = new ArrayList<Integer>();
     		ArrayList<String> names = new ArrayList<String>();
+    		
     		for(ChildModel c : a.getAccounts()){
+    			ids.add(c.getChildId());
     			names.add(c.getFirstName() + " " + c.getLastName());
     		}
     		if(names.size() > 0)
-    			fragments.add(SharedAccountPageFragment.create(a.getName(), names));
+    			fragments.add(SharedAccountPageFragment.create(a.getName(), ids, names));
     		else
-    			fragments.add(SharedAccountPageFragment.create(a.getName(), null));
+    			fragments.add(SharedAccountPageFragment.create(a.getName(), null, null));
     	}
     }
 

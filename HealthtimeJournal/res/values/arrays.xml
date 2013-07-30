@@ -23,7 +23,9 @@
         <item>Tuberculosis</item>
     </string-array>
     
-    <string-array name="test_post_name">
-        <item>Matthew Que</item>
+    <string-array name="graph">
+        <item>Weight</item>
+        <item>Height</item>
     </string-array>
+    
 </resources>

@@ -32,7 +32,7 @@ import com.facebook.Facebook;
 import com.facebook.SessionStore;
 import com.healthtimejournal.customView.MyCustomHSV;
 import com.healthtimejournal.customadapter.MyCustomExpandableListAdapter;
-import com.healthtimejournal.customadapter.TiledEventFragmentPageAdapter;
+import com.healthtimejournal.customadapter.fragmentadapter.TiledEventFragmentPageAdapter;
 import com.healthtimejournal.function.MenuInstance;
 import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.DoctorModel;
@@ -46,9 +46,8 @@ import com.healthtimejournal.service.JSONParser;
 public class TiledEventsActivity extends FragmentActivity {
 	
 	final Context context = this;
-	
+
 	private ProgressDialog mProgress;
-	
 	private LinearLayout SideList;
 	private boolean isExpanded = false;
 	
@@ -80,6 +79,11 @@ public class TiledEventsActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
         mFacebook = new Facebook(APP_ID);
         mProgress = new ProgressDialog(context);
+ 
+        SessionStore.restore(mFacebook, context);
+		
+		mProgress = new ProgressDialog(context);
+        mFacebook = new Facebook(APP_ID);
  
         SessionStore.restore(mFacebook, context);
 		
@@ -209,7 +213,7 @@ public class TiledEventsActivity extends FragmentActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_main, menu);
+		getMenuInflater().inflate(R.menu.tiled_event_activity, menu);
 		return true;
 	}
 	
