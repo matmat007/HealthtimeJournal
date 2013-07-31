@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,6 +39,11 @@ public class TimelineActivity extends Activity {
         getActionBar().setHomeButtonEnabled(true);
 		
 		super.onCreate(savedInstanceState);
+		Bundle a  = getIntent().getExtras();
+		if(a != null){
+			
+			Log.d("id",String.valueOf(a.getInt("id")));
+		}
         setContentView(R.layout.timeline_page);
         
         final ExpandableListView listview = (ExpandableListView)findViewById(R.id.listview);

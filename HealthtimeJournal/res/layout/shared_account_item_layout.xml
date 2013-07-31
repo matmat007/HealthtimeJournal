@@ -8,9 +8,7 @@
     <TextView 
         android:id="@+id/shared_account_item_label"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+        android:layout_height="wrap_content" />
     
     <TextView 
         android:id="@+id/shared_account_item_description"

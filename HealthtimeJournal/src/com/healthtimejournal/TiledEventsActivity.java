@@ -36,6 +36,7 @@ import com.healthtimejournal.customadapter.fragmentadapter.TiledEventFragmentPag
 import com.healthtimejournal.function.MenuInstance;
 import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.DoctorModel;
+import com.healthtimejournal.model.Event;
 import com.healthtimejournal.model.GroupList;
 import com.healthtimejournal.model.PostModel;
 import com.healthtimejournal.service.HealthtimeSession;
@@ -74,6 +75,8 @@ public class TiledEventsActivity extends FragmentActivity {
     private static final String APP_ID = "460537864017391";
     
     private EditText searchbar;
+	
+	private TiledEventFragmentPageAdapter fragment_adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -233,9 +236,12 @@ public class TiledEventsActivity extends FragmentActivity {
 			}
 			break;
 		case R.id.postAction:
-			if(children.size() > 0)
-			startActivity(new Intent(TiledEventsActivity.this, PostActivity.class));
-			else
+			if(children.size() > 0){
+			Log.d("id",String.valueOf(fragment_adapter.getChildId(viewPager.getCurrentItem())));
+			Intent a = new Intent(TiledEventsActivity.this, EventActivity.class);
+			a.putExtra("id", fragment_adapter.getChildId(viewPager.getCurrentItem()));
+			startActivity(a);
+			}else
 			Toast.makeText(this, "You have no child. Please add a child first", Toast.LENGTH_SHORT ).show();
 			break;
 		}
@@ -334,24 +340,25 @@ public class TiledEventsActivity extends FragmentActivity {
 			super.onPostExecute(result);
 			
 	        if(result != null){
-	        	List<PostModel> chldlist = JSONParser.getPost(result);
-	        	List<List<PostModel>> arrangeEvents = new ArrayList<List<PostModel>>();
+	        	List<Event> chldlist = JSONParser.getEvents(result);
+	        	List<List<Event>> arrangeEvents = new ArrayList<List<Event>>();
 	        	if(chldlist != null){
 		        	int n = chldlist.get(0).getChildId();
-		        	List<PostModel> model = new ArrayList<PostModel>();
+		        	List<Event> model = new ArrayList<Event>();
 		        	
-		        	for(PostModel p : chldlist){
+		        	for(Event p : chldlist){
 		        		if(n != p.getChildId()){
 		        			n = p.getChildId();
 		        			arrangeEvents.add(model);
-		        			model = new ArrayList<PostModel>();
+		        			model = new ArrayList<Event>();
 		        		}
 		        		model.add(p);
 	        	}
 	        	arrangeEvents.add(model);
 	        	}
 	        	Log.d("logggg", ""+arrangeEvents.size());
-	        	viewPager.setAdapter(new TiledEventFragmentPageAdapter(getSupportFragmentManager(), children, arrangeEvents));
+	        	fragment_adapter = new TiledEventFragmentPageAdapter(getSupportFragmentManager(), children, arrangeEvents);
+	        	viewPager.setAdapter(fragment_adapter);
 	        }
 	        
 	        pDialog.dismiss();

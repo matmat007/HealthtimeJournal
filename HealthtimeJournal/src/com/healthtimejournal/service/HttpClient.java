@@ -21,6 +21,7 @@ import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.CommentModel;
 import com.healthtimejournal.model.DiseaseDictionaryModel;
 import com.healthtimejournal.model.DoctorModel;
+import com.healthtimejournal.model.Event;
 import com.healthtimejournal.model.FamilyModel;
 import com.healthtimejournal.model.GalleryModel;
 import com.healthtimejournal.model.ParentModel;
@@ -35,7 +36,7 @@ public class HttpClient {
 	private static String LOGIN_URL = "http://192.168.0.195/healthtime/Test/login.php";
 	
 	//Upload URL
-	private static final String UPLOAD_IMAGE = "http://192.168.0.195/healthtime/Test/upload.php";
+	private static final String UPLOAD_IMAGE = "http://192.168.1.133/healthtime/Test/upload.php";
 	
 	//Add Php Urls
 	private static final String POST_URL = "http://192.168.0.195/healthtime/Test/add_post.php";
@@ -47,6 +48,7 @@ public class HttpClient {
 	private static final String ADD_SHARING_URL = "http://192.168.0.195/healthtime/Test/add_sharing.php";
 	private static final String ADD_CHILD_URL = "http://192.168.0.195/healthtime/Test/add_child.php";
 	private static final String ADD_DISEASE_URL = "http://192.168.0.195/healthtime/Test/add_disease_dictionary.php";
+	private static final String EVENT_URL = "http://192.168.1.133/healthtime/Test/add_event.php";
 	
 	//Delete Php Urls
 	private static final String DELETE_CHILD_URL = "http://192.168.0.195/healthtime/Test/delete_child.php";
@@ -64,38 +66,37 @@ public class HttpClient {
 	private static final String EDIT_DISEASE_URL = "http://192.168.0.195/healthtime/Test/edit_disease_dictionary.php";
 	private static final String EDIT_PARENT_PHOTO_URL = "http://192.168.0.195/healthtime/Test/edit_parent_photo.php";
 	private static final String EDIT_FAMILY_URL = "http://192.168.0.195/healthtime/Test/edit_family.php";
-
 	
 	//Retrieve Php URLs
-	private static final String HASHTAG_URL = "http://192.168.0.195/healthtime/Test/retrieve_all_tags.php";
-	private static final String RETRIEVE_CHILD_URL = "http://192.168.0.195/healthtime/Test/retrieve_child.php";
-	private static final String RETRIEVE_POST_BY_CHILD_URL = "http://192.168.0.195/healthtime/Test/retrieve_all_post_by_child.php";
-	private static final String RETRIEVE_COMMENT_URL = "http://192.168.0.195/healthtime/Test/retrieve_all_comment.php";
-	private static final String RETRIEVE_ALL_POST_URL = "http://192.168.0.195/healthtime/Test/retrieve_all_post.php";
-	private static final String RETRIEVE_CHILD_BY_SEARCH_URL = "http://192.168.0.195/healthtime/Test/retrieve_child_by_search.php";
-	private static final String RETRIEVE_POST_BY_PARENT_URL = "http://192.168.0.195/healthtime/Test/retrieve_all_post_by_parent.php";
-	private static final String RETRIEVE_CHILD_BY_FAMILY_URL = "http://192.168.0.195/healthtime/Test/retrieve_child_by_family.php";
-	private static final String RETRIEVE_DOCTOR_URL = "http://192.168.0.195/healthtime/Test/retrieve_doctor.php";
-	private static final String RETRIEVE_DOCTOR_BY_PARENT_URL = "http://192.168.0.195/healthtime/Test/retrieve_doctor_by_parent.php";
-	private static final String RETRIEVE_DOCTOR_BY_SEARCH_URL = "http://192.168.0.195/healthtime/Test/retrieve_doctor_by_search.php";
-	private static final String RETRIEVE_POST_OF_PARENT_BY_CHILD_URL = "http://192.168.0.195/healthtime/Test/retrieve_all_all_post_of_parent_by_child.php";
-	private static final String RETRIEVE_SHARED_TO_PARENT_ACCOUNTS_URL = "http://192.168.0.195/healthtime/Test/retrieve_shared_to_parent_accounts.php";
-	private static final String RETRIEVE_PARENT_URL = "http://192.168.0.195/healthtime/Test/retrieve_parent.php";
-	private static final String RETRIEVE_PARENT_BY_SEARCH_URL = "http://192.168.0.195/healthtime/Test/retrieve_parent_by_search.php";
-	private static final String RETRIEVE_SHARED_BY_PARENT_ACCOUNTS_URL = "http://192.168.0.195/healthtime/Test/retrieve_shared_by_parent_accounts.php";
-	private static final String RETRIEVE_MEDICAL_HISTORY_URL = "http://192.168.0.195/healthtime/Test/retrieve_parent_medical_history.php";
-	private static final String RETRIEVE_SHARED_TO_DOCTOR_ACCOUNTS_URL = "http://192.168.0.195/healthtime/Test/retrieve_shared_to_doctor_accounts.php";
-	private static final String RETRIEVE_FAMILY_URL = "http://192.168.0.195/healthtime/Test/retrieve_family.php";
-	private static final String RETRIEVE_SHARED_FROM_FAMILY_CHILD_URL = "http://192.168.0.195/healthtime/Test/retrieve_shared_from_family_child.php";
-	private static final String RETRIEVE_SHARED_TO_PARENT_CHILD_URL = "http://192.168.0.195/healthtime/Test/retrieve_shared_to_parent_child.php";
-	private static final String RETRIEVE_DISEASE_URL = "http://192.168.0.195/healthtime/Test/retrieve_disease_dictionary.php";
-	private static final String RETRIEVE_GALLERY_BY_PARENT_URL = "http://192.168.0.195/healthtime/Test/retrieve_gallery_by_parent.php";
-	private static final String RETRIEVE_GALLERY_BY_POST_URL = "http://192.168.0.195/healthtime/Test/retrieve_gallery_by_post.php";
-	private static final String RETRIEVE_GALLERY_BY_CHILD_URL = "http://192.168.0.195/healthtime/Test/retrieve_gallery_by_child.php";
-	private static final String RETRIEVE_GALLERY_LAST_UPLOAD_URL = "http://192.168.0.195/healthtime/Test/retrieve_gallery_last_upload.php";
-	private static final String RETRIEVE_ALL_PARENT_URL = "http://192.168.0.195/healthtime/Test/retrieve_all_parent.php";
-	private static final String RETRIEVE_ALL_CHILD_URL = "http://192.168.0.195/healthtime/Test/retrieve_all_child.php";
-	private static final String RETRIEVE_ALL_DOCTOR_URL = "http://192.168.0.195/healthtime/Test/retrieve_all_doctor.php";
+	private static final String HASHTAG_URL = "http://192.168.1.133/healthtime/Test/retrieve_all_tags.php";
+	private static final String RETRIEVE_CHILD_URL = "http://192.168.1.133/healthtime/Test/retrieve_child.php";
+	private static final String RETRIEVE_POST_BY_CHILD_URL = "http://192.168.1.133/healthtime/Test/retrieve_all_post_by_child.php";
+	private static final String RETRIEVE_COMMENT_URL = "http://192.168.1.133/healthtime/Test/retrieve_all_comment.php";
+	private static final String RETRIEVE_ALL_POST_URL = "http://192.168.1.133/healthtime/Test/retrieve_all_event.php";
+	private static final String RETRIEVE_CHILD_BY_SEARCH_URL = "http://192.168.1.133/healthtime/Test/retrieve_child_by_search.php";
+	private static final String RETRIEVE_POST_BY_PARENT_URL = "http://192.168.1.133/healthtime/Test/retrieve_all_post_by_parent.php";
+	private static final String RETRIEVE_CHILD_BY_FAMILY_URL = "http://192.168.1.133/healthtime/Test/retrieve_child_by_family.php";
+	private static final String RETRIEVE_DOCTOR_URL = "http://192.168.1.133/healthtime/Test/retrieve_doctor.php";
+	private static final String RETRIEVE_DOCTOR_BY_PARENT_URL = "http://192.168.1.133/healthtime/Test/retrieve_doctor_by_parent.php";
+	private static final String RETRIEVE_DOCTOR_BY_SEARCH_URL = "http://192.168.1.133/healthtime/Test/retrieve_doctor_by_search.php";
+	private static final String RETRIEVE_POST_OF_PARENT_BY_CHILD_URL = "http://192.168.1.133/healthtime/Test/retrieve_all_all_post_of_parent_by_child.php";
+	private static final String RETRIEVE_SHARED_TO_PARENT_ACCOUNTS_URL = "http://192.168.1.133/healthtime/Test/retrieve_shared_to_parent_accounts.php";
+	private static final String RETRIEVE_PARENT_URL = "http://192.168.1.133/healthtime/Test/retrieve_parent.php";
+	private static final String RETRIEVE_PARENT_BY_SEARCH_URL = "http://192.168.1.133/healthtime/Test/retrieve_parent_by_search.php";
+	private static final String RETRIEVE_SHARED_BY_PARENT_ACCOUNTS_URL = "http://192.168.1.133/healthtime/Test/retrieve_shared_by_parent_accounts.php";
+	private static final String RETRIEVE_MEDICAL_HISTORY_URL = "http://192.168.1.133/healthtime/Test/retrieve_parent_medical_history.php";
+	private static final String RETRIEVE_SHARED_TO_DOCTOR_ACCOUNTS_URL = "http://192.168.1.133/healthtime/Test/retrieve_shared_to_doctor_accounts.php";
+	private static final String RETRIEVE_FAMILY_URL = "http://192.168.1.133/healthtime/Test/retrieve_family.php";
+	private static final String RETRIEVE_SHARED_FROM_FAMILY_CHILD_URL = "http://192.168.1.133/healthtime/Test/retrieve_shared_from_family_child.php";
+	private static final String RETRIEVE_SHARED_TO_PARENT_CHILD_URL = "http://192.168.1.133/healthtime/Test/retrieve_shared_to_parent_child.php";
+	private static final String RETRIEVE_DISEASE_URL = "http://192.168.1.133/healthtime/Test/retrieve_disease_dictionary.php";
+	private static final String RETRIEVE_GALLERY_BY_PARENT_URL = "http://192.168.1.133/healthtime/Test/retrieve_gallery_by_parent.php";
+	private static final String RETRIEVE_GALLERY_BY_POST_URL = "http://192.168.1.133/healthtime/Test/retrieve_gallery_by_post.php";
+	private static final String RETRIEVE_GALLERY_BY_CHILD_URL = "http://192.168.1.133/healthtime/Test/retrieve_gallery_by_child.php";
+	private static final String RETRIEVE_GALLERY_LAST_UPLOAD_URL = "http://192.168.1.133/healthtime/Test/retrieve_gallery_last_upload.php";
+	private static final String RETRIEVE_ALL_PARENT_URL = "http://192.168.1.133/healthtime/Test/retrieve_all_parent.php";
+	private static final String RETRIEVE_ALL_CHILD_URL = "http://192.168.1.133/healthtime/Test/retrieve_all_child.php";
+	private static final String RETRIEVE_ALL_DOCTOR_URL = "http://192.168.1.133/healthtime/Test/retrieve_all_doctor.php";
 	private static final String RETRIEVE_SHARING_BY_CHILD_URL = "http://192.168.0.195/healthtime/Test/retrieve_sharing_by_child.php";
 	
 	HttpURLConnection conn = null;
@@ -134,16 +135,28 @@ public class HttpClient {
 		return client.makeHttpRequest(REGISTER_URL, "POST", params);
 	}
 	
+	public String addEvent(Event event){
+
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(event.getToParentId())));
+		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(event.getFromParentId())));
+		params.add(new BasicNameValuePair("child_id", String.valueOf(event.getChildId())));
+		params.add(new BasicNameValuePair("event_content", event.getEventContent()));
+		params.add(new BasicNameValuePair("event_category_id", String.valueOf(event.getEventCategory())));
+		params.add(new BasicNameValuePair("file_id", String.valueOf(event.getFileId())));
+		return client.makeHttpRequest(EVENT_URL, "POST", params);
+	}
+	
 	public String addPost(PostModel post){
 
 		HttpResponseClient client = new HttpResponseClient();
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(post.getToParentId())));
+		params.add(new BasicNameValuePair("event_id", String.valueOf(post.getEventId())));
 		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(post.getFromParentId())));
-		params.add(new BasicNameValuePair("child_id", String.valueOf(post.getChildId())));
 		params.add(new BasicNameValuePair("post_content", post.getPostContent()));
-		params.add(new BasicNameValuePair("post_category_id", String.valueOf(post.getPostCategory())));
 		params.add(new BasicNameValuePair("file_id", String.valueOf(post.getFileId())));
 		return client.makeHttpRequest(POST_URL, "POST", params);
 	}
@@ -421,9 +434,7 @@ public class HttpClient {
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("post_id", String.valueOf(post.getPostId())));
-		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(post.getToParentId())));
 		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(post.getFromParentId())));
-		params.add(new BasicNameValuePair("child_id", String.valueOf(post.getChildId())));
 		params.add(new BasicNameValuePair("post_content", post.getPostContent()));
 		params.add(new BasicNameValuePair("file_id", String.valueOf(post.getFileId())));
 		

@@ -4,11 +4,9 @@ package com.healthtimejournal.model;
 public class PostModel {
 	
 	private int postId;
-	private int toParentId;
+	private int eventId;
 	private int fromParentId;
-	private int childId;
 	private String postContent;
-	private int postCategory;
 	private String postDate;
 	private int fileId;
 	
@@ -23,14 +21,6 @@ public class PostModel {
 	public void setPostId(int postId) {
 		this.postId = postId;
 	}
-	
-	public int getToParentId() {
-		return toParentId;
-	}
-
-	public void setToParentId(int toParentId) {
-		this.toParentId = toParentId;
-	}
 
 	public int getFromParentId() {
 		return fromParentId;
@@ -39,14 +29,6 @@ public class PostModel {
 	public void setFromParentId(int fromParentId) {
 		this.fromParentId = fromParentId;
 	}
-	
-	public int getChildId() {
-		return childId;
-	}
-
-	public void setChildId(int childId) {
-		this.childId = childId;
-	}
 
 	public String getPostDate() {
 		return postDate;
@@ -54,14 +36,6 @@ public class PostModel {
 
 	public void setPostDate(String postDate) {
 		this.postDate = postDate;
-	}
-	
-	public int getPostCategory() {
-		return postCategory;
-	}
-
-	public void setPostCategory(int postCategory) {
-		this.postCategory = postCategory;
 	}
 
 	public String getPostContent() {
@@ -78,6 +52,14 @@ public class PostModel {
 	
 	public void setFileId(int fileId) {
 		this.fileId = fileId;
+	}
+
+	public int getEventId() {
+		return eventId;
+	}
+
+	public void setEventId(int eventId) {
+		this.eventId = eventId;
 	}
 
 }

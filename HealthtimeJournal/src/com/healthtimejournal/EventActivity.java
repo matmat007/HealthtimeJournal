@@ -28,23 +28,26 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.healthtimejournal.model.Event;
 import com.healthtimejournal.model.GalleryModel;
 import com.healthtimejournal.model.Hashtag;
-import com.healthtimejournal.model.PostModel;
 import com.healthtimejournal.service.HealthtimeSession;
 import com.healthtimejournal.service.HttpClient;
 import com.healthtimejournal.service.JSONParser;
 import com.healthtimejournal.service.TagTokenizer;
 
-public class PostActivity extends Activity {
+public class EventActivity extends Activity {
 
 	private static final int REQUEST_CODE = 1;
 	private static final int CAMERA_REQUEST = 1888;
 
 	private TagTask mTagTask = null;
 	private PostTask mPostTask = null;
+	
+	private int childId;
 
 	MultiAutoCompleteTextView post;
 
@@ -53,6 +56,10 @@ public class PostActivity extends Activity {
 	ImageView cameraButton;
 	ImageView attachFileButton;
 	ImageView img;
+	
+	RadioButton radMed;
+	RadioButton radNonmed;
+	RadioButton radMile;
 
 	Bitmap bm = null;
 	String selectedImagePath = null;
@@ -60,20 +67,24 @@ public class PostActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
+		
+		Bundle extras = getIntent().getExtras();
+		if(extras != null){
+			childId = extras.getInt("id");
+		}
 		items = new ArrayList<String>();
 
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.post);
+		setContentView(R.layout.event_activity);
 
-		post = (MultiAutoCompleteTextView)findViewById(R.id.postEditText);
+		post = (MultiAutoCompleteTextView)findViewById(R.id.eventEditText);
 
-		retrieve_all_hashtags();
+		//retrieve_all_hashtags();
 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, items);
+		/*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, items);
 		post.setAdapter(adapter);
 		post.setSelected(true);
 		post.setRawInputType(InputType.TYPE_CLASS_TEXT
@@ -81,9 +92,13 @@ public class PostActivity extends Activity {
 				|InputType.TYPE_TEXT_FLAG_AUTO_CORRECT
 				|InputType.TYPE_TEXT_FLAG_MULTI_LINE);
 		post.setThreshold(2);
-		post.setTokenizer(new TagTokenizer());
+		post.setTokenizer(new TagTokenizer());*/
 
 		img = (ImageView)findViewById(R.id.postPageImage);
+		
+		radMed = (RadioButton)findViewById(R.id.radioMeds);
+		radNonmed = (RadioButton)findViewById(R.id.radioNonmeds);
+		radMile = (RadioButton)findViewById(R.id.radioMilestone);
 
 	}
 
@@ -269,7 +284,7 @@ public class PostActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDialog = new ProgressDialog(PostActivity.this);
+			pDialog = new ProgressDialog(EventActivity.this);
 			pDialog.setMessage("Please wait...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
@@ -292,19 +307,29 @@ public class PostActivity extends Activity {
 			else
 				onegallery.setGalleryId(0);
 			
-			PostModel onepost = new PostModel();
+			Event onepost = new Event();
+			onepost.setToParentId(HealthtimeSession.getParentId(getBaseContext()));
 			onepost.setFromParentId(HealthtimeSession.getParentId(getBaseContext()));
-			onepost.setEventId(1);
-			onepost.setPostContent(post.getText().toString());
+			onepost.setChildId(childId);
+			onepost.setEventContent(post.getText().toString());
 			onepost.setFileId(onegallery.getGalleryId());
-			a.addPost(onepost);
+			if(radMed.isChecked()){
+				onepost.setEventCategory(1);
+			}
+			else if(radNonmed.isChecked()){
+				onepost.setEventCategory(2);
+			}
+			else{
+				onepost.setEventCategory(3);
+			}
+			a.addEvent(onepost);
 
 			return true;
 		}
 
 		protected void onPostExecute(Boolean value){
 			pDialog.dismiss();
-			startActivity(new Intent(PostActivity.this, TiledEventsActivity.class));
+			startActivity(new Intent(EventActivity.this, TiledEventsActivity.class));
 		}
 
 	}

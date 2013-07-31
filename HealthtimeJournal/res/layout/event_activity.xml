@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    
+    <RadioGroup
+		        android:id="@+id/radioEventType"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" 
+		        android:orientation="horizontal"
+		        android:padding="5dp">
+ 
+		        <RadioButton
+		            android:id="@+id/radioMeds"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/medical" 
+		            android:checked="true" />
+	 
+		        <RadioButton
+		            android:id="@+id/radioNonmeds"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/nonmeds" />
+		        
+		        <RadioButton
+		            android:id="@+id/radioMilestone"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/milestones" />
+	 
+    		</RadioGroup>
+    
+    <MultiAutoCompleteTextView 
+        android:id="@+id/eventEditText"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:inputType="textMultiLine"
+    	android:hint="@string/post_hint"
+    	android:background="@drawable/edittext_selector"
+    	android:padding="10dp"
+    	android:layout_margin="10dp"
+    	android:isScrollContainer="true"
+    	android:completionThreshold="1"
+    	android:maxLines="5"
+    	android:lines="5"/>
+    
+    <ImageView
+        android:id="@+id/eventPageImage"
+        android:contentDescription="@string/description"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp" />
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:layout_margin="3dp">
+    	
+        <ImageView
+            android:contentDescription="@string/description"
+    	    android:id="@+id/postCameraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+    		android:src="@drawable/camera" 
+    		android:layout_weight="1"
+    		android:onClick="onCameraClick"/>
+        
+        <ImageView
+            android:contentDescription="@string/description"
+    	    android:id="@+id/postAttachFileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+    		android:src="@drawable/upload" 
+    		android:layout_weight="1"
+    		android:onClick="onUploadClick"/>
+        
+        <Space 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"/>
+    
+    </LinearLayout>
+    
+    
+</LinearLayout>

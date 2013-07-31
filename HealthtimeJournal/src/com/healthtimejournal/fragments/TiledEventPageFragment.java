@@ -1,8 +1,8 @@
 package com.healthtimejournal.fragments;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,22 +17,24 @@ import android.widget.GridLayout.Spec;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.healthtimejournal.R;
-import com.healthtimejournal.model.PostModel;
+import com.healthtimejournal.TimelineActivity;
 
 
 public class TiledEventPageFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
     public static final String ARG_CONTENT = "ARG_CONTENT";
+    public static final String ARG_ID = "ARG_ID";
 
     private int mPage;
+    private int id;
 
-    public static TiledEventPageFragment create(int page, List<PostModel> posts, ArrayList<String> contents) {
+    public static TiledEventPageFragment create(int page, ArrayList<Integer> list, ArrayList<String> contents) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
         args.putStringArrayList(ARG_CONTENT, contents);
+        args.putIntegerArrayList(ARG_ID, list);
         TiledEventPageFragment fragment = new TiledEventPageFragment();
         fragment.setArguments(args);
         return fragment;
@@ -119,13 +121,15 @@ public class TiledEventPageFragment extends Fragment {
             			break;
             	}//for debug purpose only*/
             	
-    			layout.setTag(getArguments().getStringArrayList(ARG_CONTENT).get(i));
+    			layout.setTag(getArguments().getStringArrayList(ARG_ID).get(i));
             	layout.setOnClickListener(new OnClickListener() {
     				
     				@Override
     				public void onClick(View v) {
     					// TODO Auto-generated method stub
-    					Toast.makeText(getActivity(), (CharSequence) layout.getTag(), Toast.LENGTH_SHORT).show();
+    					Intent a = new Intent(getActivity(),TimelineActivity.class);
+    					a.putExtra("id", (Integer)layout.getTag());
+    					startActivity(a);
     				}
     			});
             	

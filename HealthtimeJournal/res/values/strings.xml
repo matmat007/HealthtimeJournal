@@ -101,10 +101,13 @@
     <string name="sort">Sort</string>
 
     <!-- Post -->
-    <string name="post_hint">What happened today?</string>
+    <string name="post_hint">What\'s Happening?</string>
     <string name="description">Description</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_album">AlbumActivity</string>
+    <string name="medical">Medical</string>
+    <string name="nonmeds">Activities</string>
+    <string name="milestone">Milestones</string>
 
     <!-- Doctor Page -->
     <string name="doctor_profile">Doctor Profile</string>
@@ -128,5 +131,6 @@
     <!-- Album Name in Gallery Android -->
     <string name="album_name">Healthtime Journal</string>
     <string name="title_activity_profile_child">ProfileChildActivity</string>
+    <string name="title_activity_event">EventActivity</string>
 
 </resources>
