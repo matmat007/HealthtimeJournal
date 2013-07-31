@@ -61,7 +61,8 @@
     <string name="health_growth">Health and Growth</string>
     <string name="timeline">Timeline</string>
     <string name="about">About</string>
-
+    <string name="share">Share</string>
+    
     <!-- Parent Profile -->
     <string name="my_shared">My Shared Accounts</string>
     <string name="my_children">My Children</string>

@@ -28,4 +28,10 @@
         <item>Height</item>
     </string-array>
     
+    <string-array name="childItem">
+        <item>Profile</item>
+        <item>Album</item>
+        <item>Shared To</item>
+    </string-array>
+    
 </resources>

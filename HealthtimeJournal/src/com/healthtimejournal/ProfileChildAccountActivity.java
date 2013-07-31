@@ -1,15 +1,17 @@
 package com.healthtimejournal;
 
+import java.util.List;
+
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 
 import com.healthtimejournal.customadapter.fragmentadapter.ProfileChildAccountFragmentPageAdapter;
 import com.healthtimejournal.model.ChildModel;
+import com.healthtimejournal.model.ParentPrivilegeModel;
 import com.healthtimejournal.service.HttpClient;
 import com.healthtimejournal.service.JSONParser;
 
@@ -18,6 +20,9 @@ public class ProfileChildAccountActivity extends FragmentActivity {
 	private ViewPager viewpager;
 	private int child_id = 0;
 	private ChildTask cTask = null;
+	
+	private ChildModel child = null;
+	private List<ParentPrivilegeModel> parent = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +51,7 @@ public class ProfileChildAccountActivity extends FragmentActivity {
 		cTask.execute();
 	}
 	
-	private class ChildTask extends AsyncTask<Void, Void, String>{
+	private class ChildTask extends AsyncTask<Void, Void, Boolean>{
 		
 		private ProgressDialog pDialog;
 		
@@ -61,26 +66,25 @@ public class ProfileChildAccountActivity extends FragmentActivity {
 	    }
 		
 		@Override
-		protected String doInBackground(Void... params) {
+		protected Boolean doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
 			String data = a.retrieve_child(child_id);
-			Log.d("data", data);
-			return data;
+			child = JSONParser.getOneChild(data);
+			data = a.retrieve_sharing_by_child(child_id);
+			parent = JSONParser.getParentPrivilege(data);
+			
+			return true;
 		}
 		
 		@Override
-		protected void onPostExecute(String result) {
+		protected void onPostExecute(Boolean value) {
 			// TODO Auto-generated method stub
-			super.onPostExecute(result);
+			super.onPostExecute(value);
 			
-			ChildModel child = null;
-			
-			if(result != null){
-				child = JSONParser.getOneChild(result);
-				
-				ProfileChildAccountFragmentPageAdapter adapter = new ProfileChildAccountFragmentPageAdapter(getSupportFragmentManager(), child);
-				
+			if(value){
+				ProfileChildAccountFragmentPageAdapter adapter = new ProfileChildAccountFragmentPageAdapter(getSupportFragmentManager(), child, parent,getResources().getStringArray(R.array.childItem));
+
 				viewpager.setAdapter(adapter);
 			}
 			

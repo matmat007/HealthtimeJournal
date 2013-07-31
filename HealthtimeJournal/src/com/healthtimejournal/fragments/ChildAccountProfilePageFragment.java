@@ -77,11 +77,12 @@ public class ChildAccountProfilePageFragment extends Fragment{
     
     private void instantiateGraph(ScrollView scroll, LayoutInflater inflater, ViewGroup container, int screenHeight, String label){
     	LinearLayout layout = (LinearLayout) scroll.findViewById(R.id.profile_child_account_graph);
-    	View graphtileView = inflater.inflate(R.layout.event_item, container, false);
+
+    	View graphtileView = inflater.inflate(R.layout.album_image_layout, container, false);
     	
     	FrameLayout flayout = (FrameLayout) graphtileView;
-    	TextView textlabel = (TextView) flayout.findViewById(R.id.timeline_item_title);
-    	ImageView tile_img = (ImageView) flayout.findViewById(R.id.timeline_tile_img);
+    	TextView textlabel = (TextView) flayout.findViewById(R.id.album_name);
+    	ImageView tile_img = (ImageView) flayout.findViewById(R.id.album_img);
     	
     	textlabel.setText(label);
     	tile_img.setImageResource(R.drawable.default_img);

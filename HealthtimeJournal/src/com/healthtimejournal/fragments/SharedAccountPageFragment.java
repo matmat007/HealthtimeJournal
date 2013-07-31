@@ -2,7 +2,6 @@ package com.healthtimejournal.fragments;
 
 import java.util.ArrayList;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +13,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
+
 import com.healthtimejournal.ProfileChildAccountActivity;
 import com.healthtimejournal.R;
 
@@ -45,6 +47,9 @@ public class SharedAccountPageFragment extends Fragment{
     	
     	LinearLayout linear = (LinearLayout) view;
     	ListView listview = (ListView) linear.findViewById(R.id.shared_account_list);
+    	
+    	SearchView search = (SearchView) linear.findViewById(R.id.shared_account_search_bar);
+    	
     	if(getArguments().getStringArrayList(ARG_NAMES) != null)
     		listview.setAdapter(new ArrayAdapter<String>(getActivity().getBaseContext(), R.layout.shared_account_item_layout, R.id.shared_account_item_label, getArguments().getStringArrayList(ARG_NAMES)));
         
@@ -59,6 +64,21 @@ public class SharedAccountPageFragment extends Fragment{
 				args.putInt("child_id", getArguments().getIntegerArrayList(ARG_IDS).get(arg2));
 				a.putExtra(ARGS, args);
 				startActivity(a);
+			}
+		});
+    	
+    	search.setOnQueryTextListener(new OnQueryTextListener() {
+			
+			@Override
+			public boolean onQueryTextSubmit(String query) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+			
+			@Override
+			public boolean onQueryTextChange(String newText) {
+				// TODO Auto-generated method stub
+				return false;
 			}
 		});
     	

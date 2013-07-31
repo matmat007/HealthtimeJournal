@@ -29,18 +29,31 @@
 	        </LinearLayout>
 	        
 	        <LinearLayout
-	            android:layout_width="wrap_content"
+	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:orientation="vertical"
 	            android:layout_gravity="bottom">
 	            
 	            <TextView 
 	                android:id="@+id/profile_child_account_name"
-	                android:layout_width="wrap_content"
+	                android:layout_width="match_parent"
 	                android:layout_height="wrap_content"
-	                android:textSize="16sp"
+	                android:textSize="20sp"
 	                android:textStyle="bold"
 	                android:paddingLeft="5dp"/>
+	            
+	            <Button 
+	                android:id="@+id/profile_child_account_share_button"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:text="@string/share"
+	                android:textSize="12sp"
+	                android:textStyle="bold"
+	                android:textColor="@color/white"
+	                android:background="@color/maroon"
+	                android:layout_marginRight="5dp"
+	                android:layout_marginLeft="5dp"
+	                android:layout_marginTop="5dp"/>
 	            
 	        </LinearLayout>
 	        
