@@ -41,7 +41,6 @@ public class ProfileChildAccountFragmentPageAdapter extends FragmentPagerAdapter
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return arrays.length;
 	}
 	
@@ -52,7 +51,6 @@ public class ProfileChildAccountFragmentPageAdapter extends FragmentPagerAdapter
     
     @Override
     public CharSequence getPageTitle(int position) {
-    	
     	return arrays[position];
     }
     

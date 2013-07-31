@@ -169,6 +169,7 @@
             android:name="com.healthtimejournal.RegisterPage3Activity"
             android:label="@string/title_activity_register_page3"            
             android:screenOrientation="portrait" >
+
         </activity>
         <activity
             android:name="com.healthtimejournal.RegisterPartnerActivity"
@@ -207,7 +208,8 @@
         </activity>
         <activity
             android:name="com.healthtimejournal.EventActivity"
-            android:label="@string/title_activity_event" >
+            android:label="@string/title_activity_event"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

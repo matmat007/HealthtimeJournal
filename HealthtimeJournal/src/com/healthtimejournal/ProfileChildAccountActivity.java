@@ -23,7 +23,6 @@ public class ProfileChildAccountActivity extends FragmentActivity {
 	
 	private ChildModel child = null;
 	private List<ParentPrivilegeModel> parent = null;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
