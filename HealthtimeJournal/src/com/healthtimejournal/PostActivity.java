@@ -304,7 +304,7 @@ public class PostActivity extends Activity {
 
 		protected void onPostExecute(Boolean value){
 			pDialog.dismiss();
-			startActivity(new Intent(PostActivity.this, TiledEventsActivity.class));
+			startActivity(new Intent(PostActivity.this, TimelineActivity.class));
 		}
 
 	}

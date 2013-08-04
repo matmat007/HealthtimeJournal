@@ -5,12 +5,12 @@ import java.util.List;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -30,10 +30,10 @@ import com.facebook.Facebook;
 import com.facebook.Facebook.DialogListener;
 import com.facebook.FacebookError;
 import com.facebook.SessionStore;
-import com.healthtimejournal.PostPageActivity;
 import com.healthtimejournal.R;
-import com.healthtimejournal.model.TimelineItem;
+import com.healthtimejournal.model.PostModel;
 
+@SuppressLint("HandlerLeak")
 public class MyCustomAdapterTimeline extends BaseAdapter{
 	
 	private Facebook mFacebook;
@@ -45,10 +45,10 @@ public class MyCustomAdapterTimeline extends BaseAdapter{
  
     private Handler mRunOnUi = new Handler();
 
-	List<TimelineItem> items;
+	List<PostModel> items;
 	Activity activity;
 	
-	public MyCustomAdapterTimeline(Activity activity, List<TimelineItem> items){
+	public MyCustomAdapterTimeline(Activity activity, List<PostModel> items){
 		this.activity = activity;
 		this.items = items;
 	}
@@ -95,8 +95,8 @@ public class MyCustomAdapterTimeline extends BaseAdapter{
 		Button commentButton = (Button) vi.findViewById(R.id.timeline_item_button);
 		commentButton.setOnClickListener(new OnClickListener() { 
 			public void onClick(View arg0) {
-				Intent a = new Intent(activity, PostPageActivity.class);
-		        activity.startActivity(a);
+//				Intent a = new Intent(activity, PostPageActivity.class);
+//		        activity.startActivity(a);
 			}
 	    });
 		
@@ -150,9 +150,9 @@ public class MyCustomAdapterTimeline extends BaseAdapter{
 			}
 	    });
 		
-		text1.setText(items.get(arg0).getName());
-		text2.setText(items.get(arg0).getDatetime());
-		text3.setText(items.get(arg0).getContent());
+		text1.setText(items.get(arg0).getPostContent());
+		text2.setText(items.get(arg0).getPostDate());
+		text3.setText(items.get(arg0).getPostContent());
 		
 		return vi;
 	}

@@ -14,14 +14,17 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.EditText;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AutoCompleteTextView;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
@@ -32,12 +35,14 @@ import com.facebook.Facebook;
 import com.facebook.SessionStore;
 import com.healthtimejournal.customView.MyCustomHSV;
 import com.healthtimejournal.customadapter.MyCustomExpandableListAdapter;
+import com.healthtimejournal.customadapter.MyCustomSearchListAdapter;
 import com.healthtimejournal.customadapter.fragmentadapter.TiledEventFragmentPageAdapter;
 import com.healthtimejournal.function.MenuInstance;
 import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.DoctorModel;
 import com.healthtimejournal.model.Event;
 import com.healthtimejournal.model.GroupList;
+import com.healthtimejournal.model.ParentModel;
 import com.healthtimejournal.service.HealthtimeSession;
 import com.healthtimejournal.service.HttpClient;
 import com.healthtimejournal.service.JSONParser;
@@ -54,10 +59,11 @@ public class TiledEventsActivity extends FragmentActivity {
 	private EventChildNameTask eTask = null;
 	private EventDoctorTask eDoctorTask = null;
 	private EventTileTask eTileTask = null;
+	private SearchParentTask eSearchTask = null;
 
 	private List<ChildModel> children = null;
 	private List<GroupList> list = null;
-
+	
 	private DoctorModel onedoctor = null;
 	private int isDoctor;
 
@@ -73,19 +79,18 @@ public class TiledEventsActivity extends FragmentActivity {
 
 	private static final String APP_ID = "460537864017391";
 
-	private EditText searchbar;
+	private AutoCompleteTextView searchbar;
 
 	private TiledEventFragmentPageAdapter fragment_adapter;
 
+	MyCustomSearchListAdapter searchAdapter;
+	private List<ParentModel> searchParent = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		mFacebook = new Facebook(APP_ID);
 		mProgress = new ProgressDialog(context);
-
-		SessionStore.restore(mFacebook, context);
-
-		mProgress = new ProgressDialog(context);
-		mFacebook = new Facebook(APP_ID);
 
 		SessionStore.restore(mFacebook, context);
 
@@ -104,13 +109,27 @@ public class TiledEventsActivity extends FragmentActivity {
 		retrieve_child();
 		retrieve_post_by_child();
 		retrieve_doctor_by_parent();
+		search_parent();
 
-		searchbar = (EditText)findViewById(R.id.searchbar);
-		searchbar.setOnClickListener(new OnClickListener() { 
-			public void onClick(View arg0) {
-				startActivity(new Intent(TiledEventsActivity.this, SearchBarActivity.class));
+		searchbar = (AutoCompleteTextView)findViewById(R.id.searchbar);
+		searchbar.setThreshold(2);
+		searchbar.addTextChangedListener(filterTextWatcher);
+		
+    	searchbar.setAdapter(searchAdapter);
+    	searchbar.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), String.valueOf(arg2), Toast.LENGTH_SHORT).show();
 			}
-		});
+    	});
+    	
+//		searchbar.setOnClickListener(new OnClickListener() { 
+//			public void onClick(View arg0) {
+//			}
+//        });
+
+    	
 
 		listview = (ExpandableListView)findViewById(R.id.listview);
 
@@ -183,6 +202,38 @@ public class TiledEventsActivity extends FragmentActivity {
 			}
 		});
 
+	}
+	
+	private TextWatcher filterTextWatcher = new TextWatcher() {
+
+	    public void afterTextChanged(Editable s) {
+	    }
+
+	    public void beforeTextChanged(CharSequence s, int start, int count,
+	            int after) {
+	    }
+
+	    public void onTextChanged(CharSequence s, int start, int before,
+	            int count) {
+	    	searchAdapter.getFilter().filter(s);
+	    	searchbar.setAdapter(searchAdapter);
+	    }
+
+	};
+	
+	@Override
+	protected void onDestroy() {
+	    super.onDestroy();
+	    searchbar.removeTextChangedListener(filterTextWatcher);
+	}
+	
+	private void search_parent(){
+		if (eSearchTask != null) {
+			return;
+		}
+
+		eSearchTask = new SearchParentTask();
+		eSearchTask.execute();
 	}
 
 	private void retrieve_child(){
@@ -270,6 +321,39 @@ public class TiledEventsActivity extends FragmentActivity {
 		}
 
 	}
+	
+	private class SearchParentTask extends AsyncTask<Void, Void, String>{
+		
+//		private ProgressDialog pDialog;
+//
+//		@Override
+//		protected void onPreExecute() {
+//			super.onPreExecute();
+//			pDialog = new ProgressDialog(TiledEventsActivity.this);
+//			pDialog.setMessage("Loading. Please wait...");
+//			pDialog.setIndeterminate(false);
+//			pDialog.setCancelable(false);
+//			pDialog.show();
+//		}
+		
+		@Override
+		protected String doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			HttpClient a = new HttpClient();
+			String data = a.retrieve_all_parent();
+			return data;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+//			pDialog.dismiss();
+			
+			searchParent = JSONParser.getParent(result);
+			searchAdapter = new MyCustomSearchListAdapter(getApplicationContext(), searchParent);
+		}
+
+	}
 
 	private class EventChildNameTask extends AsyncTask<Void, Void, String>{
 		@Override
@@ -330,7 +414,7 @@ public class TiledEventsActivity extends FragmentActivity {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
 			Log.d("parent_id",String.valueOf(HealthtimeSession.getParentId(getBaseContext())));
-			String data = a.retrieve_all_post(HealthtimeSession.getParentId(getBaseContext()));
+			String data = a.retrieve_all_event(HealthtimeSession.getParentId(getBaseContext()));
 			return data;
 		}
 

@@ -20,7 +20,7 @@
 	            android:layout_width="fill_parent"
 	        	android:layout_height="wrap_content"
 	        	android:background="@drawable/sidebar_bevel_effect">
-		        <EditText 
+		        <AutoCompleteTextView 
 		            android:id="@+id/searchbar"
 		            android:layout_height="wrap_content"
 		            android:layout_width="fill_parent"

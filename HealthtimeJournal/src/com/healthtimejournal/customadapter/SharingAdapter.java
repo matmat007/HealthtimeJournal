@@ -67,7 +67,6 @@ public class SharingAdapter extends BaseAdapter{
 				break;
 		}
 		
-		
 		return vi;
 	}
 
