@@ -63,7 +63,7 @@
     	
         <ImageView
             android:contentDescription="@string/description"
-    	    android:id="@+id/postCameraButton"
+    	    android:id="@+id/eventCameraButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
     		android:src="@drawable/camera" 
@@ -72,7 +72,7 @@
         
         <ImageView
             android:contentDescription="@string/description"
-    	    android:id="@+id/postAttachFileButton"
+    	    android:id="@+id/eventAttachFileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
     		android:src="@drawable/upload" 

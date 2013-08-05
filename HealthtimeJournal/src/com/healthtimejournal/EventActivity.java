@@ -18,14 +18,12 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.RadioButton;
@@ -37,7 +35,6 @@ import com.healthtimejournal.model.Hashtag;
 import com.healthtimejournal.service.HealthtimeSession;
 import com.healthtimejournal.service.HttpClient;
 import com.healthtimejournal.service.JSONParser;
-import com.healthtimejournal.service.TagTokenizer;
 
 public class EventActivity extends Activity {
 
@@ -46,7 +43,7 @@ public class EventActivity extends Activity {
 
 	private TagTask mTagTask = null;
 	private PostTask mPostTask = null;
-	
+
 	private int childId;
 
 	MultiAutoCompleteTextView post;
@@ -56,7 +53,7 @@ public class EventActivity extends Activity {
 	ImageView cameraButton;
 	ImageView attachFileButton;
 	ImageView img;
-	
+
 	RadioButton radMed;
 	RadioButton radNonmed;
 	RadioButton radMile;
@@ -67,7 +64,7 @@ public class EventActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+
 		Bundle extras = getIntent().getExtras();
 		if(extras != null){
 			childId = extras.getInt("id");
@@ -94,8 +91,8 @@ public class EventActivity extends Activity {
 		post.setThreshold(2);
 		post.setTokenizer(new TagTokenizer());*/
 
-		img = (ImageView)findViewById(R.id.postPageImage);
-		
+		img = (ImageView)findViewById(R.id.eventPageImage);
+
 		radMed = (RadioButton)findViewById(R.id.radioMeds);
 		radNonmed = (RadioButton)findViewById(R.id.radioNonmeds);
 		radMile = (RadioButton)findViewById(R.id.radioMilestone);
@@ -306,7 +303,7 @@ public class EventActivity extends Activity {
 			}
 			else
 				onegallery.setGalleryId(0);
-			
+
 			Event onepost = new Event();
 			onepost.setToParentId(HealthtimeSession.getParentId(getBaseContext()));
 			onepost.setFromParentId(HealthtimeSession.getParentId(getBaseContext()));
