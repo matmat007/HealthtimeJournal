@@ -18,12 +18,14 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.RadioButton;
@@ -32,9 +34,11 @@ import android.widget.Toast;
 import com.healthtimejournal.model.Event;
 import com.healthtimejournal.model.GalleryModel;
 import com.healthtimejournal.model.Hashtag;
+import com.healthtimejournal.model.PostModel;
 import com.healthtimejournal.service.HealthtimeSession;
 import com.healthtimejournal.service.HttpClient;
 import com.healthtimejournal.service.JSONParser;
+import com.healthtimejournal.service.TagTokenizer;
 
 public class EventActivity extends Activity {
 
@@ -79,9 +83,9 @@ public class EventActivity extends Activity {
 
 		post = (MultiAutoCompleteTextView)findViewById(R.id.eventEditText);
 
-		//retrieve_all_hashtags();
+		retrieve_all_hashtags();
 
-		/*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, items);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, items);
 		post.setAdapter(adapter);
 		post.setSelected(true);
 		post.setRawInputType(InputType.TYPE_CLASS_TEXT
@@ -89,7 +93,7 @@ public class EventActivity extends Activity {
 				|InputType.TYPE_TEXT_FLAG_AUTO_CORRECT
 				|InputType.TYPE_TEXT_FLAG_MULTI_LINE);
 		post.setThreshold(2);
-		post.setTokenizer(new TagTokenizer());*/
+		post.setTokenizer(new TagTokenizer());
 
 		img = (ImageView)findViewById(R.id.eventPageImage);
 
@@ -298,11 +302,9 @@ public class EventActivity extends Activity {
 				onegallery.setParentId(HealthtimeSession.getParentId(getBaseContext()));
 				onegallery.setFilename(selectedImagePath);
 				a.addGallery(onegallery);
-				onegallery = null;
-				onegallery = JSONParser.getLastGallery(a.retrieve_gallery_last_upload(HealthtimeSession.getParentId(getBaseContext())));
-			}
+				onegallery.setGalleryId(Integer.parseInt(a.retrieve_gallery_last_upload(HealthtimeSession.getParentId(getBaseContext())).trim()));			}
 			else
-				onegallery.setGalleryId(0);
+				onegallery.setGalleryId(1);
 
 			Event onepost = new Event();
 			onepost.setToParentId(HealthtimeSession.getParentId(getBaseContext()));
@@ -319,8 +321,15 @@ public class EventActivity extends Activity {
 			else{
 				onepost.setEventCategory(3);
 			}
-			a.addEvent(onepost);
+			String result = a.addEvent(onepost);
 
+			PostModel onepostfrom = new PostModel();
+			onepostfrom.setEventId(Integer.parseInt(result.trim()));
+			onepostfrom.setFromParentId(HealthtimeSession.getParentId(getBaseContext()));
+			onepostfrom.setPostContent(onepost.getEventContent());
+			onepostfrom.setFileId(onegallery.getGalleryId());
+			
+			a.addPost(onepostfrom);
 			return true;
 		}
 

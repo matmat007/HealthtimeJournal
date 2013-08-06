@@ -130,7 +130,8 @@ public final class R {
         public static final int heightXyPlot=0x7f0b004e;
         public static final int inchesEditText=0x7f0b0035;
         public static final int informationButton=0x7f0b0015;
-        public static final int layout_timeline=0x7f0b00a9;
+        public static final int layout1=0x7f0b00a3;
+        public static final int layout_timeline=0x7f0b00ab;
         public static final int level1Check=0x7f0b0020;
         public static final int level2Check=0x7f0b0021;
         public static final int level3Check=0x7f0b0022;
@@ -138,12 +139,12 @@ public final class R {
         public static final int listview=0x7f0b00a0;
         public static final int loginEmailText=0x7f0b0000;
         public static final int loginPasswordText=0x7f0b0001;
-        public static final int logoutAction=0x7f0b00ae;
+        public static final int logoutAction=0x7f0b00b0;
         public static final int mainLayout=0x7f0b006c;
         public static final int mainLoginButton=0x7f0b0002;
-        public static final int menuSortNewest=0x7f0b00af;
-        public static final int menuSortRating=0x7f0b00b0;
-        public static final int menu_settings=0x7f0b00ac;
+        public static final int menuSortNewest=0x7f0b00b1;
+        public static final int menuSortRating=0x7f0b00b2;
+        public static final int menu_settings=0x7f0b00ae;
         public static final int newsFeedEditText=0x7f0b004f;
         public static final int newsFeedFriendImage=0x7f0b0052;
         public static final int newsFeedFriendName=0x7f0b0053;
@@ -164,7 +165,7 @@ public final class R {
         public static final int parentInformationButton=0x7f0b005b;
         public static final int parentName=0x7f0b0056;
         public static final int parentSharedAccountsButton=0x7f0b005f;
-        public static final int postAction=0x7f0b00ad;
+        public static final int postAction=0x7f0b00af;
         public static final int postAttachFileButton=0x7f0b0064;
         public static final int postCameraButton=0x7f0b0063;
         public static final int postContent=0x7f0b0069;
@@ -230,20 +231,21 @@ public final class R {
         public static final int thumbnail2=0x7f0b0066;
         public static final int thumbnail3=0x7f0b006a;
         public static final int timelineButton=0x7f0b0019;
+        public static final int timelineParentImage=0x7f0b00a8;
+        public static final int timelinePostImage=0x7f0b00a9;
         public static final int timeline_gridlayout=0x7f0b0046;
-        public static final int timeline_item_button=0x7f0b00a7;
-        public static final int timeline_item_button1=0x7f0b00a8;
+        public static final int timeline_item_button1=0x7f0b00aa;
         public static final int timeline_item_date=0x7f0b0049;
-        public static final int timeline_item_post=0x7f0b00a6;
-        public static final int timeline_item_time=0x7f0b00a5;
+        public static final int timeline_item_post=0x7f0b00a7;
+        public static final int timeline_item_time=0x7f0b00a6;
         public static final int timeline_item_title=0x7f0b0048;
-        public static final int timeline_item_username=0x7f0b00a3;
-        public static final int timeline_item_x=0x7f0b00a4;
-        public static final int timeline_list=0x7f0b00aa;
+        public static final int timeline_item_username=0x7f0b00a4;
+        public static final int timeline_item_x=0x7f0b00a5;
+        public static final int timeline_list=0x7f0b00ac;
         public static final int timeline_scrollview=0x7f0b009d;
         public static final int timeline_tile_img=0x7f0b0047;
         public static final int view_pager=0x7f0b0060;
-        public static final int weightXyPlot=0x7f0b00ab;
+        public static final int weightXyPlot=0x7f0b00ad;
         public static final int yesButton=0x7f0b008a;
     }
     public static final class layout {

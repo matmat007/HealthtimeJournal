@@ -209,7 +209,7 @@ public class JSONParser {
 				oneobj = jArray.getJSONObject(i);
 
 				onegallery.setGalleryId(oneobj.getInt("gallery_id"));
-				onegallery.setParentId(oneobj.getInt("parent_id"));
+//				onegallery.setParentId(oneobj.getInt("parent_id"));
 				onegallery.setFilename(oneobj.getString("filename"));
 
 			}
@@ -235,7 +235,7 @@ public class JSONParser {
 				oneobj = jArray.getJSONObject(i);
 
 				onegallery.setGalleryId(oneobj.getInt("gallery_id"));
-				onegallery.setParentId(oneobj.getInt("parent_id"));
+//				onegallery.setParentId(oneobj.getInt("parent_id"));
 				onegallery.setFilename(oneobj.getString("filename"));
 
 			}
@@ -261,7 +261,7 @@ public class JSONParser {
 				oneobj = jArray.getJSONObject(i);
 
 				onegallery.setGalleryId(oneobj.getInt("gallery_id"));
-				onegallery.setParentId(oneobj.getInt("parent_id"));
+//				onegallery.setParentId(oneobj.getInt("parent_id"));
 				onegallery.setFilename(oneobj.getString("filename"));
 
 				result.add(onegallery);
@@ -579,7 +579,6 @@ public class JSONParser {
 		return null;
 
 	}
-
 
 	public static List<DiseaseDictionaryModel> getDiseaseDictionary(String data){
 		List<DiseaseDictionaryModel> result = new ArrayList<DiseaseDictionaryModel>();

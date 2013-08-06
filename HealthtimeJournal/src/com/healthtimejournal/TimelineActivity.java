@@ -6,45 +6,45 @@ import java.util.List;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.healthtimejournal.customView.MyCustomHSV;
 import com.healthtimejournal.customadapter.MyCustomAdapterTimeline;
+import com.healthtimejournal.model.GalleryModel;
+import com.healthtimejournal.model.ParentModel;
 import com.healthtimejournal.model.PostModel;
 import com.healthtimejournal.service.HttpClient;
-import com.healthtimejournal.service.JSONParser;
 
 public class TimelineActivity extends Activity {
 	
 	private RetrievePostTask mRetTask = null;
-	
-	private boolean isExpanded;
 
 	ListView timelinelist;
-	List<PostModel> timelineItem;
+	List<PostModel> postItem;
+	List<GalleryModel> galleryItem;
+	List<ParentModel> parentItem;
 	MyCustomAdapterTimeline adapterTimeline;
+
+	private int id;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
         getActionBar().setHomeButtonEnabled(true);
 
-		timelineItem = new ArrayList<PostModel>();
+		postItem = new ArrayList<PostModel>();
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.timeline_page);
 		
 		Bundle a  = getIntent().getExtras();
 		if(a != null){
-			
+			id = a.getInt("id");
 			Log.d("id",String.valueOf(a.getInt("id")));
 		}
         
@@ -65,27 +65,15 @@ public class TimelineActivity extends Activity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
-		Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x;
-        MyCustomHSV hsv = (MyCustomHSV)findViewById(R.id.timeline_scrollview);
-        
+		
 		switch(item.getItemId()){
 		case android.R.id.home:
-			if (!isExpanded){
-				isExpanded = true;
-		        hsv.scrollTo(0, 0);
-				getActionBar().setDisplayHomeAsUpEnabled(true);
-			}
-			else{
-				isExpanded = false;
-		        hsv.scrollTo(width/4*3, 0);
-				getActionBar().setDisplayHomeAsUpEnabled(false);
-			}
+			startActivity(new Intent(TimelineActivity.this, TiledEventsActivity.class));
 			break;
 		case R.id.postAction:
-			startActivity(new Intent(TimelineActivity.this, PostActivity.class));
+			Intent a = new Intent(TimelineActivity.this, PostActivity.class);
+			a.putExtra("id", id);
+			startActivity(a);
 			break;
 		}
 		return true;
@@ -116,16 +104,15 @@ public class TimelineActivity extends Activity {
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
-			String data = a.retrieve_all_post_by_event(1);
+			String data = a.retrieve_all_post_by_event(id);
 			return data;
 		}
 
 		@Override
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
-			timelineItem = JSONParser.getPost(result);
-
-			adapterTimeline = new MyCustomAdapterTimeline(TimelineActivity.this, timelineItem);
+			
+			adapterTimeline = new MyCustomAdapterTimeline(TimelineActivity.this, postItem);
 	        timelinelist.setAdapter(adapterTimeline);
 
 			pDialog.dismiss();

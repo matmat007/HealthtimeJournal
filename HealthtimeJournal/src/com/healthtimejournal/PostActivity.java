@@ -57,9 +57,16 @@ public class PostActivity extends Activity {
 	Bitmap bm = null;
 	String selectedImagePath = null;
 	Uri mCapturedImageURI;
+	
+	private int id;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		Bundle extra = getIntent().getExtras();
+		if(extra != null){
+			id = extra.getInt("id");
+		}
 
 		items = new ArrayList<String>();
 
@@ -286,15 +293,14 @@ public class PostActivity extends Activity {
 				onegallery.setParentId(HealthtimeSession.getParentId(getBaseContext()));
 				onegallery.setFilename(selectedImagePath);
 				a.addGallery(onegallery);
-				onegallery = null;
-				onegallery = JSONParser.getLastGallery(a.retrieve_gallery_last_upload(HealthtimeSession.getParentId(getBaseContext())));
+				onegallery.setGalleryId(Integer.parseInt(a.retrieve_gallery_last_upload(HealthtimeSession.getParentId(getBaseContext())).trim()));
 			}
 			else
-				onegallery.setGalleryId(0);
+				onegallery.setGalleryId(1);
 			
 			PostModel onepost = new PostModel();
 			onepost.setFromParentId(HealthtimeSession.getParentId(getBaseContext()));
-			onepost.setEventId(1);
+			onepost.setEventId(id);
 			onepost.setPostContent(post.getText().toString());
 			onepost.setFileId(onegallery.getGalleryId());
 			a.addPost(onepost);
@@ -304,7 +310,9 @@ public class PostActivity extends Activity {
 
 		protected void onPostExecute(Boolean value){
 			pDialog.dismiss();
-			startActivity(new Intent(PostActivity.this, TimelineActivity.class));
+			Intent a = new Intent(PostActivity.this, TimelineActivity.class);
+			a.putExtra("id", id);
+			startActivity(a);
 		}
 
 	}

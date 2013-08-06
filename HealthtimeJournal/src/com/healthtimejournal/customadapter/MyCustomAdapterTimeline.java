@@ -20,6 +20,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,10 @@ import com.facebook.Facebook.DialogListener;
 import com.facebook.FacebookError;
 import com.facebook.SessionStore;
 import com.healthtimejournal.R;
+import com.healthtimejournal.model.GalleryModel;
+import com.healthtimejournal.model.ParentModel;
 import com.healthtimejournal.model.PostModel;
+import com.healthtimejournal.service.Base64Decoder;
 
 @SuppressLint("HandlerLeak")
 public class MyCustomAdapterTimeline extends BaseAdapter{
@@ -48,7 +52,7 @@ public class MyCustomAdapterTimeline extends BaseAdapter{
 	List<PostModel> items;
 	Activity activity;
 	
-	public MyCustomAdapterTimeline(Activity activity, List<PostModel> items){
+	public MyCustomAdapterTimeline(Activity activity, List<PostModel> items, List<ParentModel> parent, List<GalleryModel> gallery){
 		this.activity = activity;
 		this.items = items;
 	}
@@ -75,6 +79,8 @@ public class MyCustomAdapterTimeline extends BaseAdapter{
 	public View getView(int arg0, View arg1, ViewGroup arg2) {
 		// TODO Auto-generated method stub
 		
+		Base64Decoder base = new Base64Decoder();
+		
 		mProgress   = new ProgressDialog(activity);
 		 
         mFacebook   = new Facebook(APP_ID);
@@ -88,17 +94,13 @@ public class MyCustomAdapterTimeline extends BaseAdapter{
 			vi = inflater.inflate(R.layout.timeline_item, null);
 		}
 		
+		final ImageView parentImage = (ImageView) vi.findViewById(R.id.timelineParentImage);
+	 	
 		final TextView text1 = (TextView) vi.findViewById(R.id.timeline_item_username);
 		final TextView text2 = (TextView) vi.findViewById(R.id.timeline_item_time);
 		final TextView text3 = (TextView) vi.findViewById(R.id.timeline_item_post);
 		
-		Button commentButton = (Button) vi.findViewById(R.id.timeline_item_button);
-		commentButton.setOnClickListener(new OnClickListener() { 
-			public void onClick(View arg0) {
-//				Intent a = new Intent(activity, PostPageActivity.class);
-//		        activity.startActivity(a);
-			}
-	    });
+		final ImageView postImage = (ImageView) vi.findViewById(R.id.timelinePostImage);
 		
 		Button shareButton = (Button) vi.findViewById(R.id.timeline_item_button1);
 		shareButton.setOnClickListener(new OnClickListener() { 
@@ -153,6 +155,9 @@ public class MyCustomAdapterTimeline extends BaseAdapter{
 		text1.setText(items.get(arg0).getPostContent());
 		text2.setText(items.get(arg0).getPostDate());
 		text3.setText(items.get(arg0).getPostContent());
+		
+		parentImage.setImageBitmap(base.decodeBase64(items.get(arg0).getParentImage()));
+		postImage.setImageBitmap(base.decodeBase64(items.get(arg0).getPostImage()));
 		
 		return vi;
 	}
