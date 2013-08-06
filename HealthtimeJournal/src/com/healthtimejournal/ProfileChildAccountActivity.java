@@ -20,9 +20,9 @@ public class ProfileChildAccountActivity extends FragmentActivity {
 	private ViewPager viewpager;
 	private int child_id = 0;
 	private ChildTask cTask = null;
+	
 	private ChildModel child = null;
 	private List<ParentPrivilegeModel> parent = null;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,7 +83,7 @@ public class ProfileChildAccountActivity extends FragmentActivity {
 			
 			if(value){
 				ProfileChildAccountFragmentPageAdapter adapter = new ProfileChildAccountFragmentPageAdapter(getSupportFragmentManager(), child, parent,getResources().getStringArray(R.array.childItem));
-				
+
 				viewpager.setAdapter(adapter);
 			}
 			

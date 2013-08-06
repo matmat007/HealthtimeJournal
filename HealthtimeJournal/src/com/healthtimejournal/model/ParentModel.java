@@ -155,5 +155,4 @@ public class ParentModel implements Parcelable{
 			return new ParentModel[size];
 		}
 	};
-
 }

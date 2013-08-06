@@ -11,17 +11,17 @@ import android.view.View;
 
 import com.healthtimejournal.fragments.TiledEventPageFragment;
 import com.healthtimejournal.model.ChildModel;
-import com.healthtimejournal.model.PostModel;
+import com.healthtimejournal.model.Event;
 
 public class TiledEventFragmentPageAdapter extends FragmentPagerAdapter{
 	private List<ChildModel> children;
-	private List<List<PostModel>> posts;
+	private List<List<Event>> events;
 	private List<Fragment> fragments;
 	
-	public TiledEventFragmentPageAdapter(FragmentManager fm, List<ChildModel> children, List<List<PostModel>> posts){
+	public TiledEventFragmentPageAdapter(FragmentManager fm, List<ChildModel> children, List<List<Event>> events){
 		super(fm);
 		this.children = children;
-		this.posts = posts;
+		this.events = events;
 		fragments = new ArrayList<Fragment>();
 		
 		findId();
@@ -39,9 +39,9 @@ public class TiledEventFragmentPageAdapter extends FragmentPagerAdapter{
     
     private void findId(){
     	for(int n = 0; n < children.size(); n++){
-    		for(int o = 0; o < posts.size(); o++){
-    			if(children.get(n).getChildId() == posts.get(o).get(0).getChildId()){
-        			fragments.add(TiledEventPageFragment.create(n + 1, posts.get(o), getContents(posts.get(o))));
+    		for(int o = 0; o < events.size(); o++){
+    			if(children.get(n).getChildId() == events.get(o).get(0).getChildId()){
+        			fragments.add(TiledEventPageFragment.create(n + 1, getIds(events.get(o)), getContents(events.get(o))));
         		}
     		}
     		
@@ -51,11 +51,20 @@ public class TiledEventFragmentPageAdapter extends FragmentPagerAdapter{
     	}
     }
     
-    private ArrayList<String> getContents(List<PostModel> post){
+    private ArrayList<String> getContents(List<Event> post){
     	ArrayList<String> list = new ArrayList<String>();
     	
     	for(int i = 0; i < post.size(); i++){
-    		list.add(post.get(i).getPostContent());
+    		list.add(post.get(i).getEventContent());
+    	}
+    	return list;
+    }
+    
+    private ArrayList<Integer> getIds(List<Event> post){
+    	ArrayList<Integer> list = new ArrayList<Integer>();
+    	
+    	for(int i = 0; i < post.size(); i++){
+    		list.add(post.get(i).getEventId());
     	}
     	return list;
     }
@@ -69,5 +78,9 @@ public class TiledEventFragmentPageAdapter extends FragmentPagerAdapter{
     public CharSequence getPageTitle(int position) {
     	String name = children.get(position).getFirstName() + " " + children.get(position).getLastName();
     	return name;
+    }
+    
+    public int getChildId(int position){
+    	return children.get(position).getChildId();
     }
 }

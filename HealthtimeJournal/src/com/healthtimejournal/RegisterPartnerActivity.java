@@ -115,9 +115,10 @@ public class RegisterPartnerActivity extends Activity {
 			super.onPostExecute(value);
 			mAddTask = null;
 			pDialog.dismiss();
-			if(value != null){
+
+			if(value.trim() != "error"){
 				ParentModel parent = HealthtimeSession.getParentInfo(getBaseContext());
-				parent.setFamilyId(Integer.parseInt(value));
+				parent.setFamilyId(Integer.parseInt(value.trim()));
 				HealthtimeSession.save(parent, getBaseContext());
 				startActivity(new Intent(RegisterPartnerActivity.this, TiledEventsActivity.class));
 			}

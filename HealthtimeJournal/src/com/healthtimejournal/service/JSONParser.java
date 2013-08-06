@@ -12,6 +12,7 @@ import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.CommentModel;
 import com.healthtimejournal.model.DiseaseDictionaryModel;
 import com.healthtimejournal.model.DoctorModel;
+import com.healthtimejournal.model.Event;
 import com.healthtimejournal.model.FamilyModel;
 import com.healthtimejournal.model.GalleryModel;
 import com.healthtimejournal.model.Hashtag;
@@ -234,7 +235,7 @@ public class JSONParser {
 				oneobj = jArray.getJSONObject(i);
 
 				onegallery.setGalleryId(oneobj.getInt("gallery_id"));
-				onegallery.setParentId(oneobj.getInt("parent_id"));
+//				onegallery.setParentId(oneobj.getInt("parent_id"));
 				onegallery.setFilename(oneobj.getString("filename"));
 
 			}
@@ -260,7 +261,7 @@ public class JSONParser {
 				oneobj = jArray.getJSONObject(i);
 
 				onegallery.setGalleryId(oneobj.getInt("gallery_id"));
-				onegallery.setParentId(oneobj.getInt("parent_id"));
+//				onegallery.setParentId(oneobj.getInt("parent_id"));
 				onegallery.setFilename(oneobj.getString("filename"));
 
 				result.add(onegallery);
@@ -473,14 +474,44 @@ public class JSONParser {
 				oneobj = jArray.getJSONObject(i);
 
 				onepost.setPostId(oneobj.getInt("post_id"));
-				onepost.setToParentId(oneobj.getInt("to_parent_id"));
-//				onepost.setFromParentId(oneobj.getInt("from_parent_id"));
-				onepost.setChildId(oneobj.getInt("child_id"));
-				onepost.setPostCategory(oneobj.getInt("post_category_id"));
+				//onepost.setChildId(oneobj.getInt("child_id"));
+				onepost.setEventId(oneobj.getInt("event_id"));
+				onepost.setFromParentId(oneobj.getInt("from_parent_id"));
 				onepost.setPostContent(oneobj.getString("post_content"));
 				onepost.setPostDate(oneobj.getString("post_date"));
 
 				result.add(onepost);
+
+			}
+			return result;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
+	public static List<Event> getEvents(String data){
+		List<Event> result = new ArrayList<Event>();
+
+		try {
+			JSONObject jObj = new JSONObject(data);
+			JSONArray jArray = jObj.getJSONArray("events");
+
+			JSONObject oneobj = null;
+			for(int i = 0; i < jArray.length(); i++){
+				Event oneevent = new Event();
+				oneobj = jArray.getJSONObject(i);
+
+				oneevent.setEventId(oneobj.getInt("event_id"));
+				oneevent.setToParentId(oneobj.getInt("to_parent_id"));
+				oneevent.setFromParentId(oneobj.getInt("from_parent_id"));
+				oneevent.setChildId(oneobj.getInt("child_id"));
+				oneevent.setEventContent(oneobj.getString("event_content"));
+				oneevent.setEventDate(oneobj.getString("event_date"));
+				oneevent.setEventCategory(oneobj.getInt("event_category"));
+				result.add(oneevent);
 
 			}
 			return result;

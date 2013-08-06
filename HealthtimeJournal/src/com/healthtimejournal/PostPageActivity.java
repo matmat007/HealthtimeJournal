@@ -1,7 +1,5 @@
 package com.healthtimejournal;
 
-import com.healthtimejournal.customadapter.CommentListAdapter;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

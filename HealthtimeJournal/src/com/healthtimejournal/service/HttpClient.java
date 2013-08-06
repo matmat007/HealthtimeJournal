@@ -21,6 +21,7 @@ import com.healthtimejournal.model.ChildModel;
 import com.healthtimejournal.model.CommentModel;
 import com.healthtimejournal.model.DiseaseDictionaryModel;
 import com.healthtimejournal.model.DoctorModel;
+import com.healthtimejournal.model.Event;
 import com.healthtimejournal.model.FamilyModel;
 import com.healthtimejournal.model.GalleryModel;
 import com.healthtimejournal.model.ParentModel;
@@ -47,8 +48,10 @@ public class HttpClient {
 	private static final String ADD_SHARING_URL = "http://172.16.3.127/healthtime/Test/add_sharing.php";
 	private static final String ADD_CHILD_URL = "http://172.16.3.127/healthtime/Test/add_child.php";
 	private static final String ADD_DISEASE_URL = "http://172.16.3.127/healthtime/Test/add_disease_dictionary.php";
+	private static final String EVENT_URL = "http://172.16.3.156/healthtime/Test/add_event.php";
 	
 	//Delete Php Urls
+
 	private static final String DELETE_CHILD_URL = "http://172.16.3.127/healthtime/Test/delete_child.php";
 	private static final String DELETE_COMMENT_URL = "http://172.16.3.127/healthtime/Test/delete_comment.php";
 	private static final String DELETE_DOCTOR_URL = "http://172.16.3.127/healthtime/Test/delete_doctor.php";
@@ -56,6 +59,7 @@ public class HttpClient {
 	private static final String DELETE_SHARING_URL = "http://172.16.3.127/healthtime/Test/delete_sharing.php";
 	private static final String DELETE_SHARING_DOCTOR_URL = "http://172.16.3.127/healthtime/Test/delete_sharing_doctor.php";
 	private static final String DELETE_DISEASE_URL = "http://172.16.3.127/healthtime/Test/delete_disease_dictionary.php";
+
 
 	//Edit Php Urls
 	private static final String EDIT_SHARING_URL = "http://172.16.3.127/healthtime/Test/edit_sharing.php";
@@ -65,13 +69,13 @@ public class HttpClient {
 	private static final String EDIT_PARENT_PHOTO_URL = "http://172.16.3.127/healthtime/Test/edit_parent_photo.php";
 	private static final String EDIT_FAMILY_URL = "http://172.16.3.127/healthtime/Test/edit_family.php";
 
+
 	
 	//Retrieve Php URLs
 	private static final String HASHTAG_URL = "http://172.16.3.127/healthtime/Test/retrieve_all_tags.php";
 	private static final String RETRIEVE_CHILD_URL = "http://172.16.3.127/healthtime/Test/retrieve_child.php";
 	private static final String RETRIEVE_POST_BY_CHILD_URL = "http://172.16.3.127/healthtime/Test/retrieve_all_post_by_child.php";
 	private static final String RETRIEVE_COMMENT_URL = "http://172.16.3.127/healthtime/Test/retrieve_all_comment.php";
-	private static final String RETRIEVE_ALL_POST_URL = "http://172.16.3.127/healthtime/Test/retrieve_all_post.php";
 	private static final String RETRIEVE_CHILD_BY_SEARCH_URL = "http://172.16.3.127/healthtime/Test/retrieve_child_by_search.php";
 	private static final String RETRIEVE_POST_BY_PARENT_URL = "http://172.16.3.127/healthtime/Test/retrieve_all_post_by_parent.php";
 	private static final String RETRIEVE_CHILD_BY_FAMILY_URL = "http://172.16.3.127/healthtime/Test/retrieve_child_by_family.php";
@@ -98,6 +102,9 @@ public class HttpClient {
 	private static final String RETRIEVE_ALL_DOCTOR_URL = "http://172.16.3.127/healthtime/Test/retrieve_all_doctor.php";
 	private static final String RETRIEVE_SHARING_BY_CHILD_URL = "http://172.16.3.127/healthtime/Test/retrieve_sharing_by_child.php";
 	private static final String RETRIEVE_NON_SHARED_PARENT_CHILD_URL = "http://172.16.3.127/healthtime/Test/retrieve_non_shared_parent_child.php";
+	private static final String RETRIEVE_ALL_EVENT_URL = "http://172.16.3.156/healthtime/Test/retrieve_all_event.php";
+	private static final String RETRIEVE_ALL_POST_BY_EVENT_URL = "http://172.16.3.156/healthtime/Test/retrieve_all_post_by_event.php";
+	
 	
 	HttpURLConnection conn = null;
 	InputStream is = null;
@@ -135,16 +142,28 @@ public class HttpClient {
 		return client.makeHttpRequest(REGISTER_URL, "POST", params);
 	}
 	
+	public String addEvent(Event event){
+
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(event.getToParentId())));
+		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(event.getFromParentId())));
+		params.add(new BasicNameValuePair("child_id", String.valueOf(event.getChildId())));
+		params.add(new BasicNameValuePair("event_content", event.getEventContent()));
+		params.add(new BasicNameValuePair("event_category", String.valueOf(event.getEventCategory())));
+		params.add(new BasicNameValuePair("file_id", String.valueOf(event.getFileId())));
+		return client.makeHttpRequest(EVENT_URL, "POST", params);
+	}
+	
 	public String addPost(PostModel post){
 
 		HttpResponseClient client = new HttpResponseClient();
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(post.getToParentId())));
+		//params.add(new BasicNameValuePair("event_id", String.valueOf(post.getEventId())));
 		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(post.getFromParentId())));
-		params.add(new BasicNameValuePair("child_id", String.valueOf(post.getChildId())));
 		params.add(new BasicNameValuePair("post_content", post.getPostContent()));
-		params.add(new BasicNameValuePair("post_category_id", String.valueOf(post.getPostCategory())));
 		params.add(new BasicNameValuePair("file_id", String.valueOf(post.getFileId())));
 		return client.makeHttpRequest(POST_URL, "POST", params);
 	}
@@ -422,9 +441,7 @@ public class HttpClient {
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("post_id", String.valueOf(post.getPostId())));
-		params.add(new BasicNameValuePair("to_parent_id", String.valueOf(post.getToParentId())));
 		params.add(new BasicNameValuePair("from_parent_id", String.valueOf(post.getFromParentId())));
-		params.add(new BasicNameValuePair("child_id", String.valueOf(post.getChildId())));
 		params.add(new BasicNameValuePair("post_content", post.getPostContent()));
 		params.add(new BasicNameValuePair("file_id", String.valueOf(post.getFileId())));
 		
@@ -623,13 +640,22 @@ public class HttpClient {
 		return client.makeHttpRequest(RETRIEVE_COMMENT_URL, "GET", params);
 	}
 	
-	public String retrieve_all_post(int id){
+	public String retrieve_all_event(int id){
 		HttpResponseClient client = new HttpResponseClient();
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("id", String.valueOf(id)));
 		
-		return client.makeHttpRequest(RETRIEVE_ALL_POST_URL, "GET", params);
+		return client.makeHttpRequest(RETRIEVE_ALL_EVENT_URL, "GET", params);
+	}
+	
+	public String retrieve_all_post_by_event(int id){
+		HttpResponseClient client = new HttpResponseClient();
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", String.valueOf(id)));
+		
+		return client.makeHttpRequest(RETRIEVE_ALL_POST_BY_EVENT_URL, "GET", params);
 	}
 	
 	public String retrieve_shared_to_doctor_accounts(int id){
@@ -814,6 +840,7 @@ public class HttpClient {
 		return client.makeHttpRequest(RETRIEVE_GALLERY_LAST_UPLOAD_URL, "GET", params);
 	}
 	
+
 	public String retrieve_all_parent(){
 		HttpResponseClient client = new HttpResponseClient();
 		
@@ -855,6 +882,6 @@ public class HttpClient {
 		
 		return client.makeHttpRequest(RETRIEVE_NON_SHARED_PARENT_CHILD_URL, "GET", params);
 	}
-	
+
 //End of Retrieve Methods
 }

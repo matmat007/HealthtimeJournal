@@ -21,7 +21,7 @@
     <string name="previous">Previous</string>
     <string name="cancel">Cancel</string>
     <string name="addChild">Add Child</string>
-    <string name="setParent">Set Photo</string>
+	<string name="setParent">Set Photo</string>
     <string name="save">Save</string>
 
     <!-- Registration -->
@@ -63,7 +63,7 @@
     <string name="timeline">Timeline</string>
     <string name="about">About</string>
     <string name="share">Share</string>
-
+    
     <!-- Parent Profile -->
     <string name="my_shared">My Shared Accounts</string>
     <string name="my_children">My Children</string>
@@ -97,15 +97,18 @@
     <string name="search">Search</string>
     <string name="post">Post</string>
     <string name="view_comment">Comment</string>
-    <string name="share_post">Share</string>
+    <string name="share_post">Share</string> 
     <string name="cross_mark">X</string>
     <string name="sort">Sort</string>
 
     <!-- Post -->
-    <string name="post_hint">What happened today?</string>
+    <string name="post_hint">What\'s Happening?</string>
     <string name="description">Description</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_album">AlbumActivity</string>
+    <string name="medical">Medical</string>
+    <string name="nonmeds">Activities</string>
+    <string name="milestone">Milestones</string>
 
     <!-- Doctor Page -->
     <string name="doctor_profile">Doctor Profile</string>
@@ -127,8 +130,9 @@
     <string name="title_activity_task_without_ui">TaskWithoutUIActivity</string>
 
     <!-- Album Name in Gallery Android -->
+    <string name="title_activity_profile_parent">ProfileParentActivity</string>
     <string name="album_name">Healthtime Journal</string>
     <string name="title_activity_profile_child">ProfileChildActivity</string>
-    <string name="title_activity_profile_parent">ProfileParentActivity</string>
+    <string name="title_activity_event">EventActivity</string>
 
 </resources>
