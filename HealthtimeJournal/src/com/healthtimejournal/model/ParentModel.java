@@ -1,6 +1,9 @@
 package com.healthtimejournal.model;
 
-public class ParentModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ParentModel implements Parcelable{
 	
 	private int parentId;
 	private String firstName;
@@ -16,7 +19,12 @@ public class ParentModel {
 	public ParentModel(){
 		
 	}
-
+	
+	public ParentModel(Parcel parcel){
+		readParcel(parcel);
+	}
+	
+	//getters and setters
 	public int getParentId() {
 		return parentId;
 	}
@@ -96,5 +104,56 @@ public class ParentModel {
 	public void setParentImageId(int parentImageId) {
 		this.parentImageId = parentImageId;
 	}
+
+	//parcelable
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		// TODO Auto-generated method stub
+		dest.writeInt(parentId);
+		dest.writeString(firstName);
+		dest.writeString(lastName);
+		dest.writeString(email);
+		dest.writeString(password);
+		dest.writeString(gender);
+		dest.writeString(bloodType);
+		dest.writeInt(familyId);
+		dest.writeInt(accountStatus);
+		dest.writeInt(parentImageId);
+		
+	}
+	
+	private void readParcel(Parcel parcel){
+		this.parentId = parcel.readInt();
+		this.firstName = parcel.readString();
+		this.lastName = parcel.readString();
+		this.email = parcel.readString();
+		this.password = parcel.readString();
+		this.gender = parcel.readString();
+		this.bloodType = parcel.readString();
+		this.familyId = parcel.readInt();
+		this.accountStatus = parcel.readInt();
+		this.parentImageId = parcel.readInt();
+	}
+	
+	public static final Parcelable.Creator<ParentModel> CREATOR = new Parcelable.Creator<ParentModel>() {
+
+		@Override
+		public ParentModel createFromParcel(Parcel source) {
+			// TODO Auto-generated method stub
+			return new ParentModel(source);
+		}
+
+		@Override
+		public ParentModel[] newArray(int size) {
+			// TODO Auto-generated method stub
+			return new ParentModel[size];
+		}
+	};
 
 }

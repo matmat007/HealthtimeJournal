@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -49,6 +51,7 @@ public class ChildAccountProfilePageFragment extends Fragment{
     	ScrollView layout = (ScrollView) view;
     	ImageView profile_img = (ImageView) layout.findViewById(R.id.profile_child_account_profile_img);
     	TextView name = (TextView) layout.findViewById(R.id.profile_child_account_name);
+    	Button share = (Button) layout.findViewById(R.id.profile_child_account_share_button);
     	
     	profile_img.setImageResource(R.drawable.default_img);
     	profile_img.getLayoutParams().width = screenWidth/2;
@@ -60,6 +63,14 @@ public class ChildAccountProfilePageFragment extends Fragment{
     	for(int i = 0; i < getActivity().getResources().getStringArray(R.array.graph).length; i++)
     	instantiateGraph(layout, inflater, container, screenHeight, getActivity().getResources().getStringArray(R.array.graph)[i]);
     	instantiateMilestone(layout, inflater, container);
+    	
+    	share.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			}
+		});
     	
     	return view;
     }

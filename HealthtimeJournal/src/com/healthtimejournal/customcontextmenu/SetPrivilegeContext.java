@@ -1,5 +1,7 @@
 package com.healthtimejournal.customcontextmenu;
 
+import java.util.ArrayList;
+
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -13,10 +15,11 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Toast;
 
 import com.healthtimejournal.R;
+import com.healthtimejournal.customadapter.SharingAdapter;
 import com.healthtimejournal.model.SharingModel;
 import com.healthtimejournal.service.HttpClient;
 
-public class SetPrivilegeContext extends BaseDialogPrivilege {
+public class SetPrivilegeContext extends BaseDialog {
 	
 	Context context;
 	
@@ -25,10 +28,20 @@ public class SetPrivilegeContext extends BaseDialogPrivilege {
 	private int sharingId;
 	private int privilege;
 	
-	@Override
-	public void openDialog(final Context context, final int sharingId) {
-		this.context = context;
+	private ArrayList<Integer> privileges;
+	private SharingAdapter adapter;
+	private int pos;
+	
+	public SetPrivilegeContext(ArrayList<Integer> privileges, SharingAdapter adapter, int pos, int sharingId){
+		this.pos = pos;
+		this.privileges = privileges;
+		this.adapter = adapter;
 		this.sharingId = sharingId;
+	}
+	
+	@Override
+	public void openDialog(final Context context) {
+		this.context = context;
 		
 		LayoutInflater factory = LayoutInflater.from(context);            
 		View promptsView = factory.inflate(R.layout.context_set_privilege, null);
@@ -41,6 +54,18 @@ public class SetPrivilegeContext extends BaseDialogPrivilege {
 		final CheckBox checkLevel1 = (CheckBox)promptsView.findViewById(R.id.level1Check);
 		final CheckBox checkLevel2 = (CheckBox)promptsView.findViewById(R.id.level2Check);
 		final CheckBox checkLevel3 = (CheckBox)promptsView.findViewById(R.id.level3Check);
+		
+		switch(privileges.get(pos)){
+			case 1:
+				checkLevel1.setChecked(true);
+				break;
+			case 2:
+				checkLevel2.setChecked(true);
+				break;
+			case 3:
+				checkLevel3.setChecked(true);
+				break;
+		}
 		
 		checkLevel1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
@@ -95,6 +120,8 @@ public class SetPrivilegeContext extends BaseDialogPrivilege {
 							.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog, int id) {
 									editSharing();
+									privileges.set(pos, privilege);
+									adapter.notifyDataSetChanged();
 									dialog.cancel();
 								}
 							  })
@@ -131,7 +158,6 @@ public class SetPrivilegeContext extends BaseDialogPrivilege {
 		}); 
 
 		alert.show();
-		
 	}
 	
 	private void editSharing(){

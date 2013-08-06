@@ -34,4 +34,10 @@
         <item>Shared To</item>
     </string-array>
     
+    <string-array name="parentItem">
+        <item>Profile</item>
+        <item>Children</item>
+        <item>Album</item>
+    </string-array>
+    
 </resources>

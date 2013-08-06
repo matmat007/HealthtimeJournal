@@ -22,6 +22,8 @@ public class ChildAccountSharePageFragment extends Fragment{
 	public static final String ARG_ACCOUNTS = "ARG_ACCOUNTS";
 	public static final String ARG_PRIVILEGES = "ARG_PRIVILEGES";
 	
+	private SharingAdapter adapter = null;
+	
 	public static ChildAccountSharePageFragment create(ArrayList<Integer> ids,ArrayList<String> arrays, ArrayList<Integer> privileges){
 		Bundle bundle = new Bundle();
 		bundle.putIntegerArrayList(ARG_IDS, ids);
@@ -44,8 +46,10 @@ public class ChildAccountSharePageFragment extends Fragment{
     	LinearLayout layout = (LinearLayout) view;
     	ListView list = (ListView) layout.findViewById(R.id.shared_account_list);
     	
-    	if(getArguments().getStringArrayList(ARG_ACCOUNTS) != null)
-    		list.setAdapter(new SharingAdapter(getActivity().getApplicationContext(), getArguments().getStringArrayList(ARG_ACCOUNTS), getArguments().getIntegerArrayList(ARG_PRIVILEGES)));
+    	if(getArguments().getStringArrayList(ARG_ACCOUNTS) != null){
+    		adapter = new SharingAdapter(getActivity().getApplicationContext(), getArguments().getStringArrayList(ARG_ACCOUNTS), getArguments().getIntegerArrayList(ARG_PRIVILEGES));
+    		list.setAdapter(adapter);
+    	}
     	
     	list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -53,8 +57,8 @@ public class ChildAccountSharePageFragment extends Fragment{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				SetPrivilegeContext context = new SetPrivilegeContext();
-				context.openDialog(getActivity(), getArguments().getIntegerArrayList(ARG_IDS).get(arg2));
+				SetPrivilegeContext context = new SetPrivilegeContext(getArguments().getIntegerArrayList(ARG_PRIVILEGES), adapter, arg2, getArguments().getIntegerArrayList(ARG_IDS).get(arg2));
+				context.openDialog(getActivity());
 			}
 		});
     	
