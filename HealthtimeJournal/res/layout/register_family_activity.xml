@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:text="@string/reg_family"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_gray"
+        android:textStyle="bold"
+        android:padding="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/email"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/familyEmailText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/limit_username"
+        android:inputType="textEmailAddress"
+        android:padding="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/pass"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/familyPasswordText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/limit_password"
+        android:inputType="textPassword"
+        android:padding="10dp" />
+
+    <!--
+    <MultiAutoCompleteTextView 
+        android:id="@+id/nameEditText"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:inputType="textMultiLine"
+    	android:hint="@string/name_search"
+    	android:background="@drawable/edittext_selector"
+    	android:padding="10dp"
+    	android:layout_margin="10dp"
+    	android:isScrollContainer="true"
+    	android:completionThreshold="1"
+    	android:maxLines="3"
+    	android:lines="3"/>
+    -->
+
+    <Button
+        android:id="@+id/regButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/maroon"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/register_fam"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+</LinearLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:text="@string/addChild"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_gray"
+        android:textStyle="bold"
+        android:padding="10dp"/>
+    
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            
+            <TextView
+		        android:text="@string/full_name"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"
+		        android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/addChildFirstNameText"
+                android:hint="@string/firstname"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"/>
+
+            <EditText
+                android:id="@+id/addChildLastNameText"
+                android:hint="@string/lastname"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"/>
+            
+            <TextView
+		        android:text="@string/gender"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"
+		        android:textStyle="bold"/>
+		    
+		    <RadioGroup
+		        android:id="@+id/addChildRadioSex"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" 
+		        android:orientation="horizontal"
+		        android:padding="10dp">
+ 
+		        <RadioButton
+		            android:id="@+id/addChildMaleCheck"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/male" 
+		            android:checked="true" />
+	 
+		        <RadioButton
+		            android:id="@+id/addChildFemaleCheck"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/female" />
+	 
+    		</RadioGroup>
+            
+            <TextView 
+		        android:text="@string/bloodType"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"
+		        android:textStyle="bold"/>
+            
+            <Spinner 
+                android:id="@+id/addChildBloodTypeSpinner"
+        		android:spinnerMode="dropdown"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"/>
+            
+            <TextView 
+                android:text="@string/birthdate"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"
+		        android:textStyle="bold"/>
+            
+            <DatePicker 
+                android:id="@+id/addChildDatePicker"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content" />
+            
+            <Button
+            	android:id="@+id/addChildButton"
+            	android:layout_width="match_parent"
+            	android:layout_height="match_parent"
+            	android:text="@string/addChild" />
+            
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

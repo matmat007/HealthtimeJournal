@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/login_background" >
+
+    <TextView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="center_horizontal"
+		        android:layout_marginTop="50dip"
+		        android:layout_marginBottom="50dip"
+		        android:text="@string/reg_part"
+		        android:textSize="28sp"
+		        android:textColor="@color/white"
+		        android:textStyle="bold"
+		        android:fontFamily="sans-serif-light"/>
+    
+    <Button 
+		        android:id="@+id/yesButton"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/yes"
+		        android:layout_margin="10dp"
+		        android:background="@color/maroon"
+		        android:textColor="@color/white"
+		        android:textStyle="bold"
+		        android:fontFamily="sans-serif-light"/>
+    
+    <Button 
+		        android:id="@+id/noButton"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/no"
+		        android:layout_margin="10dp"
+		        android:background="@color/maroon"
+		        android:textColor="@color/white"
+		        android:textStyle="bold"
+		        android:fontFamily="sans-serif-light"/>
+
+</LinearLayout>

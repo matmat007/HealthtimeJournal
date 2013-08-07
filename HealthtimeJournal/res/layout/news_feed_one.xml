@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView android:id="@+id/newsFeedPostStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    
+    <LinearLayout android:id="@+id/thumbnail"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:padding="3dip"
+        android:layout_alignParentLeft="true"
+	    android:layout_marginRight="5dip"
+	    android:layout_below="@id/newsFeedPostStatus" >
+
+		<ImageView
+			android:id="@+id/newsFeedFriendImage"
+	        android:layout_width="50dip"
+	        android:layout_height="50dip" />
+
+	</LinearLayout>
+
+    <TextView
+        android:id="@+id/newsFeedFriendName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_below="@id/newsFeedPostStatus" />
+    
+    <TextView
+        android:text="@string/says"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_below="@id/newsFeedFriendName" />
+
+    <TextView
+        android:id="@+id/newsFeedPostContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/thumbnail" />
+
+</RelativeLayout>
