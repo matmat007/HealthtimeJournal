@@ -128,6 +128,7 @@
     <string name="title_activity_register_partner2">RegisterPartner2Activity</string>
     <string name="title_activity_register_family">RegisterFamilyActivity</string>
     <string name="title_activity_task_without_ui">TaskWithoutUIActivity</string>
+    <string name="title_activity_sharing_add_shared">SharingAddSharedActivity</string>
 
     <!-- Album Name in Gallery Android -->
     <string name="title_activity_profile_parent">ProfileParentActivity</string>

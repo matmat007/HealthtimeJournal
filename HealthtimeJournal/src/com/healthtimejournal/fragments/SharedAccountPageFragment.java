@@ -70,7 +70,7 @@ public class SharedAccountPageFragment extends Fragment {
 				// TODO Auto-generated method stub
 				Intent a = new Intent(getActivity().getBaseContext(), ProfileChildAccountActivity.class);
 				Bundle args = new Bundle();
-				args.putInt("child_id", getArguments().getIntegerArrayList(ARG_IDS).get(arg2));
+				args.putInt("ARGS_ID", getArguments().getIntegerArrayList(ARG_IDS).get(arg2));
 				a.putExtra(ARGS, args);
 				startActivity(a);
 			}

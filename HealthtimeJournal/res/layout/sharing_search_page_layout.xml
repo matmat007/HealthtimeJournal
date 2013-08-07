@@ -5,14 +5,15 @@
     android:orientation="vertical">
     
     <AutoCompleteTextView 
-    	android:id="@+id/context_menu_search_sharing_searchbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    	android:id="@+id/search_sharing_searchbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/search"/>
         
         
     <ListView 
-    	android:id="@+id/context_menu_search_sharing_list"
-        android:layout_width="wrap_content"
+    	android:id="@+id/search_sharing_list"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
 </LinearLayout>

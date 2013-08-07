@@ -73,7 +73,6 @@ public class ProfileChildAccountFragmentPageAdapter extends FragmentPagerAdapter
     				
     				for(ParentPrivilegeModel p : parent){
     					ids.add(p.getShare().getSharingId());
-    					System.out.println(p.getShare().getSharingId());
     					accounts.add(p.getParents().getFirstName() + " " + p.getParents().getLastName());
     					privileges.add(p.getShare().getPrivilege());
     				}

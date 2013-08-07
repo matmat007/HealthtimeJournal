@@ -1,5 +1,6 @@
 package com.healthtimejournal.fragments;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.healthtimejournal.R;
+import com.healthtimejournal.SharingAddSharedActivity;
 import com.healthtimejournal.model.ChildModel;
 
 public class ChildAccountProfilePageFragment extends Fragment{
@@ -22,9 +24,12 @@ public class ChildAccountProfilePageFragment extends Fragment{
 	private static final String ARGS_NAME = "ARGS_NAME";
 	private static final String ARGS_GENDER = "ARGS_GENDER";
 	private static final String ARGS_BLOODTYPE = "ARGS_BLOODTYPE";
+	private static final String ARGS_ID = "ARGS_ID";
+	private static final String ARGS = "ARGS";
 	
 	public static ChildAccountProfilePageFragment create(ChildModel child){
 		Bundle bundle = new Bundle();
+		bundle.putInt(ARGS_ID, child.getChildId());
 		bundle.putString(ARGS_NAME, child.getFirstName() + " " + child.getLastName());
 		bundle.putString(ARGS_GENDER, child.getGender());
 		bundle.putString(ARGS_BLOODTYPE, child.getBloodType());
@@ -69,6 +74,11 @@ public class ChildAccountProfilePageFragment extends Fragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				Bundle args = new Bundle();
+				args.putInt(ARGS_ID, getArguments().getInt(ARGS_ID));
+				Intent a = new Intent(getActivity(), SharingAddSharedActivity.class);
+				a.putExtra(ARGS, args);
+				startActivity(a);
 			}
 		});
     	

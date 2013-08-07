@@ -44,6 +44,7 @@ public class MyCustomSearchListAdapter extends ArrayAdapter<ParentModel> {
 		
 		label.setText(origParentList.get(arg0).getFirstName().toString() + " " + origParentList.get(arg0).getLastName().toString());
 		desc.setText("aaaaa");
+		vi.setTag(origParentList.get(arg0).getParentId());
 		
 		return vi;
 	}

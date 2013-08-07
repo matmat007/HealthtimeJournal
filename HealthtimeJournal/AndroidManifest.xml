@@ -211,6 +211,12 @@
             android:label="@string/title_activity_event"
             android:screenOrientation="portrait" >
         </activity>
+        
+        <activity
+            android:name="com.healthtimejournal.SharingAddSharedActivity"
+            android:label="@string/title_activity_sharing_add_shared"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
