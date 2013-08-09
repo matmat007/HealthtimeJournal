@@ -122,6 +122,7 @@ public class SetPrivilegeContext extends BaseDialog {
 									editSharing();
 									privileges.set(pos, privilege);
 									adapter.notifyDataSetChanged();
+
 									dialog.cancel();
 								}
 							  })

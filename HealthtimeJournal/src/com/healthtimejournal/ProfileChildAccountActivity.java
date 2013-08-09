@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 
 import com.healthtimejournal.customadapter.fragmentadapter.ProfileChildAccountFragmentPageAdapter;
@@ -30,7 +29,6 @@ public class ProfileChildAccountActivity extends FragmentActivity {
 		setContentView(R.layout.profile_child_account_main_layout);
 		
 		child_id = getIntent().getBundleExtra("ARGS").getInt("ARGS_ID");
-		Log.d("CHILD_ID", ""+child_id);
 		retrieve_child();
 		
 		viewpager = (ViewPager) findViewById(R.id.profile_child_pager);

@@ -1,6 +1,9 @@
 package com.healthtimejournal.model;
 
-public class Event {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Event implements Parcelable{
 
 	private int eventId;
 	private int toParentId;
@@ -10,6 +13,21 @@ public class Event {
 	private int eventCategory;
 	private String eventDate;
 	private int fileId;
+	
+	public Event(){
+		
+	}
+	
+	public Event(Parcel parcel){
+		this.eventId = parcel.readInt();
+		this.toParentId = parcel.readInt();
+		this.fromParentId = parcel.readInt();
+		this.childId = parcel.readInt();
+		this.eventContent = parcel.readString();
+		this.eventCategory = parcel.readInt();
+		this.eventDate = parcel.readString();
+		
+		}
 	
 	public int getEventId() {
 		return eventId;
@@ -74,5 +92,38 @@ public class Event {
 	public void setFileId(int fileId) {
 		this.fileId = fileId;
 	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel arg0, int arg1) {
+		// TODO Auto-generated method stub
+		arg0.writeInt(eventId);
+		arg0.writeInt(toParentId);
+		arg0.writeInt(fromParentId);
+		arg0.writeInt(childId);
+		arg0.writeString(eventContent);
+		arg0.writeString(eventDate);
+		arg0.writeInt(eventCategory);
+		arg0.writeInt(fileId);
+	}
 	
+	public static final Parcelable.Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
+
+		@Override
+		public Event createFromParcel(Parcel source) {
+			// TODO Auto-generated method stub
+			return new Event(source);
+		}
+
+		@Override
+		public Event[] newArray(int size) {
+			// TODO Auto-generated method stub
+			return new Event[size];
+		}
+	};
 }

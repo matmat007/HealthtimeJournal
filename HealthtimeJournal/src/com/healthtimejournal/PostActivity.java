@@ -287,7 +287,6 @@ public class PostActivity extends Activity {
 		protected Boolean doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
-
 			GalleryModel onegallery = new GalleryModel();
 			if(selectedImagePath != null){
 				onegallery.setParentId(HealthtimeSession.getParentId(getBaseContext()));

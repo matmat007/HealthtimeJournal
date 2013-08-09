@@ -41,7 +41,7 @@ public class TiledEventFragmentPageAdapter extends FragmentPagerAdapter{
     	for(int n = 0; n < children.size(); n++){
     		for(int o = 0; o < events.size(); o++){
     			if(children.get(n).getChildId() == events.get(o).get(0).getChildId()){
-        			fragments.add(TiledEventPageFragment.create(n + 1, getIds(events.get(o)), getContents(events.get(o))));
+        			fragments.add(TiledEventPageFragment.create(n + 1, getIds(events.get(o)), (ArrayList<Event>)events.get(o)));
         		}
     		}
     		
@@ -49,15 +49,6 @@ public class TiledEventFragmentPageAdapter extends FragmentPagerAdapter{
     			fragments.add(TiledEventPageFragment.create(n + 1, null, null));
     		}
     	}
-    }
-    
-    private ArrayList<String> getContents(List<Event> post){
-    	ArrayList<String> list = new ArrayList<String>();
-    	
-    	for(int i = 0; i < post.size(); i++){
-    		list.add(post.get(i).getEventContent());
-    	}
-    	return list;
     }
     
     private ArrayList<Integer> getIds(List<Event> post){

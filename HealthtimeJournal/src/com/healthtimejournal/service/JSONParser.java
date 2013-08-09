@@ -474,11 +474,12 @@ public class JSONParser {
 				oneobj = jArray.getJSONObject(i);
 
 				onepost.setPostId(oneobj.getInt("post_id"));
-				//onepost.setChildId(oneobj.getInt("child_id"));
 				onepost.setEventId(oneobj.getInt("event_id"));
 				onepost.setFromParentId(oneobj.getInt("from_parent_id"));
 				onepost.setPostContent(oneobj.getString("post_content"));
 				onepost.setPostDate(oneobj.getString("post_date"));
+
+				onepost.setFileId(oneobj.getInt("file_id"));
 
 				result.add(onepost);
 
@@ -609,7 +610,6 @@ public class JSONParser {
 			e.printStackTrace();
 		}
 		return null;
-
 	}
 	
 	public static List<ParentPrivilegeModel> getParentPrivilege(String data){

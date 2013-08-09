@@ -48,6 +48,7 @@ public class SharedAccountPageFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+
     	View view = inflater.inflate(R.layout.shared_account_page_layout, container, false);
     	
     	LinearLayout linear = (LinearLayout) view;

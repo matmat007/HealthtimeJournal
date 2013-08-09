@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import com.healthtimejournal.R;
 import com.healthtimejournal.TimelineActivity;
+import com.healthtimejournal.model.Event;
+import com.healthtimejournal.service.ImageLoader;
 
 
 public class TiledEventPageFragment extends Fragment {
@@ -29,11 +31,14 @@ public class TiledEventPageFragment extends Fragment {
 
     private int mPage;
 
-    public static TiledEventPageFragment create(int page, ArrayList<Integer> list, ArrayList<String> contents) {
+
+    public static TiledEventPageFragment create(int page, ArrayList<Integer> list, ArrayList<Event> contents) {
+
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
-        args.putStringArrayList(ARG_CONTENT, contents);
+        args.putParcelableArrayList(ARG_CONTENT, contents);
         args.putIntegerArrayList(ARG_ID, list);
+
         TiledEventPageFragment fragment = new TiledEventPageFragment();
         fragment.setArguments(args);
         return fragment;
@@ -49,8 +54,8 @@ public class TiledEventPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
     	View view = inflater.inflate(R.layout.event_grid, container, false);
-    	
-    	if(getArguments().getStringArrayList(ARG_CONTENT) != null){
+    	ArrayList<Event> a = getArguments().getParcelableArrayList(ARG_CONTENT);
+    	if(a != null){
     		Point size = new Point();
         	getActivity().getWindowManager().getDefaultDisplay().getSize(size);
         	int screenWidth = size.x;
@@ -65,7 +70,7 @@ public class TiledEventPageFragment extends Fragment {
             grid.setRowCount(100);//for debug purpose only (should be dynamic)
             
             int spec_col = 0, spec_row = 0;
-            for(int i = 0; i < getArguments().getStringArrayList(ARG_CONTENT).size(); i++){
+            for(int i = 0; i < a.size(); i++){
             	Spec row = null, col = null;
             	int width = 0, height = 0;
             	final FrameLayout layout = (FrameLayout) inflater.inflate(R.layout.event_item, container, false);
@@ -132,25 +137,29 @@ public class TiledEventPageFragment extends Fragment {
     				}
     			});
             	
-                grid.addView(layout, populateGrid(layout, width, height, row, col, i));
+                grid.addView(layout, populateGrid(layout, width, height, row, col, i, a));
             }
     	}
         
         return view;
     }
     
-    private GridLayout.LayoutParams populateGrid(FrameLayout layout, int width, int height, GridLayout.Spec row, GridLayout.Spec col, int count){
+    private GridLayout.LayoutParams populateGrid(FrameLayout layout, int width, int height, GridLayout.Spec row, GridLayout.Spec col, int count, ArrayList<Event> a){
     	ImageView img = (ImageView) layout.findViewById(R.id.timeline_tile_img);
     	GridLayout.LayoutParams params = new GridLayout.LayoutParams(row, col);
         params.width = width;
         params.height = height;
         
         TextView text = (TextView) layout.findViewById(R.id.timeline_item_title);
-        if(getArguments().getStringArrayList(ARG_CONTENT) != null)
-        	text.setText(getArguments().getStringArrayList(ARG_CONTENT).get(count));
-        
+
+        if(a.get(count).getEventContent() != null)
+        	text.setText(a.get(count).getEventContent());
+
+        if(a.get(count).getFileId()==1)
         img.setImageResource(R.drawable.default_img);//for debug purpose only
-        
+        else{
+        	new ImageLoader(getActivity()).DisplayImage("http://192.168.43.185/healthtime/Test/retrieve_picture.php?id=" + a.get(count).getFileId(),R.drawable.ic_launcher , img);
+        }
         return params;
     }
 }

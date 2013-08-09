@@ -19,6 +19,7 @@ import com.healthtimejournal.model.GalleryModel;
 import com.healthtimejournal.model.ParentModel;
 import com.healthtimejournal.model.PostModel;
 import com.healthtimejournal.service.HttpClient;
+import com.healthtimejournal.service.JSONParser;
 
 public class TimelineActivity extends Activity {
 	
@@ -112,12 +113,12 @@ public class TimelineActivity extends Activity {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 			
-			//adapterTimeline = new MyCustomAdapterTimeline(TimelineActivity.this, postItem);
+			postItem = JSONParser.getPost(result);
+			adapterTimeline = new MyCustomAdapterTimeline(TimelineActivity.this, postItem);
 	        timelinelist.setAdapter(adapterTimeline);
 
 			pDialog.dismiss();
 		}
 
 	}
-	
 }

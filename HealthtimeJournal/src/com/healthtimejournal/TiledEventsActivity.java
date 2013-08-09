@@ -27,7 +27,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -149,15 +148,6 @@ public class TiledEventsActivity extends FragmentActivity {
 
 		hsv = (MyCustomHSV) findViewById(R.id.timeline_scrollview);
 
-		listview.setOnGroupClickListener(new OnGroupClickListener() {
-			@Override
-			public boolean onGroupClick(ExpandableListView parent, View v,
-					int groupPosition, long id) {
-				// TODO Auto-generated method stub
-				return true;
-			}
-		});
-
 		listview.setOnChildClickListener(new OnChildClickListener() {
 
 			@Override
@@ -228,6 +218,7 @@ public class TiledEventsActivity extends FragmentActivity {
 	protected void onDestroy() {
 	    super.onDestroy();
 	    searchbar.removeTextChangedListener(filterTextWatcher);
+
 	}
 	
 	private void search_parent(){
@@ -397,9 +388,8 @@ public class TiledEventsActivity extends FragmentActivity {
 		}
 
 	}
-
-	private class EventTileTask extends AsyncTask<Void, Void, String>{
-
+	private class EventTileTask extends AsyncTask<Void, Void, List<List<Event>>>{
+		
 		private ProgressDialog pDialog;
 
 		@Override
@@ -413,20 +403,14 @@ public class TiledEventsActivity extends FragmentActivity {
 		}
 
 		@Override
-		protected String doInBackground(Void... params) {
+		protected List<List<Event>> doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient a = new HttpClient();
+
 			Log.d("parent_id",String.valueOf(HealthtimeSession.getParentId(getBaseContext())));
 			String data = a.retrieve_all_event(HealthtimeSession.getParentId(getBaseContext()));
-			return data;
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-			super.onPostExecute(result);
-
-			if(result != null){
-				List<Event> chldlist = JSONParser.getEvents(result);
+			if(data != null){
+				List<Event> chldlist = JSONParser.getEvents(data);
 				List<List<Event>> arrangeEvents = new ArrayList<List<Event>>();
 				if(chldlist != null){
 					int n = chldlist.get(0).getChildId();
@@ -435,21 +419,30 @@ public class TiledEventsActivity extends FragmentActivity {
 					for(Event p : chldlist){
 						if(n != p.getChildId()){
 							n = p.getChildId();
+							p.setFileId(Integer.parseInt(a.retrieve_last_file_from_post(p.getEventId()).trim()));
 							arrangeEvents.add(model);
 							model = new ArrayList<Event>();
 						}
+						p.setFileId(Integer.parseInt(a.retrieve_last_file_from_post(p.getEventId()).trim()));
 						model.add(p);
 					}
 					arrangeEvents.add(model);
 				}
-				Log.d("logggg", ""+arrangeEvents.size());
-				fragment_adapter = new TiledEventFragmentPageAdapter(getSupportFragmentManager(), children, arrangeEvents);
-				viewPager.setAdapter(fragment_adapter);
+				
+			
+			return arrangeEvents;
 			}
-
-			pDialog.dismiss();
+			else return null;
 		}
 
+		@Override
+		protected void onPostExecute(List<List<Event>> result) {
+			super.onPostExecute(result);
+	        
+	        pDialog.dismiss();
+			fragment_adapter = new TiledEventFragmentPageAdapter(getSupportFragmentManager(), children, result);
+			viewPager.setAdapter(fragment_adapter);
+		}
 	}
 
 	private void logout() {

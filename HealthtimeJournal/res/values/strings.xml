@@ -24,6 +24,7 @@
 	<string name="setParent">Set Photo</string>
     <string name="save">Save</string>
 
+
     <!-- Registration -->
     <string name="email">Email</string>
     <string name="pass">Password</string>
@@ -135,5 +136,6 @@
     <string name="album_name">Healthtime Journal</string>
     <string name="title_activity_profile_child">ProfileChildActivity</string>
     <string name="title_activity_event">EventActivity</string>
+
 
 </resources>

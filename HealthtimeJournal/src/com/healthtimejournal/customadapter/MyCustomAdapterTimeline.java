@@ -32,10 +32,10 @@ import com.facebook.Facebook.DialogListener;
 import com.facebook.FacebookError;
 import com.facebook.SessionStore;
 import com.healthtimejournal.R;
-import com.healthtimejournal.model.GalleryModel;
-import com.healthtimejournal.model.ParentModel;
 import com.healthtimejournal.model.PostModel;
 import com.healthtimejournal.service.Base64Decoder;
+import com.healthtimejournal.service.ImageLoader;
+
 
 @SuppressLint("HandlerLeak")
 public class MyCustomAdapterTimeline extends BaseAdapter{
@@ -51,8 +51,9 @@ public class MyCustomAdapterTimeline extends BaseAdapter{
 
 	List<PostModel> items;
 	Activity activity;
-	
-	public MyCustomAdapterTimeline(Activity activity, List<PostModel> items, List<ParentModel> parent, List<GalleryModel> gallery){
+
+	public MyCustomAdapterTimeline(Activity activity, List<PostModel> items/*, List<ParentModel> parent, List<GalleryModel> gallery*/){
+
 		this.activity = activity;
 		this.items = items;
 	}
@@ -150,18 +151,23 @@ public class MyCustomAdapterTimeline extends BaseAdapter{
 				AlertDialog alertDialog = alertDialogBuilder.create();
 				alertDialog.show();
 			}
-	    });
-		
+	    });		
+		//parentImage.setImageBitmap(base.decodeBase64(items.get(arg0).getFromParentImage()));
+		//postImage.setImageBitmap(base.decodeBase64(items.get(arg0).getPostImage()));
+
 		text1.setText(items.get(arg0).getPostContent());
 		text2.setText(items.get(arg0).getPostDate());
 		text3.setText(items.get(arg0).getPostContent());
 		
-		//parentImage.setImageBitmap(base.decodeBase64(items.get(arg0).getFromParentImage()));
+		/*parentImage.setImageBitmap(base.decodeBase64(items.get(arg0).getParentImage()));*/
 		//postImage.setImageBitmap(base.decodeBase64(items.get(arg0).getPostImage()));
-		
+		if(items.get(arg0).getFileId() != 1)
+		new ImageLoader(activity).DisplayImage("http://192.168.43.185/healthtime/Test/retrieve_picture.php?id=" + items.get(arg0).getFileId(),R.drawable.ic_launcher , postImage);
+
 		return vi;
 	}
  
+	
     private final class FbLoginDialogListener implements DialogListener {
         public void onComplete(Bundle values) {
             SessionStore.save(mFacebook, activity);
